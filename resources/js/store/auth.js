@@ -1,0 +1,238 @@
+import axios from 'axios'
+import router from '@/router'
+
+export default {
+    namespaced: true,
+    state:{
+        authenticated:false,
+        token:'',
+        user:{},
+        contracts:0, 
+        contractsList:[],
+        usersList:[],
+        rolesList:[],
+        permissionsList:[],
+        devices:[],
+        services:[],
+        platforms:[]
+       
+    },
+    getters:{
+        getauthenticated(state){return state.authenticated  },
+        getuser(state){ return state.user  },
+        gettoken(state){ return state.token},
+        GET_CONTRACTS_COUNT(state){return state.contracts},
+        get_contracts_list(state){return state.contractsList},
+        get_users_list(state){return state.usersList},
+        get_roles_list(state){return state.rolesList},
+        get_permissions_list(state){return state.permissionsList},
+        GET_DEVICES(state){return state.devices},
+        GET_SERVICES(state){return state.services},
+        GET_PLATFORMS(state){return state.platforms},
+        GET_USER_ADDRESS(state){return state.user.Address},
+       
+       
+    },
+    mutations:{
+        SET_AUTHENTICATED (state, value) {state.authenticated = value },
+        SET_USER (state, value) { state.user = value },
+        SET_TOKEN(state,value){state.token=value },
+        SET_CONTRACTS_COUNT(state,value){state.contracts=value },
+        SET_CONTRACT_LIST(state,value){state.contractsList=value},
+        SET_USERS_LIST(state,value){state.usersList=value},
+        SET_ROLES_LIST(state,value){state.rolesList=value},
+        SET_PERMISSIONS_LIST(state,value){state.permissionsList=value},
+        SET_DEVICES(state,data){ state.devices=data },
+        SET_SERVICES(state,data){ state.services=data },
+        SET_PLATFORMS(state,data){ state.platforms=data },
+        SET_USER_ADDRESS(state,data){state.user.Address=data}
+       
+      
+    },
+    actions:{
+        async  login({dispatch},data)
+        {
+         await axios.get('/sanctum/csrf-cookie')
+        let response= await axios.post('/api/login',data)
+       
+          return dispatch('attempt',response.data.data)
+        },
+         attempt({commit},data)
+        {
+            console.log(data);
+         commit('SET_AUTHENTICATED',true)
+         commit('SET_USER',data.user)
+         commit('SET_TOKEN',data.token)
+         router.push({name:'home'})
+       
+ 
+        },
+        async  register({dispatch},data)
+        {
+          
+         await axios.get('/sanctum/csrf-cookie')
+            let config={
+                headers:{
+                    Accept: 'application/vnd.api+json',                                
+                
+                }
+            }
+        await axios.post('/api/register',data,config).then((response)=>{
+            console.log(response.data.data)
+           
+             dispatch('attempt',response.data.data)
+        }).catch((er)=>{console.log(er)})
+        }
+        ,
+        logout({commit}){
+            commit('SET_USER',{})
+            commit('SET_AUTHENTICATED',false)
+            commit('SET_TOKEN','')
+        },
+        async getcontracts({commit,getters}){
+            if(getters.gettoken){
+                let config={
+                    headers:{
+                        Accept: 'application/vnd.api+json',                                
+                        Authorization: `Bearer ${getters.gettoken}`
+                    }
+                } 
+                await axios.get('/sanctum/csrf-cookie')
+                await axios.get('/api/contracts',config)
+                           .then(response=>{
+                               console.log(response.data.data);
+                               commit('SET_CONTRACTS_COUNT',response.data.data.length)
+                               commit('SET_CONTRACT_LIST',response.data.data)
+                           })
+
+            }
+              
+    
+            },
+    async getusers({commit,getters}){
+                let config={
+                        headers:{
+                            Accept: 'application/vnd.api+json',                                
+                            Authorization: `Bearer ${getters.gettoken}`
+                        }
+                    } 
+                    await axios.get('/sanctum/csrf-cookie')
+                    await axios.get('/api/users',config)
+                               .then(response=>{
+                                 
+                                   commit('SET_USERS_LIST',response.data.data)
+                                  
+                               })
+    
+            },
+            async getroles({commit,getters}){
+                let config={
+                        headers:{
+                            Accept: 'application/vnd.api+json',                                
+                            Authorization: `Bearer ${getters.gettoken}`
+                        }
+                    } 
+                    await axios.get('/sanctum/csrf-cookie')
+                    await axios.get('/api/roles',config)
+                               .then(response=>{
+                                 
+                                   commit('SET_ROLES_LIST',response.data.data)
+                               })
+    
+            },
+            async getpermissions({commit,getters}){
+                let config={
+                        headers:{
+                            Accept: 'application/vnd.api+json',                                
+                            Authorization: `Bearer ${getters.gettoken}`
+                        }
+                    } 
+                    await axios.get('/sanctum/csrf-cookie')
+                    await axios.get('/api/permissions',config)
+                               .then(response=>{
+                                 
+                                   commit('SET_PERMISSIONS_LIST',response.data.data)
+                               })    
+            },
+            async  getdevices({commit,getters})
+            {
+                let config={
+                    headers:{
+                        Accept: 'application/vnd.api+json',                                
+                        Authorization: `Bearer ${getters.gettoken}`
+                    }
+                }                
+                await axios.get('/sanctum/csrf-cookie')
+                 await axios.get('/api/devices',config)
+                            .then(response=>{
+                            commit('SET_DEVICES',response.data.data)
+                            })
+                            
+            },
+            async  getservices({commit}){
+                await axios.get('/sanctum/csrf-cookie');
+                let config={
+                    headers:{
+                        Accept: 'application/vnd.api+json',                    
+                       // Authorization: `Bearer ${this.token()}`
+                    }
+                }
+                await axios.get(`/api/services`,config)
+                .then(response=>{ 
+                    commit('SET_SERVICES',response.data.data)
+                })           
+            },
+            async  getplatforms({commit,getters}){
+                await axios.get('/sanctum/csrf-cookie');
+                let config={
+                    headers:{
+                        Accept: 'application/vnd.api+json',                    
+                        Authorization: `Bearer ${getters.gettoken}`
+                    }
+                }
+                await axios.get(`/api/platforms`,config)
+                .then(response=>{ 
+                    commit('SET_PLATFORMS',response.data.data)
+                })           
+            },
+            GETSERVICEDEVICES({getters},data){
+                console.log(data)
+                let alldevices=getters.GET_DEVICES
+                let servicdevices=[]
+
+                alldevices.forEach(device=>
+                    {
+                                device.relationships.services.forEach((service)=>
+                                {
+                                    if(  service.attributes.title==data)
+                                    servicdevices.push(
+                                        
+                                    
+                                    
+                                        )
+                                })
+                    })
+
+                    return servicdevices
+                   
+              
+
+            },
+            async getuseraddresses({commit,getters}){
+                await axios.get('/sanctum/csrf-cookie');
+                let config={
+                    headers:{
+                        Accept: 'application/vnd.api+json',                    
+                        Authorization: `Bearer ${getters.gettoken}`
+                    }
+                }
+                await axios.get(`/api/address`,config)
+                .then(response=>{ 
+                    commit('SET_USER_ADDRESS',response.data.data)
+                })   
+
+            }
+       
+       
+    }
+}
