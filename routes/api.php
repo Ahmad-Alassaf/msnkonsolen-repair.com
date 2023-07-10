@@ -7,10 +7,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ContractsController;
-use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PlatformsController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ShoppingcartController;
 
 
@@ -24,6 +25,7 @@ Route::get('/services/{service}',[ServicesController::class,'show']);
 Route::resource('/users', UserController::class);
 Route::get('/devices',[DeviceController::class,'index']);
 Route::get('/devices/{device}',[DeviceController::class,'show']);
+
 
 // Protected Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -50,4 +52,12 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/address',AddressController::class);
     Route::resource('/contracts',ContractsController::class);
     Route::resource('/shoppincarts',ShoppingcartController::class);
+
+    Route::post('/payment',[PaymentController::class,'checkout']);
+    Route::post('/success',[PaymentController::class,'success'])->name('success');
+    Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel');
+
+    Route::post('/getsession',[PaymentController::class,'getsession']);
+
+   
 });
