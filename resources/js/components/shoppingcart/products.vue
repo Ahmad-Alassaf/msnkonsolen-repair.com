@@ -57,7 +57,7 @@ export default {
     data(){
         
         return{
-            gesamtprise:150,  
+            
             publishableKey : 'pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij',
             sessionId:null
                  
@@ -81,10 +81,7 @@ export default {
             contractslist:"auth/get_contracts_list",
             token:"auth/gettoken",
         }),
-        totalprise:()=>{
-
-        }
-       
+      
     },
     methods:{
         ...mapActions({contracts:"auth/getcontracts"}),
@@ -94,6 +91,19 @@ export default {
                                     // Then specify how you want your dates to be formatted
                                 return date.format('dddd:D MMMM , YYYY');
                         },
+        gesamtprise(){
+            let totalprise=0
+                                    this.contractslist.forEach(contract => {
+                                        contract.relationships.services.forEach(service=>{
+                                            console.log('Service:'+service.attributes.title)
+                                            totalprise += (parseInt(service.attributes.prise));
+                                        })
+                                        
+                                    });
+                                    console.log("Total price:"+totalprise)
+                                    return totalprise;
+
+        },
        async  getsession(){
                             let config={    headers:{
                                                                 "Access-Control-Allow-Origin" : '*',
@@ -103,15 +113,8 @@ export default {
                                     }
 
                                     } 
-                                    let totalprise=0
-                                    this.contractslist.forEach(contract => {
-                                        contract.relationships.services.forEach(service=>{
-                                            totalprise += service.attributes.prise;
-                                        })
-                                        
-                                    });
-                                    console.log("Total price:"+totalprise)
-
+                                   
+            let totalprise=this.gesamtprise();
             await axios.get('/sanctum/csrf-cookie');
             
             await  axios.post('/api/getsession',{contractslist:this.contractslist,totalprise:totalprise},config).then(response=>{
