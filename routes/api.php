@@ -58,6 +58,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel');
 
     Route::post('/getsession',[PaymentController::class,'getsession']);
+    Route::post('/success',[PaymentController::class,'success']);
 
    
 });

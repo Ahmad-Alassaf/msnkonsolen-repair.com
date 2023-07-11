@@ -25,7 +25,7 @@
                    
                     />
                     <button class="btn btn-primary m-auto w-50" @click="submit">Pay now!</button>
-                    <button class="btn btn-danger m-auto w-50" @click="payment()"> Zahlung </button>
+                   
                     
                 </div> 
                 
@@ -105,18 +105,18 @@ export default {
 
         },
        async  getsession(){
-                            let config={    headers:{
-                                                                "Access-Control-Allow-Origin" : '*',
-                                                                "Accept": 'application/vnd.api+json',                                
-                                                                "Authorization": `Bearer ${this.token}`,
-                                                                'Access-Control-Allow-Credentials':true
-                                    }
+                            let config={   
+                                        headers:{
+                                                                        "Access-Control-Allow-Origin" : '*',
+                                                                        "Accept": 'application/vnd.api+json',                                
+                                                                        "Authorization": `Bearer ${this.token}`,
+                                                                        'Access-Control-Allow-Credentials':true
+                                            }
 
                                     } 
                                    
             let totalprise=this.gesamtprise();
-            await axios.get('/sanctum/csrf-cookie');
-            
+            await axios.get('/sanctum/csrf-cookie');            
             await  axios.post('/api/getsession',{contractslist:this.contractslist,totalprise:totalprise},config).then(response=>{
                 console.log(response.data)
                     this.sessionId=response.data.id

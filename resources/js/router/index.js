@@ -33,6 +33,8 @@ import createcontract from  '../components/contracts/createcontract.vue'
 
 import products from '../components/shoppingcart/products.vue'
 import editrole from '../components/roles/editrole.vue'
+import success from '../components/success.vue'
+import cancel from '../components/cancel.vue'
 
 
 
@@ -232,6 +234,26 @@ const routes = [
         meta: {
            
             title: `editrole`
+        }
+    },
+    {
+        name: "success",
+        path: "/success",
+        component: success,
+        meta: {
+            props:true,
+           
+            title: `success`
+        }
+    },
+    {
+        name: "cancel",
+        path: "/cancel",
+        component: cancel,
+        meta: {
+            props:true,
+           
+            title: `cancel`
         }
     },
 ]

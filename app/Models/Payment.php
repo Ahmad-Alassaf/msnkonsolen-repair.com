@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Payment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        
+        'session_id',
+        'customer',
+    ];
 
     public function contract()// One Payment to One Contract
     {
