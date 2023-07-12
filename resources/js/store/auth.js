@@ -1,5 +1,6 @@
 import axios from 'axios'
 import router from '@/router'
+import { forEach } from 'lodash'
 
 export default {
     namespaced: true,
@@ -14,7 +15,8 @@ export default {
         permissionsList:[],
         devices:[],
         services:[],
-        platforms:[]
+        platforms:[],
+        Totalprice:0,
        
     },
     getters:{
@@ -23,6 +25,8 @@ export default {
         gettoken(state){ return state.token},
         GET_CONTRACTS_COUNT(state){return state.contracts},
         get_contracts_list(state){return state.contractsList},
+        get_contracts_prise(state){return state.Totalprice},
+
         get_users_list(state){return state.usersList},
         get_roles_list(state){return state.rolesList},
         get_permissions_list(state){return state.permissionsList},
@@ -37,8 +41,11 @@ export default {
         SET_AUTHENTICATED (state, value) {state.authenticated = value },
         SET_USER (state, value) { state.user = value },
         SET_TOKEN(state,value){state.token=value },
+
         SET_CONTRACTS_COUNT(state,value){state.contracts=value },
         SET_CONTRACT_LIST(state,value){state.contractsList=value},
+        SET_CONTRACTS_PRICE(state,value){state.Totalprice=value},
+
         SET_USERS_LIST(state,value){state.usersList=value},
         SET_ROLES_LIST(state,value){state.rolesList=value},
         SET_PERMISSIONS_LIST(state,value){state.permissionsList=value},
@@ -100,14 +107,17 @@ export default {
                 await axios.get('/sanctum/csrf-cookie')
                 await axios.get('/api/contracts',config)
                            .then(response=>{
-                               console.log(response.data.data);
+                               let Totalprice=0;
+                               response.data.data.forEach(contract=>{
+                                contract.relationships.services.forEach(service=>{
+                                    Totalprice +=parseInt(service.attributes.prise) 
+                                   })
+                               })
+                               commit('SET_CONTRACTS_PRICE',Totalprice);
                                commit('SET_CONTRACTS_COUNT',response.data.data.length)
                                commit('SET_CONTRACT_LIST',response.data.data)
                            })
-
-            }
-              
-    
+            } 
             },
     async getusers({commit,getters}){
                 let config={

@@ -53,26 +53,37 @@ class PaymentController extends Controller
      
      
         
+         foreach($request->contractslist as $contract)
+         {
+            $contractprise=0;
+            foreach($contract['relationships']['services'] as $service)
+            {
+                $contractprise +=$service['attributes']['prise'];
+            }
             $lineitems[]= [
-                                'price_data' =>[
-                                                'currency'=>'usd',
-                                                'unit_amount'=>(int)$request->totalprise*100,
-                                                'product_data'=>[
-                                                                    'name'=>"Checkout Stripe Test Mode"
-                                                                ]
-                                            ] ,
-                                'quantity' => 1,
-                              ];
+                'price_data' =>[
+                                'currency'=>'usd',
+                                'unit_amount'=>(int)$contractprise*100,
+                                'product_data'=>['name'=>$contract['attributes']['jobsnumber'],]
+                            ] ,
+                'quantity' => 1,
+              ];
+           
+           
+         }
+
+        
+           
        
            
 
         
         $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
       $checkout=  $stripe->checkout->sessions->create([
-     //   'success_url' => 'http://127.0.0.1:8000/success',
+      //  'success_url' => 'http://127.0.0.1:8000/success',
         'success_url' => 'https://msnkonsolen-repair.com/success',
-       // 'cancel_url' => 'http://127.0.0.1:8000/cancel',
-        'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
+       //   'cancel_url' => 'http://127.0.0.1:8000/cancel',
+      'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);

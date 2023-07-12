@@ -110,6 +110,7 @@ const routes = [
         path: "/shoppingcart",
         component: products,        
         meta: {
+            title:'Einkaufwage',
             middleware: "auth",
             props: true,
         }

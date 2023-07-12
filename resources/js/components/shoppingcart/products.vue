@@ -11,7 +11,7 @@
                                              
                                 <contract :contract="contract"  />
                             </div>
-                            <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ gesamtprise }}</p>
+                            <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ totalprice }}</p>
                       
 
                 </div>          
@@ -59,41 +59,28 @@ export default {
         return{
             
             publishableKey : 'pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij',
-            sessionId:null
-                 
-           
-           
+            sessionId:null,           
         }
     },
     mounted(){
         this.getsession()
-
     },
     created(){
         this.contracts()
-
-      
-        
 
     },
     computed:{
         ...mapGetters({
             contractslist:"auth/get_contracts_list",
+            totalprice:"auth/get_contracts_prise",
             token:"auth/gettoken",
         }),
-      
+        
     },
     methods:{
-        ...mapActions({contracts:"auth/getcontracts"}),
-        formatDate(dateString) 
-                       {
-                                const date = dayjs(dateString);
-                                    // Then specify how you want your dates to be formatted
-                                return date.format('dddd:D MMMM , YYYY');
-                        },
         gesamtprise(){
-            let totalprise=0
-                                    this.contractslist.forEach(contract => {
+                                 let totalprise=0
+                                    contractslist.forEach(contract => {
                                         contract.relationships.services.forEach(service=>{
                                             console.log('Service:'+service.attributes.title)
                                             totalprise += (parseInt(service.attributes.prise));
@@ -104,6 +91,14 @@ export default {
                                     return totalprise;
 
         },
+        ...mapActions({contracts:"auth/getcontracts"}),
+        formatDate(dateString) 
+                       {
+                                const date = dayjs(dateString);
+                                    // Then specify how you want your dates to be formatted
+                                return date.format('dddd:D MMMM , YYYY');
+                        },
+        
        async  getsession(){
                             let config={   
                                         headers:{
@@ -115,9 +110,9 @@ export default {
 
                                     } 
                                    
-            let totalprise=this.gesamtprise();
+           
             await axios.get('/sanctum/csrf-cookie');            
-            await  axios.post('/api/getsession',{contractslist:this.contractslist,totalprise:totalprise},config).then(response=>{
+            await  axios.post('/api/getsession',{contractslist:this.contractslist},config).then(response=>{
                 console.log(response.data)
                     this.sessionId=response.data.id
 
