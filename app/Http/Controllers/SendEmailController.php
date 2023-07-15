@@ -12,7 +12,12 @@ class SendEmailController extends Controller
     public function send(Request $request)
     {
        
-       mail($request->to,$request->subject,$request->content);
+      if( mail($request->to,$request->subject,$request->content))
+      {
+        return response([
+               "message"=> 'Email successuflly gesendet'
+        ]);
+      }
 
     }
 }

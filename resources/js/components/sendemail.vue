@@ -53,7 +53,8 @@ export default {
             fd.append('content',this.mailData.content);
            
             await axios.post(`/api/sendemail`,fd,config)
-            .then(()=>{
+            .then((response)=>{
+                console.log(response.data)
                 
           
             })

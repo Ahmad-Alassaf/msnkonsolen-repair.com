@@ -1,19 +1,19 @@
 {
-  "public/storage/images/netzteil.jpg": {
-    "file": "assets/netzteil-b12533ed.jpg",
-    "src": "public/storage/images/netzteil.jpg"
+  "public/storage/images/reinigung2.jpg": {
+    "file": "assets/reinigung2-6a29727e.jpg",
+    "src": "public/storage/images/reinigung2.jpg"
   },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-9b6e9cdd.jpg",
     "src": "public/storage/images/laser.jpg"
   },
-  "public/storage/images/reinigung2.jpg": {
-    "file": "assets/reinigung2-6a29727e.jpg",
-    "src": "public/storage/images/reinigung2.jpg"
-  },
   "public/storage/images/joycons.jpg": {
     "file": "assets/joycons-e1a1d258.jpg",
     "src": "public/storage/images/joycons.jpg"
+  },
+  "public/storage/images/netzteil.jpg": {
+    "file": "assets/netzteil-b12533ed.jpg",
+    "src": "public/storage/images/netzteil.jpg"
   },
   "public/storage/images/jampotron2.jpg": {
     "file": "assets/jampotron2-b31677cf.jpg",
@@ -29,7 +29,7 @@
     "src": "resources/js/app.css"
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-35e14fc4.js",
+    "file": "assets/Register-d673741d.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -37,7 +37,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-4c1121f0.js",
+    "file": "assets/Login-afab230c.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-2ac0b8a9.js",
+    "file": "assets/app-570fc704.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
