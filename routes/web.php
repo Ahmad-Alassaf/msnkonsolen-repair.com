@@ -18,6 +18,6 @@ Route::get('{any}', function () {
     return view('welcome');
 })->where('any', '.*');
 
-Auth::routes();
+Auth::routes(['verfify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

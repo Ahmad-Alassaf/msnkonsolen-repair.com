@@ -12,9 +12,16 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ContractsController;
 use App\Http\Controllers\PlatformsController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\ShoppingcartController;
 
 
+//
+Route::get('/verification',function(){
+    return response()->json([
+        'message'=>'the email account already confirmed'
+    ]);
+})->middleware('sanctum','verified');
 
 
 //public Routes
@@ -59,6 +66,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
 
     Route::post('/getsession',[PaymentController::class,'getsession']);
     Route::post('/success',[PaymentController::class,'success']);
+
+    Route::post('/sendemail',[SendEmailController::class,'send']);
 
    
 });

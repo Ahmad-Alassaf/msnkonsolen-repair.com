@@ -23,7 +23,6 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
     name:"home",
     components:{
-      
         navbar,      
         jambotron,
         advantesbar,

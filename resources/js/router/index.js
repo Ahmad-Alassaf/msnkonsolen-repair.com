@@ -35,6 +35,8 @@ import products from '../components/shoppingcart/products.vue'
 import editrole from '../components/roles/editrole.vue'
 import success from '../components/success.vue'
 import cancel from '../components/cancel.vue'
+import verified from '../components/verified.vue'
+import sendemail from '../components/sendemail.vue'
 
 
 
@@ -45,6 +47,13 @@ const routes = [
        
         component: home,
             meta: {title: `MSN Reparatur` }
+    },
+    {
+        path: '/verified',
+        name: "verified",
+       
+        component: verified,
+            meta: {title: `verified `,middleware:'guest' }
     },
     {
         path: '/contact',
@@ -68,6 +77,7 @@ const routes = [
         path: "/services",
         component: services,
         meta: {
+            middleware:'guest',
             title: `services`
         }
     },
@@ -257,6 +267,17 @@ const routes = [
             title: `cancel`
         }
     },
+    ,
+    {
+        name: "sendemail",
+        path: "/sendemail",
+        component: sendemail,
+        
+        meta: {
+            middleware: "auth",
+          
+        }
+    }
 ]
 
 const router = createRouter({
@@ -274,6 +295,11 @@ router.beforeEach((to, from, next) => {
     } 
     else if (to.meta.middleware == "auth"){
         if (!store.state.auth.authenticated) {next({name:'login'})}
+        else{ next()}
+
+    }
+    else if (to.meta.middleware == "verified"){
+        if (!store.state.auth.verified) {next({name:'verified'})}
         else{ next()}
 
     }
