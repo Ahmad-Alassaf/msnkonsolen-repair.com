@@ -40,11 +40,17 @@ class AuthController extends Controller
            
          
         ]);
+        $subject="Email Verification";
+        $content="Vielen Danke für Ihre Registrieren ";
+        if( mail($request->email,$subject,$content))
+        {
+            return $this->success([
+                'user'=>new UserResource($user),
+                'token'=>$user->createToken('Api Token Of User:'.$user->name)->plainTextToken
+            ]);
+        }
  
-        return $this->success([
-            'user'=>new UserResource($user),
-            'token'=>$user->createToken('Api Token Of User:'.$user->name)->plainTextToken
-        ]);
+       
     }
     public function logout(Request $request)
     {
