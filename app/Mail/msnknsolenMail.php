@@ -49,7 +49,7 @@ class msnknsolenMail extends Mailable
      */
     public function content()
     {
-        return $this->subject('test Email');
+        return $this->subject('test Email')->view('home');
     } 
 
     /**
