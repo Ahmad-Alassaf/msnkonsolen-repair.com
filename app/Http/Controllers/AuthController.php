@@ -42,7 +42,10 @@ class AuthController extends Controller
         ]);
         $subject="Email Verification";
         $content="Vielen Danke für Ihre Registrieren ";
-        if( mail($request->email,$subject,$content))
+        $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
+                    'Reply-To: info@msnkonsolen-repair.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+        if( mail($request->email,$subject,$content,$header))
         {
             return $this->success([
                 'user'=>new UserResource($user),
