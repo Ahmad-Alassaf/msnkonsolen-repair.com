@@ -40,18 +40,26 @@ class AuthController extends Controller
            
          
         ]);
-        $subject="Email Verification";
-        $content="Vielen Danke für Ihre Registrieren ";
-        $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
-                    'Reply-To: info@msnkonsolen-repair.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-        if( mail($request->email,$subject,$content,$header))
+        $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
+        if($token)
         {
-            return $this->success([
-                'user'=>new UserResource($user),
-                'token'=>$user->createToken('Api Token Of User:'.$user->name)->plainTextToken
-            ]);
+            $subject="Email Verification";
+            $content="Vielen Danke für Ihre Registrieren " . "\r\n";
+            $content .='<a href="https://msnkonsolen-repair.com/sendemail? id='.$token.'" 
+                         clss="btn btn-primary"> Verification</a>'. "\r\n";
+            $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
+                        'Reply-To: info@msnkonsolen-repair.com' . "\r\n" .
+                        'X-Mailer: PHP/' . phpversion();
+            if( mail($request->email,$subject,$content,$header))
+            {
+                return $this->success([
+                    'user'=>new UserResource($user),
+                    'token'=>$token
+                ]);
+            }
+
         }
+       
  
        
     }
