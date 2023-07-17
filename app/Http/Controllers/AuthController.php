@@ -44,7 +44,7 @@ class AuthController extends Controller
         if($token)
         {
             $subject="Email Verification";
-            $content="Vielen Danke für Ihre Registrieren " . "\r\n";
+            $content='Vielen Danke für Ihre Registrieren ' . '\r\n';
             $content .='<a href="https://msnkonsolen-repair.com/sendemail? id='.$token.'" 
                          clss="btn btn-primary"> Verification</a>'. "\r\n";
             $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
