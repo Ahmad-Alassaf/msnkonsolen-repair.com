@@ -45,8 +45,7 @@ class AuthController extends Controller
         {
             $subject="Email Verification";
             $content='Vielen Danke für Ihre Registrieren ' . '\r\n';
-            $content .='<a href="https://msnkonsolen-repair.com/sendemail? id='.$token.'" 
-                         clss="btn btn-primary"> Verification</a>'. "\r\n";
+            $content .='<a href="https://msnkonsolen-repair.com/sendemail? id='.$token.'    clss="btn btn-primary"> Verification</a>'. '\r\n';
             $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
                         'Reply-To: info@msnkonsolen-repair.com' . "\r\n" .
                         'X-Mailer: PHP/' . phpversion();
