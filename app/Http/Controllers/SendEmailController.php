@@ -17,7 +17,7 @@ class SendEmailController extends Controller
         'body' =>  $request->content,
     ];
      
-    Mail::to('info@msnkonsolen-repair.com')->send(new msnknsolenMail($mailData));
+    Mail::to( $request->to)->send(new msnknsolenMail($mailData));
        
     
     }
