@@ -1,11 +1,11 @@
 {
-  "public/storage/images/reinigung2.jpg": {
-    "file": "assets/reinigung2-6a29727e.jpg",
-    "src": "public/storage/images/reinigung2.jpg"
-  },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-9b6e9cdd.jpg",
     "src": "public/storage/images/laser.jpg"
+  },
+  "public/storage/images/reinigung2.jpg": {
+    "file": "assets/reinigung2-6a29727e.jpg",
+    "src": "public/storage/images/reinigung2.jpg"
   },
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-b12533ed.jpg",
