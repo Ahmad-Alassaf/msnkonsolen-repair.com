@@ -37,7 +37,7 @@ class msnknsolenMail extends Mailable
             replyTo: [
                 new Address('info@msnkonsolen-repair.com', 'Ahmad Alassaf')
             ],
-            subject: 'Msnknsolen Mail',
+            subject:$this->mailData->subject,
            
         );
     }
