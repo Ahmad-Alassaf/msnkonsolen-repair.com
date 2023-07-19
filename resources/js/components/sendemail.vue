@@ -56,7 +56,7 @@ export default {
             .then((response)=>{
                                 
                                this.$swal({
-                                        position: 'top-end',
+                                        position: 'center',
                                         icon: 'success',
                                         title: 'Your work has been saved',
                                         showConfirmButton: false,
