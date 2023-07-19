@@ -13,6 +13,8 @@
         @vite(['resources/js/app.js'])
     </head>
     <body>
-      
+        <h1>Wellkommen Email</h1>
+       
+        <h1> body:{{$mailData['body']}}</h1>
     </body>
 </html>
