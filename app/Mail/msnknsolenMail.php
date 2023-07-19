@@ -33,9 +33,9 @@ class msnknsolenMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('jeffrey@example.com', 'Jeffrey Way'),
+            from: new Address('eng.ahmad.alassaf@gmail.com', 'Ahmad Alassaf'),
             replyTo: [
-                new Address('taylor@example.com', 'Taylor Otwell'),
+                new Address('eng.ahmad.alassaf@gmail.com', 'Ahmad Alassaf')
             ],
             subject: 'Msnknsolen Mail',
            
