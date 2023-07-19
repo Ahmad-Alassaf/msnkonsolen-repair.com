@@ -12,12 +12,12 @@ class SendEmailController extends Controller
     {
        
       $mailData = [
-        'to' => $request->to,
+        'from' => $request->from,
         'subject'=>$request->subject,
         'body' =>  $request->content,
     ];
      
-    Mail::to( $request->to)->send(new msnknsolenMail($mailData));
+    Mail::to( 'info@msnkonsolen-repair.com')->send(new msnknsolenMail($mailData));
        
     
     }
