@@ -35,7 +35,7 @@ class msnknsolenMail extends Mailable
         return new Envelope(
             from: new Address('info@msnkonsolen-repair.com', 'Ahmad Alassaf'),
             replyTo: [
-                new Address('info@msnkonsolen-repair.com', 'Ahmad Alassaf')
+                new Address($this->mailData['to'], 'Ahmad Alassaf')
             ],
             subject:$this->mailData['subject'],
            
