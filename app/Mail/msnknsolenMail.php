@@ -33,7 +33,7 @@ class msnknsolenMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address($this->mailData['to'], 'Ahmad Alassaf'),
+            from: new Address('info@msnkonsolen-repair.com', 'Ahmad Alassaf'),
             replyTo: [
                 new Address($this->mailData['to'], 'Ahmad Alassaf')
             ],
