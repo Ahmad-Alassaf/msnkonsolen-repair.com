@@ -55,7 +55,7 @@ export default {
             await axios.post(`/api/sendemail`,fd,config)
             .then((response)=>{
                                 
-                               
+                               this.$swal('first alert')
                 
           
             })
