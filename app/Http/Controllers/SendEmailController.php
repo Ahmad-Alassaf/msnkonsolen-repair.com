@@ -18,7 +18,6 @@ class SendEmailController extends Controller
      
     Mail::to('ahmad312alassaf@gmail.com')->send(new msnknsolenMail($mailData));
        
-    dd("Email is sent successfully.");
-
+    
     }
 }
