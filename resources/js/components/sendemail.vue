@@ -54,14 +54,8 @@ export default {
            
             await axios.post(`/api/sendemail`,fd,config)
             .then((response)=>{
-                                this.$fire({
-                                            title: "Title",
-                                            text: "text",
-                                            type: "success",
-                                            timer: 3000
-                                            }).then(r => {
-                                            console.log(r.value);
-                                            });
+                                
+                                this.$alert("your Message sended.");
                 
           
             })
