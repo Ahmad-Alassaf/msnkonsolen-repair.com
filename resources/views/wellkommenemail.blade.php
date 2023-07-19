@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Wellkommen Email</h1>
-        <h1> to:{{$mailData['to']}}</h1>
+        <h1> from:{{$mailData['from']}}</h1>
         <h1> body:{{$mailData['body']}}</h1>
     </body>
 </html>
