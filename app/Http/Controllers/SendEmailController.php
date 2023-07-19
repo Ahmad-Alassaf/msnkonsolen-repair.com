@@ -12,8 +12,9 @@ class SendEmailController extends Controller
     {
        
       $mailData = [
-        'title' => 'Mail from ItSolutionStuff.com',
-        'body' => 'This is for testing email using smtp.'
+        'title' => $request->to,
+        'subject'=>$request->subject,
+        'body' =>  $request->content,
     ];
      
     Mail::to('ahmad312alassaf@gmail.com')->send(new msnknsolenMail($mailData));
