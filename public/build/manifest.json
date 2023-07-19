@@ -19,14 +19,14 @@
     "file": "assets/jampotron2-b31677cf.jpg",
     "src": "public/storage/images/jampotron2.jpg"
   },
+  "resources/js/app.css": {
+    "file": "assets/app-e9d64d7b.css",
+    "src": "resources/js/app.css"
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
-  },
-  "resources/js/app.css": {
-    "file": "assets/app-e9d64d7b.css",
-    "src": "resources/js/app.css"
   },
   "resources/js/components/Login.vue": {
     "file": "assets/Login-afab230c.js",
