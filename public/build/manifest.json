@@ -1,4 +1,8 @@
 {
+  "public/storage/images/joycons.jpg": {
+    "file": "assets/joycons-e1a1d258.jpg",
+    "src": "public/storage/images/joycons.jpg"
+  },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-6a29727e.jpg",
     "src": "public/storage/images/reinigung2.jpg"
@@ -10,10 +14,6 @@
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-b12533ed.jpg",
     "src": "public/storage/images/netzteil.jpg"
-  },
-  "public/storage/images/joycons.jpg": {
-    "file": "assets/joycons-e1a1d258.jpg",
-    "src": "public/storage/images/joycons.jpg"
   },
   "public/storage/images/jampotron2.jpg": {
     "file": "assets/jampotron2-b31677cf.jpg",
@@ -29,7 +29,7 @@
     "src": "resources/js/app.css"
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-ba8a97f3.js",
+    "file": "assets/Login-065c2bc1.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -37,7 +37,7 @@
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-6b4561ab.js",
+    "file": "assets/Register-be74a7c6.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-4bae93bb.js",
+    "file": "assets/app-afbc162b.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [

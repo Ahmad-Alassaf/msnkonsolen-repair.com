@@ -16,7 +16,7 @@
                             <p class="text-white px-3 m-0">info@msnkonsolen-repair.com</p>
 
                         </div>
-                        <div class="col-12 border ">
+                        <div class="col-12  ">
                             <h3 class="text-white m-0">Phone</h3>
                             <p class="text-white px-3 m-0">004915175614666</p>
 
