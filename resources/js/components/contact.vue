@@ -6,24 +6,24 @@
             <div class="container px-0">
                 <div class="row py-5 ">
                     <div class=" row  col-md-4 bg-secondary py-3 px-5 mb-1">
-                        <div class="col-12  py-1">
-                            <h3 class="text-white">Name</h3>
-                            <p class="text-white px-3">MSN Konsolen Reparatur</p>
+                        <div class="col-12  ">
+                            <h3 class="text-white py-0 m-0">Name</h3>
+                            <p class="text-white px-3 py-0 m-0">MSN Konsolen Reparatur</p>
+
+                        </div>
+                        <div class="col-12 ">
+                            <h3 class="text-white  m-0">Email</h3>
+                            <p class="text-white px-3 m-0">info@msnkonsolen-repair.com</p>
+
+                        </div>
+                        <div class="col-12 border ">
+                            <h3 class="text-white m-0">Phone</h3>
+                            <p class="text-white px-3 m-0">004915175614666</p>
 
                         </div>
                         <div class="col-12">
-                            <h3 class="text-white">Email</h3>
-                            <p class="text-white px-3">info@msnkonsolen-repair.com</p>
-
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-white">Phone</h3>
-                            <p class="text-white px-3">004915175614666</p>
-
-                        </div>
-                        <div class="col-12">
-                            <h3 class="text-white">Adresse</h3>
-                            <p class="text-white px-3">Nordweg. 1, 87730 Badgrönenbach, Deutschlan  </p>
+                            <h3 class="text-white m-0">Adresse</h3>
+                            <p class="text-white px-3 m-0">Nordweg. 1, 87730 Badgrönenbach, Deutschlan  </p>
 
                         </div>
 
