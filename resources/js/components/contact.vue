@@ -3,9 +3,9 @@
        
             <navbar />
             <jambotron />
-            <div class="container">
-                <div class="row py-5">
-                    <div class=" row  col-md-4 bg-secondary py-3 rounded">
+            <div class="container px-0">
+                <div class="row py-5 ">
+                    <div class=" row  col-md-4 bg-secondary py-3 px-5 mb-1">
                         <div class="col-12  py-1">
                             <h3 class="text-white">Name</h3>
                             <p class="text-white px-3">MSN Konsolen Reparatur</p>
@@ -28,7 +28,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 px-0">
                         <sendemail />
 
                     </div>
