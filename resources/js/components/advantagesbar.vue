@@ -1,19 +1,17 @@
 <template >
-    <div class="advantesbar">
-        <div class="container d-lg-flex   justify-content-around">
-            <div class="advanteg ">
+    <div class="advantesbar container mb-2 mt-2">
+        <div class=" row ">
+            <div class="  col-md-3 py-2 text-center ">
                 Schnelle Reparatur
             </div>
-            <div class="advanteg">
-                Leichte Zahlung
+           
+            <div class="border col-md-3 py-2 text-center">
+              Sichere und Leichte Zahlung
             </div>
-            <div class="advanteg">
-              Sichere Zahlung
-            </div>
-            <div class="advanteg">
+            <div class="border col-md-3 py-2 text-center">
                 Saubere Arbeit
              </div>
-             <div class="advanteg">
+             <div class="border col-md-3 py-2 text-center">
                 6 Monate Waranty
              </div>
 
