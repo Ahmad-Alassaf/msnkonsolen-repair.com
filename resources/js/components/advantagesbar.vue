@@ -1,22 +1,26 @@
 <template >
-    <div class="advantesbar container mb-2 mt-2">
-        <div class=" row ">
-            <div class="  col-md-3 py-2 text-center ">
-                Schnelle Reparatur
+    <div class="bg-white ">
+        <div class="container py-3 ">
+            <div class=" row  ">
+                <div class="border shadow col-md-5 rounded m-1 m-auto col-lg-2 mb-2 py-2 text-center   align-self-center">
+                    Schnelle Reparatur
+                </div>
+               
+                <div class="border shadow rounded col-md-5 m-1 m-auto col-lg-3 mb-2 py-2 text-center">
+                  Sichere und Leichte Zahlung
+                </div>
+                <div class="border shadow rounded col-md-5 m-1 m-auto col-lg-2 mb-2 py-2 text-center">
+                    Saubere Arbeit
+                 </div>
+                 <div class="border shadow rounded col-md-5 m-1 m-auto col-lg-2 mb-2 py-2 text-center">
+                    6 Monate Waranty
+                 </div>
+    
+    
             </div>
-           
-            <div class="border col-md-3 py-2 text-center">
-              Sichere und Leichte Zahlung
-            </div>
-            <div class="border col-md-3 py-2 text-center">
-                Saubere Arbeit
-             </div>
-             <div class="border col-md-3 py-2 text-center">
-                6 Monate Waranty
-             </div>
-
 
         </div>
+        
         
     </div>
 </template>
