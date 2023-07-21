@@ -19,17 +19,17 @@
     "file": "assets/jampotron2-b31677cf.jpg",
     "src": "public/storage/images/jampotron2.jpg"
   },
-  "resources/js/app.css": {
-    "file": "assets/app-b800072f.css",
-    "src": "resources/js/app.css"
-  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
+  "resources/js/app.css": {
+    "file": "assets/app-b800072f.css",
+    "src": "resources/js/app.css"
+  },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-bfbd41ff.js",
+    "file": "assets/Login-83535ff4.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -37,7 +37,7 @@
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-0a1b580a.js",
+    "file": "assets/Register-152caa62.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-04fd25e5.js",
+    "file": "assets/app-0c09d74a.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
