@@ -1,12 +1,12 @@
 
 <template>
   <div>
-    <h1>Google map</h1>
+   
     <GoogleMap
     :zoom="14"    
     :center="center"
      api-key="AIzaSyCBcDY3KDhse6SeN6QvUf7RS3YY1cLXLS8"
-  style="width: 100%; height: 300px"
+     style="width: 100%; height: 300px"
   >   <Marker :options="{ position: center }" />
   </GoogleMap>
   </div>
@@ -22,7 +22,7 @@ import {
 export default defineComponent({
   components: { GoogleMap, Marker },
   setup() {
-    const center = { lat: 47.8744, lng: 10.2224};
+    const center = { lat: 47.8803625, lng: 10.2181998};
 
     return { center };
   },

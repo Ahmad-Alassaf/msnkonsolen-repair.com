@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <div >
+                <div class="py-5 px-2 border mx-3">
                     <location />
 
                 </div>
