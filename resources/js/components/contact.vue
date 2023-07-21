@@ -34,30 +34,37 @@
                     </div>
                 </div>
 
-                <div class="py-5 px-2 border mx-3">
+                
+            </div>
+            <div class="bg-secondary  my-3">
+                <div class="container">
                     <location />
-
                 </div>
+                
+
             </div>
             
 
                 
-          
+            <foot />       
         
     </div>
 </template>
 <script>
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
+import foot from './layouts/foot.vue';
 import sendemail from './sendemail.vue'
 import location from "./location.vue"
+
 export default {
     name:"contact",
     components:{
         sendemail,
         navbar,      
         jambotron, 
-        location   
+        location  ,
+        foot   
     },
     computed:{
        
