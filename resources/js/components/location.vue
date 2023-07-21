@@ -22,7 +22,7 @@ import {
 export default defineComponent({
   components: { GoogleMap, Marker },
   setup() {
-    const center = { lat: 40.689247, lng: -74.044502 };
+    const center = { lat: 47.8744, lng: 10.2224};
 
     return { center };
   },
