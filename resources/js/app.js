@@ -7,6 +7,12 @@ import store from '@/store';
 
 const app = createApp({});
 import VueSweetalert2 from 'vue-sweetalert2';
+import * as VueGoogleMaps from "vue3-google-map" 
+
+
+
+
+
 import 'sweetalert2/dist/sweetalert2.min.css';
 import home from '@/components/home.vue'
 app.component('home', home);

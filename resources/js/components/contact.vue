@@ -33,6 +33,11 @@
 
                     </div>
                 </div>
+
+                <div >
+                    <location />
+
+                </div>
             </div>
             
 
@@ -45,13 +50,18 @@
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
 import sendemail from './sendemail.vue'
+import location from "./location.vue"
 export default {
     name:"contact",
     components:{
         sendemail,
         navbar,      
-        jambotron,    
+        jambotron, 
+        location   
     },
+    computed:{
+       
+    }
     
 }
 </script>
