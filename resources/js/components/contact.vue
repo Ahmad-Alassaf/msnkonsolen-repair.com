@@ -37,7 +37,7 @@
                 
             </div>
             <div class="bg-secondary  my-3">
-                <div class="container">
+                <div class="container px-0">
                     <location />
                 </div>
                 
