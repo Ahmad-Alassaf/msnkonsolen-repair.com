@@ -91,6 +91,21 @@ export default {
                 this.processing = false
 
                }
+               else if(result.message=='The password must be at least 6 characters.'){
+                this.credintioalError=result.message
+                this.processing = false
+
+               }
+               else if(result.message=='The email must be a valid email address.'){
+                this.credintioalError=result.message
+                this.processing = false
+
+               }
+               else if(result.message=='The email must be a valid email address. (and 1 more error)'){
+                this.credintioalError=result.message
+                this.processing = false
+
+               }
                else{
                 this.$router.push("/")
                }

@@ -32,7 +32,7 @@ class AuthController extends Controller
             
             }
             else{
-                return $this->error('','Credentials do nottttt match',401);
+                return $this->error('','Credentials do not match',401);
             }
            
 
