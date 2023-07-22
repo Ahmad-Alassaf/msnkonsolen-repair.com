@@ -96,7 +96,7 @@ export default {
           
             await axios.get('/sanctum/csrf-cookie');
             await axios.delete(`/api/address/${id}`,this.config).then(response=>{
-                console.log(response);
+              
                 this.addresses()
 
             }).catch(erorr=>{console.log(erorr)})

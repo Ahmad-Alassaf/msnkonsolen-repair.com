@@ -65,7 +65,7 @@ export default {
         {
             await axios.get('/sanctum/csrf-cookie');
             await axios.get(`/api/user`,this.$route.params.id).then(response=>{
-                console.log(response.data);
+               
                 this.user=response.data;
 
             }).catch(erorr=>{console.log(erorr)})

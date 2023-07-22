@@ -132,7 +132,7 @@ const routes = [
         path: "/login",
         component: Login,
         meta: {
-            middleware: "guest",
+          
             title: `Login`
         }
     },

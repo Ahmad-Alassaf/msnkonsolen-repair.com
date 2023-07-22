@@ -140,9 +140,9 @@ export default {
                                                     } 
           
             
-               console.log(this.token);
+            
             await axios.post('/api/logout',config).then(({data})=>{
-                console.log(data)
+              
                  this.signOut()
                  this.$router.push("/")
             })

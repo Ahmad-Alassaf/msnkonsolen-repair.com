@@ -7,6 +7,7 @@
                 <div class="card shadow sm">
                     <div class="card-body">
                         <h1 class="text-center">Login</h1>
+                        <p v-if="credintioalError!=''" class="text-danger ">{{credintioalError}}</p>
                         <hr/>
                         <form action="javascript:void(0)" class="row" method="post">
                             <div class="col-12" v-if="Object.keys(validationErrors).length > 0">
@@ -25,7 +26,7 @@
                                 <input type="password" v-model="auth.password" name="password" id="password" class="form-control">
                             </div>
                             <div class="col-12 mb-2">
-                                <button type="submit" :disabled="processing" @click="login" class="btn btn-primary btn-block">
+                                <button type="submit" :disabled="processing" @click="loginn" class="btn btn-primary btn-block">
                                     {{ processing ? "Please wait" : "Login" }}
                                 </button>
                             </div>
@@ -63,16 +64,37 @@ export default {
                 password:""
             },
             validationErrors:{},
-            processing:false
+            processing:false,
+            credintioalError:""
         }
     },
     methods:{
         ...mapActions({
             signIn:'auth/login'
         }),
-         login(){
+        async loginn(){
             this.processing = true
-           this.signIn(this.auth)
+         await   this.$store.dispatch('auth/login',this.auth).then(result=>{
+              
+               if(result.data=="")
+               {
+                this.credintioalError=result.message
+                this.processing = false
+               }
+               else if(result.message=='The password field is required.'){
+                this.credintioalError=result.message
+                this.processing = false
+
+               }
+               else if(result.message=='The email field is required.'){
+                this.credintioalError=result.message
+                this.processing = false
+
+               }
+               else{
+                this.$router.push("/")
+               }
+            })
         },
     }
 }

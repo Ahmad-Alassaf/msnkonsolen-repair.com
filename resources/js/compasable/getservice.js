@@ -17,9 +17,9 @@ const getservice=(id)=>{
                     throw Error('there is no Data')
                 }
                 else{
-                    console.log(response.data)
+                  
                      service.value=response.data.data
-                    console.log(service)
+               
                    
 
                 }

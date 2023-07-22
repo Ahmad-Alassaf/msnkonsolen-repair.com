@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
+use Throwable;
 
 class AuthController extends Controller
 {
@@ -18,17 +19,34 @@ class AuthController extends Controller
   
     public function login(LoginUserRequest $request)
     {
-        $request->validated($request->all());
-       if(!Auth::attempt($request->only(['email','password'])))
-       {
-        return $this->error('','Credentials do not match',401);
-       }
-       $user=User::where('email',$request->email)->first();
-       return $this->success([
-        'user'=>new UserResource($user),
-         'token'=>$user->createToken('Api Token Of User'.$user->name)->plainTextToken
+        try{
+            $request->validated($request->all());
+            if(Auth::attempt($request->only(['email','password'])))
+            {
+                $user=User::where('email',$request->email)->first();
+                return $this->success([
+                 'user'=>new UserResource($user),
+                  'token'=>$user->createToken('Api Token Of User'.$user->name)->plainTextToken
+         
+                ]);  
+            
+            }
+            else{
+                return $this->error('','Credentials do nottttt match',401);
+            }
+           
 
-       ]);        
+        }
+        catch(\Throwable $th)
+        {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+
+
+        }
+             
     }
     public function register(StoreUserRequest $request)
     {

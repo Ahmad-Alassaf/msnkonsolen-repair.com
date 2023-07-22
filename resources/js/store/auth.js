@@ -58,20 +58,32 @@ export default {
       
     },
     actions:{
-        async  login({dispatch},data)
+        async  login({commit},data)
+
         {
-         await axios.get('/sanctum/csrf-cookie')
-        let response= await axios.post('/api/login',data)
-       
-          return dispatch('attempt',response.data.data)
+           
+                await axios.get('/sanctum/csrf-cookie')                           
+            return    await axios.post('/api/login',data).then(response=>{
+                   
+                   console.log(response.data)
+                   commit('SET_AUTHENTICATED',true)
+                   commit('SET_USER',response.data.data.user)
+                   commit('SET_TOKEN',response.data.data.token)
+                   return response.data
+                }).catch(error=>{
+                   
+                  return error.response.data
+
+                })
+        
         },
          attempt({commit},data)
         {
-            console.log(data);
-         commit('SET_AUTHENTICATED',true)
-         commit('SET_USER',data.user)
-         commit('SET_TOKEN',data.token)
-         router.push({name:'home'})
+        
+                   commit('SET_AUTHENTICATED',true)
+                   commit('SET_USER',data.data.data.user)
+                   commit('SET_TOKEN',data.data.data.token)
+                
        
  
         },
@@ -86,8 +98,7 @@ export default {
                 }
             }
         await axios.post('/api/register',data,config).then((response)=>{
-            console.log(response.data.data)
-           
+        
              dispatch('attempt',response.data.data)
         }).catch((er)=>{console.log(er)})
         }
@@ -207,7 +218,7 @@ export default {
                 })           
             },
             GETSERVICEDEVICES({getters},data){
-                console.log(data)
+               
                 let alldevices=getters.GET_DEVICES
                 let servicdevices=[]
 

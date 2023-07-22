@@ -18,7 +18,7 @@ const getdevices=()=>{
                                             throw 'There is no devices'
                                         }
                                         else{
-                                            console.log(response.data)
+                                          
                                             devices=response.data.data
 
                                         }
