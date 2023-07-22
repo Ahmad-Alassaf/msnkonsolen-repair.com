@@ -4,8 +4,8 @@
             <navbar />
             <jambotron />
             <div class="container px-0">
-                <div class="row py-5 ">
-                    <div class=" row  col-md-4 bg-secondary py-3 px-5 mb-1">
+                <div class="row py-5  justify-content-center ">
+                    <div class=" row  col-md-4 bg-secondary py-3 px-5  mb-1">
                         <div class="col-12  ">
                             <h3 class="text-white py-0 m-0">Name</h3>
                             <p class="text-white px-3 py-0 m-0">MSN Konsolen Reparatur</p>
@@ -28,7 +28,7 @@
                         </div>
 
                     </div>
-                    <div class="col-md-8 px-0">
+                    <div class="col-md-8 px-0 ">
                         <sendemail />
 
                     </div>
@@ -36,8 +36,8 @@
 
                 
             </div>
-            <div class="bg-secondary  my-3">
-                <div class="container px-0">
+            <div class="  my-3 ">
+                <div class="container px-0  ">
                     <location />
                 </div>
                 
