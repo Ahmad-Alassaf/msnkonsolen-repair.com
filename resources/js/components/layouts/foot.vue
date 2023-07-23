@@ -15,7 +15,7 @@ export default {
 </script>
 <style >
 .footer{
-    height: 40px;
+    height: 500px;
     position: fixed;
     bottom:0;
     width: 100%;

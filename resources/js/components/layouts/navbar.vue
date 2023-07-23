@@ -2,7 +2,13 @@
     <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0 p-0  "  id="navbar">
             <div class="container-fluid">
-                <router-link class="navbar-brand" :to="{name:'home'}">MSN-Reparatur</router-link>
+                <div class="row">
+                    <router-link class="navbar-brand py-0" :to="{name:'home'}">MSN-Reparatur</router-link>
+                <small class="text-white ">004915175614666</small>
+                <small class="text-white ">info@msnkonsolen-repair.com</small>
+
+                </div>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
