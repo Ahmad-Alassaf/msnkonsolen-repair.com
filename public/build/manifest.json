@@ -29,7 +29,7 @@
     "src": "resources/js/app.css"
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-e7663ba8.js",
+    "file": "assets/Register-e48b1c70.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -37,7 +37,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-c2ec0302.js",
+    "file": "assets/Login-1f2b0b76.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-4d83faa5.js",
+    "file": "assets/app-a2e2005a.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [

@@ -3,12 +3,12 @@
         <hr style="border: none; border-top: 3px dashed  white" />
         <div class="container ">
             <form class="">
-                <div class="row   ">
+                <div class="row   justify-content-around">
                 
                         <input type="email" name="" id="" 
-                        class=" border-0 py-2  col-sm-12  col-md-9 col-lg-11 ">
+                        class=" border-0 py-2  col-10  col-md-9 col-lg-11 ">
                         <input type="submit" name="submit" value="submit" 
-                        class="btn btn-primary submitbutton border-0 rounded-0 col-sm-3  col-md-2 col-lg-1 ">
+                        class="btn btn-primary submitbutton border-0 rounded-0 col-3  col-md-2 col-lg-1 ">
 
 
                   
