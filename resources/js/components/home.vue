@@ -4,7 +4,10 @@
     <jambotron />
    
         <advantesbar />
-        <msnbanner />
+        <msnbanner @setupmicrsoft="showmicrosoft" @setupsony="showsony" @setupnintendo="shownintendo" />
+        <micrsoft  v-if="micrsoft"/>
+        <sony  v-if="sony"/>
+        <nintendo  v-if="nintendo"/>
         <superangebute />
         <emailbanner />
        
@@ -22,22 +25,32 @@ import foot from './layouts/foot.vue';
 import advantesbar from './homecomponents/advantagesbar.vue';
 import superangebute from './homecomponents/Superangebute.vue';
 import msnbanner from './homecomponents/msnbanner.vue'
+import micrsoft from './homecomponents/micrsoft.vue'
+import sony from './homecomponents/sony.vue'
+import nintendo from './homecomponents/nintendo.vue'
 import emailbanner from './homecomponents/benachrictenemail.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:"home",
+   
     components:{
         navbar,      
         jambotron,
         advantesbar,
         superangebute,
         msnbanner,
+        micrsoft,
+        sony,
+        nintendo,
         emailbanner,
         foot    
     },
     data(){
         return {
-            user:this.$store.state.auth.user
+            user:this.$store.state.auth.user,
+            micrsoft:false,
+            sony:false,
+            nintendo:false,
         }
     },
     created(){
@@ -60,6 +73,28 @@ export default {
             allservices:"auth/getservices"
 
         }), 
+        showmicrosoft(currentvalue){
+            
+            this.micrsoft=currentvalue
+            this.sony=false;
+            this.nintendo=false
+
+        },
+        showsony(currentvalue){
+         
+         this.sony=currentvalue
+         this.micrsoft=false
+         this.nintendo=false
+
+     },
+     shownintendo(currentvalue){
+         
+         this.nintendo=currentvalue
+         this.micrsoft=false
+         this.sony=false
+
+     },
+       
     }
 }
 </script>

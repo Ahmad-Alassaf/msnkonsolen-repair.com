@@ -3,16 +3,16 @@
         <hr style="border: none; border-top: 3px dashed  white" />
         <div class="container ">
             <div class="row  align-items-center ">
-                <div class="text-center  py-3 px-3 col ">
-                    <span class="fst-italic Microsoft  py-4 px-1" style="font-size:18px">Microsoft</span>
+                <div class="text-center  py-3 px-3 col "  >
+                    <span @click="setupMicrsoft()" class="fst-italic Microsoft  py-4 px-1" style="font-size:18px">Microsoft</span>
                     
                 </div>
                 <div class="text-center  py-3 px-3 col">
-                    <span class="fst-italic Sony  py-4 px-4 " style="font-size:18px">Sony</span>
+                    <span @click="setupSony()" class="fst-italic Sony  py-4 px-4 " style="font-size:18px">Sony</span>
                     
                 </div>
                 <div class="text-center  py-3 px-3 col ">
-                    <span class="fst-italic Nintendo  py-4 px-1" style="font-size:18px">Nintendo</span>
+                    <span @click="setupNintendo()" class="fst-italic Nintendo  py-4 px-1" style="font-size:18px">Nintendo</span>
                     
                 </div>
 
@@ -26,7 +26,35 @@
 </template>
 <script>
 export default {
-    name:"msnbanner"
+    name:"msnbanner",
+    data(){
+        return{
+            micrsoft:false,
+            nintendo:false,
+            sony:false
+        }
+    },
+    methods:{
+        setupMicrsoft(){
+            this.micrsoft=!this.micrsoft;
+           
+            this.$emit('setupmicrsoft',this.micrsoft)
+        }
+        ,
+        setupSony(){
+            this.sony=!this.sony;
+           
+            this.$emit('setupsony',this.sony)
+        }
+        ,
+        setupNintendo(){
+            this.nintendo=!this.nintendo;
+           
+            this.$emit('setupnintendo',this.nintendo)
+        }
+        ,
+       
+    }
     
 }
 </script>
