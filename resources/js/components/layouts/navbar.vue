@@ -4,17 +4,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <router-link class="navbar-brand py-0" :to="{name:'home'}">MSN-Reparatur</router-link>
-                <small class="text-white ">004915175614666</small>
-                <small class="text-white ">info@msnkonsolen-repair.com</small>
-
+               
                 </div>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="container   px-0">
+                <div class="container px-0">
                     <div class=" collapse navbar-collapse " id="navbarNavDropdown">
-                        <ul class="navbar-nav me-auto text-white">
+                        <ul class="navbar-nav    me-auto text-white" style="">
                             <li class="nav-item p-0 ">
                                 <router-link :to="{name:'home'}" class="text-white nav-link navlink-hover  text-center">Home <span class="sr-only">(current)</span></router-link>
                             </li>

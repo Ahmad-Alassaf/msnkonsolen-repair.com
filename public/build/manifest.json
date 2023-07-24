@@ -1,19 +1,19 @@
 {
+  "public/storage/images/joycons.jpg": {
+    "file": "assets/joycons-e1a1d258.jpg",
+    "src": "public/storage/images/joycons.jpg"
+  },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-6a29727e.jpg",
     "src": "public/storage/images/reinigung2.jpg"
-  },
-  "public/storage/images/netzteil.jpg": {
-    "file": "assets/netzteil-b12533ed.jpg",
-    "src": "public/storage/images/netzteil.jpg"
   },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-9b6e9cdd.jpg",
     "src": "public/storage/images/laser.jpg"
   },
-  "public/storage/images/joycons.jpg": {
-    "file": "assets/joycons-e1a1d258.jpg",
-    "src": "public/storage/images/joycons.jpg"
+  "public/storage/images/netzteil.jpg": {
+    "file": "assets/netzteil-b12533ed.jpg",
+    "src": "public/storage/images/netzteil.jpg"
   },
   "public/storage/images/jampotron2.jpg": {
     "file": "assets/jampotron2-b31677cf.jpg",
@@ -25,27 +25,27 @@
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app-9fba97d9.css",
+    "file": "assets/app-eec2c766.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-eed38ab6.js",
-    "src": "resources/js/components/Register.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-c0fee16f.js",
+    "file": "assets/Login-c329970a.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-284a78d3.js",
+    "src": "resources/js/components/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/js/app.js": {
-    "file": "assets/app-6da22a4e.js",
+    "file": "assets/app-17a625d8.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -53,7 +53,7 @@
       "resources/js/components/Register.vue"
     ],
     "css": [
-      "assets/app-9fba97d9.css"
+      "assets/app-eec2c766.css"
     ],
     "assets": [
       "assets/joycons-e1a1d258.jpg",

@@ -4,7 +4,9 @@
     <jambotron />
    
         <advantesbar />
+        <msnbanner />
         <superangebute />
+        <emailbanner />
        
         <foot />   
 
@@ -17,8 +19,10 @@
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
 import foot from './layouts/foot.vue';
-import advantesbar from './advantagesbar.vue';
-import superangebute from './Superangebute.vue';
+import advantesbar from './homecomponents/advantagesbar.vue';
+import superangebute from './homecomponents/Superangebute.vue';
+import msnbanner from './homecomponents/msnbanner.vue'
+import emailbanner from './homecomponents/benachrictenemail.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:"home",
@@ -27,6 +31,8 @@ export default {
         jambotron,
         advantesbar,
         superangebute,
+        msnbanner,
+        emailbanner,
         foot    
     },
     data(){
