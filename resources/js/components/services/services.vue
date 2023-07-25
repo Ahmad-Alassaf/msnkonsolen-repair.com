@@ -9,15 +9,15 @@
             </div>
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="Sony" class="form-check-input" id="sony">
-                <label class="form-check-label" for="sony"> Sony Services ({{ sonylist.length }}) </label>
+                <label class="form-check-label" for="sony"> Sony Services ({{ sonylistlength}}) </label>
             </div>
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="Microsoft" class="form-check-input" id="microsoft">
-                <label class="form-check-label" for="microsoft"> Microsoft Services({{ microsoftlist.length }})  </label>
+                <label class="form-check-label" for="microsoft"> Microsoft Services({{ microsoftlistlength }})  </label>
             </div>
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="Nintendo" class="form-check-input" id="nintedo">
-                <label class="form-check-label" for="nintedo"> Nintedo Services({{ nintedolist.length }})  </label>
+                <label class="form-check-label" for="nintedo"> Nintedo Services({{ nintedolistlength }})  </label>
             </div>
           
 
@@ -67,16 +67,19 @@ export default {
     {service, navbar,  jambotron},
     setup(){
          const selected_platforms=ref('all')
-         const nintedolist=ref([])
-        const sonylist=ref([])
-        const microsoftlist=ref([])
+        
         const {error,services,load}=getservices()
        
         load()
-
+        const nintedolistlength=ref(0)
+        const sonylistlength=ref(0)
+        const microsoftlistlength=ref(0)
+         
        const matchedlist=computed(()=>{
         const arr=services.value
-    
+        const nintedolist=ref([])
+        const sonylist=ref([])
+        const microsoftlist=ref([])
         arr.forEach(service=>{
            
             service.relationships.devices.forEach((device)=>{
@@ -97,6 +100,9 @@ export default {
                
             })
         })
+        nintedolistlength.value=nintedolist.value.length
+        sonylistlength.value=sonylist.value.length
+        microsoftlistlength.value=microsoftlist.value.length
         if(selected_platforms.value=='Sony')
         {
             return sonylist.value
@@ -111,7 +117,7 @@ export default {
        })
           
       
-        return{error,services,matchedlist,selected_platforms,nintedolist,sonylist,microsoftlist}
+        return{error,services,matchedlist,selected_platforms,nintedolistlength,sonylistlength,microsoftlistlength}
     },
     
   
