@@ -2,7 +2,7 @@
     <div class="container py-5">
 
         <div class=" row  justify-content-md-around">
-            <div class="card  p-0 bg-none col-10 col-md-6 col-lg-4 mb-2">
+            <div class="card m-auto p-0 bg-none col-10 col-md-6 col-lg-4 mb-2">
                 <div class="card-header text-center">
                     <h3>Nintendow Switch 32GB</h3>
                 </div>
@@ -33,7 +33,7 @@
                     <button class="btn btn-primary d-block m-auto ">und Mehr</button>
                 </div>
             </div>
-             <div class="card p-0 col-10 col-md-6 col-lg-4 mb-2">
+             <div class="card p-0 col-10 col-md-6 col-lg-4 mb-2 m-auto">
                 <div class="card-header text-center">
                     <h3> Analogstick</h3>
                 </div>
@@ -57,7 +57,7 @@
                     <button class="btn btn-primary d-block m-auto ">und Mehr</button>
                 </div>              
             </div>
-            <div class="card p-0 col-10 col-md-8 col-lg-4 mb-2">
+            <div class="card p-0 col-10 col-md-8 col-lg-4 mb-2 m-auto">
                 <div class="card-header text-center">
                     <h3> Joy-con Führungsschiene</h3>
                 </div>
