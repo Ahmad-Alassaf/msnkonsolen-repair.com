@@ -6,8 +6,8 @@
         <div class="card mb-2 shadow-sm" v-if="service !=null" >          
             <div class="card-header">
                 <h3>{{service.attributes.title}}</h3>
-              <span v-for="device in devices" >
-                    <span v-if="device.relationships.services.find(e=>e.attributes.title===service.attributes.title)" class="p bg-dark rounded text-white px-2 m-1">                       
+              <span v-for="device in service.relationships.devices" >
+                    <span class="p bg-dark rounded text-white px-2 m-1">                       
                            {{ device.attributes.title }}
                     </span>                     
                 </span >

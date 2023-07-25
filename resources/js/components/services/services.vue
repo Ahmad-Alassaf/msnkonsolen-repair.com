@@ -30,8 +30,8 @@
             <div class="col-lg-10 card p-0 border-0">
                         <div class="card-header border-0">
                         <h4>{{service.attributes.title}}</h4> 
-                            <span v-for="device in devices" >
-                                <span v-if="service.relationships.devices.find(e=>e.attributes.title===device.attributes.title)" class="p bg-dark rounded text-white px-2 m-1">                       
+                            <span v-for="device in service.relationships.devices" >
+                                <span  class="p bg-dark rounded text-white px-2 m-1">                       
                                     {{ device.attributes.title }}
                                 </span>                     
                             </span>
