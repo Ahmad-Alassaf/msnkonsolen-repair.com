@@ -85,19 +85,19 @@ export default {
             service.relationships.devices.forEach((device)=>{
               
                 if(device.relationships.platform.platform =='Nintendo'){
-                    if(nintedolist.value.find(e=>e.attributes.title===service.attributes.title) !=='undefined')
+                    if(!nintedolist.value.includes(service))
                             nintedolist.value.push(service)
 
                 }
                 else if(device.relationships.platform.platform =='Sony')
                 {
-                    if(sonylist.value.find(e=>e.attributes.title===service.attributes.title)!=='undefined')
+                    if(!sonylist.value.includes(service))
                              sonylist.value.push(service)
                   
 
                 }
                 else {
-                    if(microsoftlist.value.find(e=>e.attributes.title===service.attributes.title)!=='undefined')
+                    if(!microsoftlist.value.includes(service))
                         microsoftlist.value.push(service)
                   
                    
