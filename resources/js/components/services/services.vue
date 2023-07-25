@@ -1,8 +1,29 @@
 <template  class="container pt-5">
     <navbar />
     <jambotron />   
-    <div class="container pt-5">        
-          <div v-for="service in services" class="row mb-4 shadow p-0" >                         
+    <div class="container pt-5 ">  
+        <div class="row border px-1 py-3 my-3 rounded bg-white shadow">
+            <div class="form-check col-12 col-md-3">
+                <input type="radio" name="services" v-model="selected_platforms" value="all" class="form-check-input" id="services">
+                <label class="form-check-label" for="services" > All Services({{ services.length }})  </label>
+            </div>
+            <div class="form-check col-12 col-md-3">
+                <input type="radio" name="services" v-model="selected_platforms" value="Sony" class="form-check-input" id="sony">
+                <label class="form-check-label" for="sony"> Sony Services ({{ sonylist.length }}) </label>
+            </div>
+            <div class="form-check col-12 col-md-3">
+                <input type="radio" name="services" v-model="selected_platforms" value="Microsoft" class="form-check-input" id="microsoft">
+                <label class="form-check-label" for="microsoft"> Microsoft Services({{ microsoftlist.length }})  </label>
+            </div>
+            <div class="form-check col-12 col-md-3">
+                <input type="radio" name="services" v-model="selected_platforms" value="Nintendo" class="form-check-input" id="nintedo">
+                <label class="form-check-label" for="nintedo"> Nintedo Services({{ nintedolist.length }})  </label>
+            </div>
+          
+
+        </div>
+                
+          <div v-for="service in matchedlist" class="row mb-4 shadow p-0" >                         
             <div class=" col-lg-2   p-2">
                 <img :src="`storage/images/${service.attributes.foto}`" alt="" class="img-thumbnail border-0">
             </div>
@@ -34,6 +55,7 @@
 <script >
 
 import service from'./service.vue'
+import { computed,ref } from 'vue';
 
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
@@ -42,15 +64,57 @@ import getservices from '../../compasable/getservices';
 export default {
     name:"services",
     components:
-    {service,  navbar,      
-        jambotron},
+    {service, navbar,  jambotron},
     setup(){
-      
+         const selected_platforms=ref('all')
+         const nintedolist=ref([])
+        const sonylist=ref([])
+        const microsoftlist=ref([])
         const {error,services,load}=getservices()
+       
         load()
-        return{error,services}
 
-    }
+       const matchedlist=computed(()=>{
+        const arr=services.value
+    
+        arr.forEach(service=>{
+           
+            service.relationships.devices.forEach((device)=>{
+              
+                if(device.relationships.platform.platform =='Nintendo'){
+                    nintedolist.value.push(service)
+
+                }
+                else if(device.relationships.platform.platform =='Sony')
+                {
+                    sonylist.value.push(service)
+
+                }
+                else {
+                    microsoftlist.value.push(service)
+
+                }
+               
+            })
+        })
+        if(selected_platforms.value=='Sony')
+        {
+            return sonylist.value
+        }
+        else if(selected_platforms.value=='Microsoft')
+                        {return microsoftlist.value }
+        else if(selected_platforms.value=='Nintendo')
+                            { return nintedolist.value }
+        else
+                   { return services.value}
+       
+       })
+          
+      
+        return{error,services,matchedlist,selected_platforms,nintedolist,sonylist,microsoftlist}
+    },
+    
+  
    
    
    

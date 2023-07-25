@@ -58,6 +58,7 @@ class ServicesController extends Controller
                 'waranty'=>$request->waranty,
                 'foto'=>$file,
             ]);
+            
             $list=explode(",",$request->list);
             $service->devices()->attach($list);
             return new ServiceResource($service);
