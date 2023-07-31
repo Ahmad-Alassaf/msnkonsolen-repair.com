@@ -42,6 +42,8 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/roles', RoleController::class);
     Route::put('/roles/assignPermission/{role}',[RoleController::class,'assignPermission']);
     Route::resource('/permissions', PermissionController::class);
+
+  
     
    
 

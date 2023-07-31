@@ -41,14 +41,15 @@ class ServicesController extends Controller
        
         $request->validated($request->all());
       
-       
-       
         if($request->hasFile('foto'))
         {
             
             $image=$request->file('foto');
             $ext=$image->extension();
-            $file=$request->title.'.'.$ext;
+           
+            $namewithextension = $image->getClientOriginalName();
+            $name = explode('.', $namewithextension)[0]; // Filename 'filename'
+            $file=$name.'.'.$ext;
             $image->move('storage/images',$file);
             $service=Service::create([
                 'title'=>$request->title,
@@ -103,34 +104,32 @@ class ServicesController extends Controller
      */
     public function update(Request $request, Service $service)
     {
+
           
-       
-            if($request->hasFile('foto'))
-            {
-                return 'there is no file';
-                $image=$request->file('foto');
-                $ext=$image->extension();
-                $file=$request->title.'.'.$ext;
-
-                $image->move('storage/images',$file);
-                $service->foto=$file;
+        
                
-            }
-            $service->title=$request->title;
-            $service->device=$request->device;
-            $service->description=$request->description;
-            $service->waranty=$request->waranty;
+                /* $image=$request->file('foto');              
+                $ext=$image->extension();               
+                $namewithextension = $image->getClientOriginalName();
+                $name = explode('.', $namewithextension)[0]; // Filename 'filename'
+                $file=$name.'.'.$ext;
+                $image->move('storage/images',$file);
+                $service->foto=$file; */
 
-            $service->prise=$request->prise;
-            $service->save();
-            if($request->has('list'))
-            {
-                $service->devices()->sync($request->list);
-            }
-            return new ServiceResource($service);
-           
-           
+                $service->title=$request->title;
+                $service->device=$request->device;
+                $service->description=$request->description;
+                $service->waranty=$request->waranty;
     
+                $service->prise=$request->prise;
+                $service->save();
+                if($request->has('list'))
+                {
+                   
+                    $service->devices()->sync($request->list);
+                }
+                return new ServiceResource($service);
+               
         
        
     }

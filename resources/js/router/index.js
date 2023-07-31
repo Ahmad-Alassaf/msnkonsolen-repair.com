@@ -18,6 +18,8 @@ import edituser from '../components/users/edituser.vue'
 import services from '@/components/services/services.vue'
 import adminpage from '../components/Adminpage.vue'
 import devices from '../components/devices/devices.vue'
+
+import platforms from "../components/platforms/platforms.vue"
 import service from '../components/services/service.vue'
 import adminservices from '../components/adminservices.vue'
 import editservice from '../components/services/editservice.vue'
@@ -152,6 +154,16 @@ const routes = [
         
         meta: {
             props: true,
+        }
+    }
+    ,
+    {
+        name: "platforms",
+        path: "/platforms",
+        component: platforms,
+        
+        meta: {
+            title:'Platforms in System',
         }
     }
     ,

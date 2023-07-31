@@ -2,7 +2,7 @@
     <jambotron />
     <navbar />
     <div class="container py-5" v-if="service.attributes!=null">
-        <form @submit.prevent="save()" method="put" enctype="multipart/form-data">
+        <form @submit.prevent="save()"  enctype="multipart/form-data">
        
         <div class="card mb-2 shadow-sm"  >          
             <div class="card-header" v-if="service">
@@ -16,9 +16,9 @@
             <div class="card-body p-0">
                 <div class="d-flex">
                     <div class="col-3   ">
-                        <img v-if="!changefotofalg"  :src="`../storage/images/${service.attributes.foto}` " alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" >
-                        <img v-if="changefotofalg" :src="url" alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" >
-                        <input type="file" class="" @change="onImageChange"  name="foto" id="getFile" >
+                        <img   :src="`../storage/images/${service.attributes.foto}` " alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" >
+                        <!-- <img  :src="url" alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" > -->
+                      
                     </div>
                     <div class="col-9">
                         <textarea name="" class="form-control mx-auto bg-white m-1"  id="" rows="10" v-model="service.attributes.description" >{{service.attributes.description}}</textarea>
@@ -60,11 +60,9 @@ export default {
             url:null,
             deviceslist:[],
             changefotofalg:false,
-            url:null,
             newdevices:[],
-            newfoto:"",
-          
-
+            newfoto:'',
+           
         }
     },
     computed:{ 
@@ -78,9 +76,6 @@ export default {
     },
     created(){
         this.getService();
-      
-       
-
     },
     methods: {
        ...mapActions({
@@ -88,12 +83,14 @@ export default {
         getservicedevices:"auth/GETSERVICEDEVICES"
 
        }),
-       onImageChange(event){
+       // only to show new foto and save it in newfoto
+       onImageChange(event){ 
              this.changefotofalg=true
-            this.newfoto=event.target.files[0]
-           
-            this.url = URL.createObjectURL( event.target.files[0]);
-           
+            this.newfoto=event.target.files[0]  
+            this.formdata.attributes.foto=event.target.files[0];
+         
+             
+            this.url = URL.createObjectURL( event.target.files[0]);     
 
         },
         adddevice(device){  
@@ -112,19 +109,15 @@ export default {
             }
             else{
                 this.service.relationships.devices.splice(index,1)
-            }
-                    
-                
-          
-             
-          
+            }   
 
         },
          async save(){
-            let config={
+                                        let config={
                                                         headers:{
                                                             Accept: 'application/vnd.api+json',                                
-                                                            Authorization: `Bearer ${this.token}`
+                                                            Authorization: `Bearer ${this.token}`,
+                                                            
                                                         }
                                                     } 
             await axios.get('/sanctum/csrf-cookie');
@@ -132,37 +125,48 @@ export default {
             this.service.relationships.devices.forEach(e=>{
                 list.push(e.id)
             })
-            let fd=new FormData();
-            fd.append('title',this.service.attributes.title);
-            fd.append('device',this.service.attributes.device);
-            fd.append('description',this.service.attributes.description);
-            fd.append('waranty',this.service.attributes.waranty);
-            fd.append('prise',this.service.attributes.prise);
-            fd.append('foto',this.newfoto);
-            fd.append('list',list);
+         /*    const fd=new FormData();
+            fd.append('title',this.formdata.attributes.title)
+            fd.append( 'device',this.formdata.attributes.device)
+            fd.append('description',this.formdata.attributes.description)
+            fd.append('waranty',this.formdata.attributes.waranty)
+            fd.append('prise',this.formdata.attributes.prise)
+            fd.append('foto', this.formdata.attributes.foto)
+            fd.append('list', this.formdata.attributes.list)
            
-            await axios.put(`/api/services/${this.service.id}`,{
-                'title':this.service.attributes.title,
-                'device':'Device',
-                'description':this.service.attributes.description,
-                'waranty':this.service.attributes.waranty,
-                'prise':this.service.attributes.prise,
-                'foto':this.newfoto,
-                'list':list
 
-            },config)
-            .then((response)=>{
-                console.log(response)
-               
-                
+           
+               console.log(this.service)
+            console.log(fd);
+        
+            console.log(' this.formdata.attributes.foto');
+            console.log( this.formdata.attributes.foto);
           
+            console.log(this.service.attributes.foto);
+            //  { */
+            //    title:this.service.attributes.title,
+          //   device:this.service.attributes.device,
+        /*     description:this.service.attributes.description,
+            waranty:this.service.attributes.waranty,
+            prise:this.service.attributes.prise,
+            foto:this.service.attributes.foto,
+            list: this.service.attributes.list
+        } */
+             //
+            await axios.put(`/api/services/${this.service.id}`,{
+                                                                 title:this.service.attributes.title,
+                                                                device:this.service.attributes.device,
+                                                                description:this.service.attributes.description,
+                                                                waranty:this.service.attributes.waranty,
+                                                                prise:this.service.attributes.prise,
+                                                               
+                                                                list: list} ,config)
+            .then((response)=>{
+               this.$router.push('/services')
             })
             .catch(error=>{
                 console.log(error );
             })
-           
-            
-
         },
        async  getService(){
             await axios.get('/sanctum/csrf-cookie');
@@ -174,7 +178,6 @@ export default {
             }
             await axios.get(`/api/services/${this.$route.params.id}`,config).then(response=>{
                 this.service=response.data.data;
-              
             })           
         },
        

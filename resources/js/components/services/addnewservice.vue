@@ -93,7 +93,7 @@ export default {
         onImageChange(event){
             this.formdata.foto=event.target.files[0]
             this.url = URL.createObjectURL( this.formdata.foto);
-           
+            console.log( "this.formdata.foto")
             console.log( this.formdata.foto)
 
         },

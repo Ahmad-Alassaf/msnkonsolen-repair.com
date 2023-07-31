@@ -29,7 +29,7 @@ class StoreServiceRequest extends FormRequest
             'description'=>['required'],
             'prise'=>['required'],
             'waranty'=>['required'],
-            'foto'=>['required'],
+           
             'list'=>['required','exists:devices,id']
         ];
     }

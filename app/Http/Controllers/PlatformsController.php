@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlatformsRequest;
 use App\Http\Resources\PlatformResource;
 use App\Models\Platform;
 use Illuminate\Http\Request;
@@ -35,9 +36,16 @@ class PlatformsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlatformsRequest $request)
     {
-        //
+        $request->validated($request->all());
+       
+        $platform=Platform::create([
+            'platform'=>$request->title,
+          
+        ]);
+        return new PlatformResource($platform);
+        
     }
 
     /**
@@ -80,8 +88,10 @@ class PlatformsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Platform $platform)
     {
-        //
+        
+        $platform->delete();
+        return response(null,204);//204 mean no Content
     }
 }

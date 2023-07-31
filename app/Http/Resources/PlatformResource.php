@@ -21,15 +21,7 @@ class PlatformResource extends JsonResource
                                     'created_at'=>$this->created_at,
                                     'updated_at'=>$this->updated_at,
 
-                                  ],
-                    /* 'relationships'=>[
-                                        'devices'=>[
-                                                        'id'=>(string)$this->platform->id,
-                                                        'platform'=>$this->platform->platform,
-                                                    ]
-                                   ]
- */
-
-        ];
+                        ]
+                    ];
     }
 }

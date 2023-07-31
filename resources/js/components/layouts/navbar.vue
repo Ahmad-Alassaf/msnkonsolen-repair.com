@@ -43,7 +43,7 @@
     
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'services'}">platforms</router-link>
+                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'platforms'}">platforms</router-link>
     
                                         </li>
                                         <li class=" ">
