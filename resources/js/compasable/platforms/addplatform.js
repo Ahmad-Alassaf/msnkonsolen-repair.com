@@ -11,7 +11,7 @@ const addnewplatform=()=>{
                    Authorization: `Bearer ${token}`
                 }
             }
-            alert(data)
+           
             await axios.post(`/api/platforms`,{
                 title:data
             },config).then(response=>{

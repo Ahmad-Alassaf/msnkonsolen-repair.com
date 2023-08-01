@@ -1,30 +1,36 @@
 <template >
     <navbar />
     <jambotron />
-    <div class="container bg-white border p-0 ">
+    <div class="container bg-white  px-0">
         <h1 class="bg-dark text-white text-center m-0">Platforms</h1>
-        <form class="form pt-5" @submit.prevent="addoneplatform()">
-            <div class="d-flex">
-                <input type="text" v-model="platformtxt" class="form-control rounded-0" name="" id="">
-                <input type="submit" value="add" class="btn btn-primary rounded-0">
+        <form class="form pt-5 px-1" @submit.prevent="addoneplatform()">
+            <div class="d-flex w-lg-50 m-auto">
+                <select name="platforms" v-model="platformtxt" class="form-select mx-1 "  aria-label="Default select " >
+                    <option selected>-- Platform auswahlen --</option>
+                    <option value="Microsoft">Microsoft</option>
+                    <option value="Nintendo">Nintendo</option>
+                    <option value="Sony">Sony</option>
+                </select>
+               
+                <input type="submit" value="add" class="btn btn-primary ">
 
             </div>
            
         </form>
-        <div class="pt-5">
-            <div class="row  m-auto mb-1 border" v-for="platform in platforms">
+        <div class="pt-5 px-1">
+            <div class="row m-auto mb-1  " v-for="platform in platforms">
                
-                <div  class="col-6  ">
+                <div  class="col-12 col-md-6  border py-1 text-center shadow mb-1 rounded">
                    <span class="py-1 px-2 ">{{ platform.attributes.platform }}</span> 
      
                  </div>
-                 <div class="col-6  d-flex justify-content-end">
-                     <button class="btn btn-primary border-0 rounded-0 mx-1">Bearbeiten</button>
-                     <button class="btn btn-danger border-0 rounded-0 mx-1" @click="deleteoneplatform(platform.id)">Löchen</button>
+                 <div class="col-12 col-md-6 d-flex  justify-content-center">
+                     <button class="btn btn-primary  mx-1">Bearbeiten</button>
+                     <button class="btn  btn-danger  mx-1" @click="deleteoneplatform(platform.id)">Löchen</button>
      
                  </div>           
        
-    </div>
+         </div>
 
         </div>
         
@@ -42,10 +48,19 @@ import deleteplatform  from '../../compasable/platforms/deleteplatform'
 import addnewplatform from '../../compasable/platforms/addplatform'
 import { computed,ref,reactive } from "vue";
 import { useStore } from 'vuex'
+import Swal from 'sweetalert2'
 export default {
     components:{navbar,jambotron,foot},
     setup(){
         const platformtxt= ref(null)
+        const platformexist=ref(false)
+        const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                      confirmButton: 'btn btn-success',
+                      cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                  })
         const {platformserrors,loadplatforms,platforms}=getplatforms()
         const store = useStore()
         const token=computed(()=>{
@@ -61,12 +76,33 @@ export default {
 
         }
         function addoneplatform(){
-            const {error,runaddplatform}=addnewplatform()
-            runaddplatform(platformtxt.value,token)
-            loadplatforms(token)
 
+            platforms.value.forEach(platform => {
+              
+                if(platform.attributes.platform==platformtxt.value)
+                {
+                    platformexist.value=true
+
+
+                }
+                
+            });           
+            if(!platformexist.value){
+                const {error,runaddplatform}=addnewplatform()
+                 runaddplatform(platformtxt.value,token)
+                loadplatforms(token)
+            }
+            else{
+                Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: `${platformtxt.value} Platform ist bereit im Datenbank`,
+                           
+                            })
+
+                platformexist.value=false
+            }
         }
-
         return{platformtxt,platformserrors,platforms,deleteoneplatform,addoneplatform}
     }
     

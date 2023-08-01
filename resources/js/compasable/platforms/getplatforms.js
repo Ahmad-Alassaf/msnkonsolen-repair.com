@@ -17,6 +17,7 @@ const getplatforms=()=>{
                if(!response.data){
                 throw Error('an Error Occered')
                }
+              
                else{
                 platforms.value=response.data.data
              
