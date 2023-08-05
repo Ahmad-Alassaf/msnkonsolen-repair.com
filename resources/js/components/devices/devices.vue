@@ -1,107 +1,123 @@
 <template >
-    <div class="">
-       
-            <button class="btn btn-success  mb-1"  @click="add=!add">{{ add?'Close':'New Device' }}  </button>
-            <div v-if="add" class="d-flex m-auto mb-1">
-                <input type="text" class="form-control mx-1" v-model="device_title"  placeholder="Device Name...">               
-                <select name="" id="" v-model="selected_platform" class="form-control mx-1">
-                    <option v-for="platform in platforms"  :value="platform">{{platform.attributes.platform}}</option>
-                </select>
-                <button class="btn btn-success  " @click="this.addnewdevice()"> Add  </button>
-            </div>    
-            <table class="table table-success table-striped">
-                <thead>
-                  <tr>                
-                    <th scope="col">Geräte</th>
-                    <th scope="col">Plattform</th>
-                    <th scope="col">Erstellt am</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>                               
-                        <tr v-for="device in devices" >                        
-                           
-                            <td scope="col" >
-                                {{ device.attributes.title }}
-                            </td>
-                            <td scope="col" >
-                                {{ device.relationships.platform.platform }}
-                                                             
-                            </td>
-                            <td scope="col"> {{ device.attributes.created_at }}</td>
-                            <td scope="col" class="d-flex justify-content-end">
-                                <button type="button" class="btn btn-primary mx-1 " @click="deviceEditing(index,device)">
-                                   {{ (isEdit && rowindex===index)?'Speichern':'Bearbieten'}}
-                                </button>
-                               <button type="button" class="btn btn-danger " @click="deleteDevice(device.id)">löchen</button>
-                            </td>                        
-                        </tr>               
-               </tbody>
-            </table>
+    <navbar />
+    <jambotron />
+    <div class="container pt-5">
+        <h1 class="bg-dark text-white text-center m-0">Devices</h1>
+        <form class="form pt-5 px-1 d-flex" @submit.prevent="newdevice">
+            <select name="" v-model="selectedplatform"  class="form-select mx-1 "  aria-label="Default select " >
+                <option value="" selected>-- Platform auswahlen --</option>
+                <option :value="platform" v-for="platform in platforms">{{platform.attributes.platform}}</option>
+                
+            </select>
+            <input type="text " placeholder="Gerät..." class="form-control" v-model="devicetxt">
+            <input type="submit" value="add" class="btn btn-primary ">
            
-        </div>
+        </form>
+        <div class="container pt-5">
+            <ul class="list-group">
+               
+                <li v-for="device in devices" class="list-group-item mb-1 border-0  shadow ">
+                    <div class="row">
+                        <div class="col-12 col-md-10 mb-1 py-3">
+                            <h3>{{device.attributes.title}}</h3>
+                            <span class="badge rounded-pill bg-dark">{{device.relationships.platform.platform}}</span>
+                        </div>
+                        
+                        <div class="col-2 "> <button class="btn btn-danger " @click="deleteonedevice(device.id)">Löchen</button></div>
+                    </div>
+                   
+                   
+                </li>
+            </ul>
 
+        </div>
+    </div>
+    <foot />
 </template>
 <script>
+import navbar from "../layouts/navbar.vue";
+import jambotron from '../layouts/jambotron.vue';
+import foot from '../layouts/foot.vue';
 import axios from 'axios';
 import { mapGetters ,mapActions} from 'vuex'
 
+import getplatforms from '../../compasable/platforms/getplatforms';
+import addnewdevice  from '../../compasable/devices/addnewdevice'
+import getdevices from '../../compasable/devices/getdevices'
+import deletedevice from "../../compasable/devices/deletedevice";
+import { useStore } from 'vuex'
+import { computed,ref,reactive } from "vue";
+import Swal from 'sweetalert2'
 export default {
     name:"devices",
-    props:['devices','platforms'],
-    data(){
-        return{
-           
-            add:false,
-            addbtn:true,
-            isEdit:false,
-            rowindex:null,
-            selected_platform:null,
-            device_title:'',
-            editdata:{
-                title:'',
-                platform_id:''
-            }
+    components:{navbar,jambotron,foot},
+    setup(){
+       const devicetxt=ref('')
+       const selectedplatform=ref(null)
+        const {platformserrors,loadplatforms,platforms}=getplatforms()
+        const store = useStore()
+        const token=computed(()=>{
+            return store.getters["auth/gettoken"]
+
+        })
+        loadplatforms(token)
+        const {addnewdeviceErrors,runaddnewdevice}=addnewdevice()
+        const {deviceserror,devices,loaddevices}=getdevices()
+        loaddevices()
+        function newdevice(){
+                       runaddnewdevice({device_title:devicetxt.value,platform_id:selectedplatform.value.id},token)  
+                       loaddevices()       
 
         }
-    },
-    created() {
-       
-    },
-    computed:{
-        ...mapGetters({
-            user:"auth/getuser",
-            authenticated:"auth/getauthenticated",           
-            token:"auth/gettoken"
-        }), 
-       
-    },
-    mounted(){     
-    },
-    methods:{
-        ...mapActions({
-            alldevices:"auth/getdevices",
-        }), 
-        async addnewdevice(){
-            await axios.get('/sanctum/csrf-cookie');
-            let config={
-                                                        headers:{
-                                                            Accept: 'application/vnd.api+json',                                
-                                                            Authorization: `Bearer ${this.token}`
-                                                        }
-                                                    }
-            await axios.post(`/api/devices`,{
-                title:this.device_title,
-                platform_id:this.selected_platform.id
-            },config)
-            .then( this.alldevices() )
-            .catch(error =>{
-                console.log(error );
-            })
+        function deleteonedevice(id){
+          
+             
+           
+            const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                      confirmButton: 'btn btn-success',
+                      cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                  })
+          swalWithBootstrapButtons.fire({
+                          title: 'Sind Sie sicher?',
+                          text: "Sie können nicht nacher Service anzeigen!",
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonText: 'Ja ',
+                          cancelButtonText: 'Nein',                        
+                        }).then((result) => { 
+                                                            
+                          if (result.value) {                           
+                            const {err,rundeletedevice}=deletedevice()
+                              rundeletedevice(id,token)  
+                              loaddevices()                                
+                                    swalWithBootstrapButtons.fire({
+                                                                    position: 'center',
+                                                                      icon: 'success',
+                                                                      title: 'Service erfolgreich gelöcht.',
+                                                                      showConfirmButton: false,
+                                                                      timer: 500
+                                        })                                
+                                       
+                          } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire(
+                              'Cancelled',
+                              'Your imaginary file is safe :)',
+                              'error'
+                            )
+                          }
+                        })
+         
+        
 
-        },
-      async  deleteDevice(id){
-       
+        }
+         
+        return {platforms,devicetxt,selectedplatform,devices,newdevice,deleteonedevice}
+
+    },
+      /* async  deleteDevice(id){       
             await axios.get('/sanctum/csrf-cookie');
             let config={
                                                         headers:{
@@ -151,8 +167,8 @@ export default {
             })
 
         }
-        
-    }
+         */
+    
     
     
 }

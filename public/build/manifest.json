@@ -1,15 +1,11 @@
 {
-  "public/storage/images/reinigung2.jpg": {
-    "file": "assets/reinigung2-6a29727e.jpg",
-    "src": "public/storage/images/reinigung2.jpg"
+  "public/storage/images/joycons.jpg": {
+    "file": "assets/joycons-e1a1d258.jpg",
+    "src": "public/storage/images/joycons.jpg"
   },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-9b6e9cdd.jpg",
     "src": "public/storage/images/laser.jpg"
-  },
-  "public/storage/images/joycons.jpg": {
-    "file": "assets/joycons-e1a1d258.jpg",
-    "src": "public/storage/images/joycons.jpg"
   },
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-b12533ed.jpg",
@@ -18,6 +14,10 @@
   "public/storage/images/nintendo/1.jpg": {
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
+  },
+  "public/storage/images/reinigung2.jpg": {
+    "file": "assets/reinigung2-6a29727e.jpg",
+    "src": "public/storage/images/reinigung2.jpg"
   },
   "public/storage/images/nintendo/3.jpg": {
     "file": "assets/3-ac918e53.jpg",
@@ -45,7 +45,7 @@
     "src": "resources/js/app.css"
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-3e53540f.js",
+    "file": "assets/Register-87bdef1b.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -53,7 +53,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-6f19994c.js",
+    "file": "assets/Login-c2634aee.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -61,7 +61,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-cce06956.js",
+    "file": "assets/app-678d3383.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [

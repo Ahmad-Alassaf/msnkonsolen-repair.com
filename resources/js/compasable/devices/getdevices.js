@@ -5,6 +5,7 @@ const getdevices=()=>{
     const loaddevices=async()=>{
         try{
             await axios.get('/sanctum/csrf-cookie');
+          
             let config={
                             headers:{
                                 Accept: 'application/vnd.api+json',                                
@@ -19,8 +20,8 @@ const getdevices=()=>{
                                         }
                                         else{
                                           
-                                            devices=response.data.data
-
+                                            devices.value=response.data.data
+                                           
                                         }
                             })
                 

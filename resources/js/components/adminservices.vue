@@ -57,8 +57,7 @@ export default {
         const token=computed(()=>{
            return store.getters["auth/gettoken"]
         })
-        function deleteservic(id){
-           
+        function deleteservic(id){           
                   const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                       confirmButton: 'btn btn-success',
@@ -72,28 +71,20 @@ export default {
                           icon: 'warning',
                           showCancelButton: true,
                           confirmButtonText: 'Ja ',
-                          cancelButtonText: 'Nein',
-                        
-                        }).then((result) => {
-                         
-                          if (result) {
+                          cancelButtonText: 'Nein',                        
+                        }).then((result) => {                         
+                          if (result.value) {
                             const {executedelete,message}=deleteservice()
-                                  executedelete(id,token)
-                                 
+                                  executedelete(id,token)                                 
                                     swalWithBootstrapButtons.fire({
                                                                     position: 'center',
                                                                       icon: 'success',
                                                                       title: 'Service erfolgreich gelöcht.',
                                                                       showConfirmButton: false,
                                                                       timer: 1500
-
-                                        })
-                                
+                                        })                                
                                         load()
-                          } else if (
-                            /* Read more about handling dismissals below */
-                            result.dismiss === Swal.DismissReason.cancel
-                          ) {
+                          } else if (result.dismiss === Swal.DismissReason.cancel) {
                             swalWithBootstrapButtons.fire(
                               'Cancelled',
                               'Your imaginary file is safe :)',
@@ -101,12 +92,6 @@ export default {
                             )
                           }
                         })
-                            
-         
-
-
-        
-       
          
         }
         return{services,error,load,token,deleteservic}

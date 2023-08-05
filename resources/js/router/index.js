@@ -17,6 +17,7 @@ import edituser from '../components/users/edituser.vue'
 
 import services from '@/components/services/services.vue'
 import adminpage from '../components/Adminpage.vue'
+
 import devices from '../components/devices/devices.vue'
 
 import platforms from "../components/platforms/platforms.vue"
@@ -149,11 +150,11 @@ const routes = [
     },
     {
         name: "devices",
-        path: "/devices/:id",
+        path: "/devices",
         component: devices,
         
         meta: {
-            props: true,
+           
         }
     }
     ,

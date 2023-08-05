@@ -15,7 +15,7 @@ const addnewplatform=()=>{
             await axios.post(`/api/platforms`,{
                 title:data
             },config).then(response=>{
-                console.log(response.data)
+               
               
             })
         }

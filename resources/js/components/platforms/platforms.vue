@@ -25,7 +25,6 @@
      
                  </div>
                  <div class="col-12 col-md-6 d-flex  justify-content-center">
-                     <button class="btn btn-primary  mx-1">Bearbeiten</button>
                      <button class="btn  btn-danger  mx-1" @click="deleteoneplatform(platform.id)">Löchen</button>
      
                  </div>           
@@ -54,13 +53,7 @@ export default {
     setup(){
         const platformtxt= ref(null)
         const platformexist=ref(false)
-        const swalWithBootstrapButtons = Swal.mixin({
-                    customClass: {
-                      confirmButton: 'btn btn-success',
-                      cancelButton: 'btn btn-danger'
-                    },
-                    buttonsStyling: false
-                  })
+       
         const {platformserrors,loadplatforms,platforms}=getplatforms()
         const store = useStore()
         const token=computed(()=>{
@@ -69,10 +62,45 @@ export default {
         })
         loadplatforms(token)
         function deleteoneplatform(id){
+           
             const {rundeleteplatform,deleteplatformerrors}=deleteplatform()
-            rundeleteplatform(id,token);
-            loadplatforms(token)
-
+            const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                      confirmButton: 'btn btn-success',
+                      cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                  })
+          swalWithBootstrapButtons.fire({
+                          title: 'Sind Sie sicher?',
+                          text: "Sie können nicht nacher Service anzeigen!",
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonText: 'Ja ',
+                          cancelButtonText: 'Nein',                        
+                        }).then((result) => { 
+                                                            
+                          if (result.value) {                           
+                            rundeleteplatform(id,token);
+                                   loadplatforms(token)                                 
+                                    swalWithBootstrapButtons.fire({
+                                                                    position: 'center',
+                                                                      icon: 'success',
+                                                                      title: 'Service erfolgreich gelöcht.',
+                                                                      showConfirmButton: false,
+                                                                      timer: 1500
+                                        })                                
+                                       
+                          } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire(
+                              'Cancelled',
+                              'Your imaginary file is safe :)',
+                              'error'
+                            )
+                          }
+                        })
+         
+        
 
         }
         function addoneplatform(){

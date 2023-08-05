@@ -35,7 +35,7 @@
 import navbar from "../layouts/jambotron.vue";
 import jambotron from '../layouts/navbar.vue';
 import getservice from '../../compasable/getservice'
-import getdevices from "../../compasable/getdevices";
+import getdevices from "../../compasable/devices/getdevices";
 import { useRoute } from 'vue-router';
 export default {
     name:"showservice",
