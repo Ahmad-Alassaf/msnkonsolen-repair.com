@@ -1,39 +1,39 @@
 <template >
     <navbar />
     <jambotron />
+  
     <div class="container pt-5 shadow">
-        <div>
-            <router-link :to="{name:'addnewservice'}" class="btn btn-primary float-end">New</router-link>           
+      <router-link :to="{name:'addnewservice'}" class="btn btn-primary ">New</router-link>     
+      
+        <div class="row mb-1  " v-for="service in services ">
+          <div class="col-12  col-lg-2">
+            <img :src="`storage/images/${service.attributes.foto}`" alt="" class="img-thumbnail border-0 w-100">
+          </div>
+          <div class="col-lg-10">
+            <div class="card-header border-0">
+              <h4>{{service.attributes.title}}</h4> 
+                  <span v-for="device in service.relationships.devices" >
+                      <span  class="p bg-dark rounded text-white px-2 m-1">                       
+                          {{ device.attributes.title }}
+                      </span>                     
+                  </span>
+              </div>
+              <div class="card-body py-2">
+              <p class="lead bg-white">{{service.attributes.description}}</p>
+              <div class="d-flex justify-content-between">
+                  <span class="bg-dark text-white rounded px-1">{{service.attributes.prise}} €</span>
+                  <span  class="bg-dark text-white rounded px-1">{{service.attributes.waranty}} Month</span>
+              </div> 
+              </div>
+              <div class="card-footer d-flex justify-content-between" v-if="authenticated " >
+                  <router-link :to="{name:'editservice',params:{id:service.id}}" class="btn btn-primary" >Editt</router-link>
+                  <button class="btn btn-danger">Delete</button>
+              </div>
+
+          </div>
         </div>
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Title</th>
-                <th scope="col">Description</th>
-                <th scope="col">Waranty</th>
-                <th scope="col">Price</th>
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="service in services ">
-               <td>
-                <img :src="`storage/images/${service.attributes.foto}`" alt="" style="max-width: 100px; height: auto;" class="img-fluid border-0">
-               </td>
-                <td>{{service.attributes.title}}</td>
-                <td>{{service.attributes.description}}</td>
-                <td>{{service.attributes.waranty}}</td>
-                <td>{{service.attributes.prise}}€</td>
-                <td>
-                    <router-link :to="{name:'showservice',params:{id:service.id}}" class="btn btn-primary m-1">anzeigen</router-link>
-                    <router-link :to="{name:'editservice',params:{id:service.id}}" class="btn btn-success m-1">bearbeiten</router-link>
-                    <button class="btn btn-danger m-1"  @click="deleteservic(service.id)">Löchen</button>
-                </td>
-              </tr>             
-            </tbody>
-          </table>
-    </div>
+      </div>    
+
     <foot />
 </template>
 <script>

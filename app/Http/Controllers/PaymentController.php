@@ -50,52 +50,45 @@ class PaymentController extends Controller
     }
     public function getsession( Request $request)
     {
-     
-     
-        
          foreach($request->contractslist as $contract)
          {
             $contractprise=0;
+            $productdata=[];
             foreach($contract['relationships']['services'] as $service)
             {
                 $contractprise +=$service['attributes']['prise'];
+                $productdata=[
+                    'name'=>$service['attributes']['title']
+
+                ];
             }
             $lineitems[]= [
                 'price_data' =>[
                                 'currency'=>'usd',
                                 'unit_amount'=>(int)$contractprise*100,
-                                'product_data'=>['name'=>$contract['attributes']['jobsnumber'],]
+                                'product_data'=> $productdata
                             ] ,
                 'quantity' => 1,
               ];
-           
-           
-         }
-
-        
-           
-       
-           
-
-        
-        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
+         }        
+       $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
       $checkout=  $stripe->checkout->sessions->create([
-      //  'success_url' => 'http://127.0.0.1:8000/success',
+      //  'success_url' =>'http://127.0.0.1:8000/success',
         'success_url' => 'https://msnkonsolen-repair.com/success',
        //   'cancel_url' => 'http://127.0.0.1:8000/cancel',
       'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
-         
-         
         return $checkout;
     }
     public function success(Request $request){
-        $payment=new Payment();
-        $payment->session_id='opoiij0p';
-        $payment->customer='test2';
-        $payment->save();
+        
+        $payment=Payment::create([
+            'session_id'=>'55',
+            'customer'=>'test'
+        ]);
+        
       
         
     

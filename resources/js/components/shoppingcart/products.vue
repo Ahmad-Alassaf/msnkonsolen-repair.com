@@ -2,20 +2,13 @@
     <navbar />
     <jambotron />
     <div class="container ">
-      
         <div class=" pt-5 ">
-           
-                <div class=" p-3">
-                   
-                            <div v-for="contract in contractslist" class="mb-1  d-flex">
-                                             
+                <div class=" p-3">                   
+                            <div v-for="contract in contractslist" class="mb-1  d-flex">                                             
                                 <contract :contract="contract"  />
                             </div>
                             <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ totalprice }}</p>
-                      
-
-                </div>          
-                
+                </div>    
                 <div class="   d-flex align-items-center pb-4">
                     <StripeCheckout
                           v-if="sessionId!=null" 
@@ -24,58 +17,38 @@
                              :sessionId="sessionId"
                    
                     />
-                    <button class="btn btn-primary m-auto w-50" @click="submit">Pay now!</button>
-                   
-                    
+                    <button class="btn btn-primary m-auto w-50" @click="submit">Pay now!</button>    
                 </div> 
-                
-         
-
         </div>
-        
-        
     </div>
     <foot />
 </template>
 <script>
 import dayjs from 'dayjs';
 import navbar from '../layouts/navbar.vue'
-
 import jambotron from '../layouts/jambotron.vue';
 import foot from '../layouts/foot.vue';
 import {mapActions, mapGetters} from 'vuex'
 import contract from '../contracts/contract.vue'
-import { faThList } from '@fortawesome/free-solid-svg-icons';
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
+import axios from 'axios';
 export default {
     name:"products",
-    components:{navbar,contract,  StripeCheckout,
-    
-      jambotron,
-    
-      foot },
-    data(){
-        
-        return{
-            
+    components:{navbar,contract,  StripeCheckout, jambotron, foot },
+    data(){        
+        return{            
             publishableKey : 'pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij',
             sessionId:null,           
         }
     },
-    mounted(){
-        this.getsession()
-    },
-    created(){
-        this.contracts()
-
-    },
+    mounted(){this.getsession() },
+    created(){ this.contracts() },
     computed:{
         ...mapGetters({
             contractslist:"auth/get_contracts_list",
             totalprice:"auth/get_contracts_prise",
             token:"auth/gettoken",
-        }),
-        
+        }),        
     },
     methods:{
         gesamtprise(){
@@ -84,8 +57,7 @@ export default {
                                         contract.relationships.services.forEach(service=>{
                                             console.log('Service:'+service.attributes.title)
                                             totalprise += (parseInt(service.attributes.prise));
-                                        })
-                                        
+                                        })                                        
                                     });
                                     console.log("Total price:"+totalprise)
                                     return totalprise;
@@ -108,33 +80,28 @@ export default {
                                                                         'Access-Control-Allow-Credentials':true
                                             }
 
-                                    } 
-                                   
-           
-            await axios.get('/sanctum/csrf-cookie');            
-            await  axios.post('/api/getsession',{contractslist:this.contractslist},config).then(response=>{
-                console.log(response.data)
-                    this.sessionId=response.data.id
-
-                  
-                  
-                }) .catch((er)=>{console.log(er)})
+                                    }
+                        await axios.get('/sanctum/csrf-cookie');            
+                        await  axios.post('/api/getsession',{contractslist:this.contractslist},config).then(response=>{
+                               // get Session ID from Stripe
+                               console.log(response.data)//Checkout
+                                this.sessionId=response.data.id                            
+                            }) .catch((er)=>{console.log(er)})
 
          },
-         submit () {
-                            // You will be redirected to Stripe's secure checkout page
-                            this.$refs.checkoutRef.redirectToCheckout();
+      async   submit () {
+                         
+                                    this.$refs.checkoutRef.redirectToCheckout()
+                    
+                     
                     },
          async   payment(){
               let data={
                 price_data:{
                     'currency':'usd',
-
                 }
 
               };
-            
-             
             await axios.get('/sanctum/csrf-cookie');
                 axios.post('/api/payment',data,{
                     headers:{
@@ -144,9 +111,7 @@ export default {
                                                            'Access-Control-Allow-Credentials':true
                               }
                 }).then(response=>{
-
-                    console.log(response)
-                  
+                    console.log(response)                  
                 }) .catch((er)=>{console.log(er)})
             }
     }

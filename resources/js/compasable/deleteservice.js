@@ -16,10 +16,12 @@ const deleteservice=()=>
             await axios.delete(`/api/services/${id}`,config).then(response=>{
                 if(response.data)
                 {
+                    console.log(response.data);
                     throw Error('there is no Data')
                    
                 }
                 else{
+                   
                     message.value='success'
                 }
                

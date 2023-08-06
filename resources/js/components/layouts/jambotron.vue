@@ -1,7 +1,7 @@
 <template lang="">
     
-        <div class=" jampotron-cover">
-            <div class="container text-white pt-5">
+        <div class=" jumbotron bg-primary text-white">
+            <div class="container  py-5">
                 <h1>Vedio-Spiel Konsolen </h1>
                 <ul>
                         <li>
@@ -32,14 +32,6 @@ export default {
 }
 </script>
 <style >
-.jampotron-cover{
-  
-  height: 50vh;
-  background: url(../../../../public/storage/images/jampotron2.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
 
     
 </style>

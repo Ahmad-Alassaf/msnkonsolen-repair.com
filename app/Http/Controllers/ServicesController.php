@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Http\Resources\ServiceResource;
 use App\Http\Requests\StoreServiceRequest;
 
@@ -142,6 +143,12 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
+       
+        $image_name = $service->foto;
+      $image_path = public_path('/storage/images/'.$image_name);
+      if(File::exists($image_path)) {
+        File::delete($image_path);
+      }
         $service->delete();
         return response(null,204);//204 mean no Content
     }

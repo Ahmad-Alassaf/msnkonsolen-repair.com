@@ -21,10 +21,8 @@
             </div>
           
 
-        </div>
-                
-          <div v-for="service in matchedlist" class="row mb-4 shadow p-0" > 
-           
+        </div>                
+          <div v-for="service in matchedlist" class="row mb-4 shadow p-0" >            
                 <div class=" col-lg-2   p-2">
                     <img :src="`storage/images/${service.attributes.foto}`" alt="" class="img-thumbnail border-0">
                 </div>
