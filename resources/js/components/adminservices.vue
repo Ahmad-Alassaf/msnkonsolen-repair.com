@@ -57,6 +57,9 @@ export default {
         const token=computed(()=>{
            return store.getters["auth/gettoken"]
         })
+        const authenticated=computed(()=>{
+           return store.getters["auth/getauthenticated"]
+        })
         function deleteservic(id){           
                   const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -94,7 +97,7 @@ export default {
                         })
          
         }
-        return{services,error,load,token,deleteservic}
+        return{services,error,load,token,deleteservic,authenticated}
     }
 }
 </script>

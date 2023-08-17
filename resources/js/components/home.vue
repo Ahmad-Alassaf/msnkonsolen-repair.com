@@ -1,8 +1,8 @@
 <template >
     <div class="home">
-    <navbar />
+    
     <jambotron />
-   
+    <navbar />
         <advantesbar />
         <msnbanner @setupmicrsoft="showmicrosoft" @setupsony="showsony" @setupnintendo="shownintendo" />
         <micrsoft  v-if="micrsoft"/>

@@ -1,70 +1,68 @@
 <template >
-    <div>
-        <h1 class="bg-dark text-white text-center rounded">Users Management</h1>
-        <table class="table">
-            <thead>
-              <tr>
-               
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Roles</th>
-                <th scope="col">Inhirited Permissions</th>
-                <th scope="col">Direct Permissions</th>
-                
+  <jambotron />
+    <navbar />
+    <div class="container py-5 shadow">
+        <h1 class="text-center bg-secondary text-white">Benutzerverwaltung</h1>
+       
+          <div v-for="user in users" class="row mb-1 border-bottom py-2">
+            <div class=" col-sm-12 col-md-1 text-center">{{user.id}}</div>
+            <div class="col-sm-12 col-md-2  text-center">{{user.attributes.name}}</div>
+            <div class="col-sm-12 col-md-3  text-center">{{user.attributes.email}}</div>
+            <div class="col-sm-12 col-md-2  text-left">
+              <ul class="list-group ">
+                <li class="list-group-item text-center active" aria-current="true">Roles</li>
+                <li v-for="role in user.roles" class="list-group-item px-0 py-0 border-0 text-center">
+                  {{role.attributes.name}} 
+                </li>
+              </ul>
+             
+            </div>
+            <div class="col-sm-12 col-md-2  ">
+              <ul class="list-group">
+                <li class="list-group-item text-center active" aria-current="true">Permissions</li>
+                <li class="list-group-item text-center border-0 px-0"  v-for="role in user.roles">
+                  <span class=""  v-for="permission in role.permissions" >{{permission.attributes.name}} </span>
 
-                <th scope="col">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="user in userslist">
-                <td>{{user.id}}</td>
-                <td>{{user.attributes.name}}</td>
-                <td>{{user.attributes.email}}</td>
-                <td>
-                  <span class="bg-dark text-white rounded-5 px-2 " v-for="role in user.roles">{{role.attributes.name}} </span> 
-                </td>
-                <td>
-                  <span class=" " v-for="role in user.roles">
-                      <span class="bg-secondary text-white rounded-5 px-2 " v-for="permission in role.permissions">{{permission.attributes.name}} </span>
-                  </span>  
-                </td>
-                <td>
-                  <span class="bg-success text-white rounded-5 px-2 " v-for="permission in user.permissions">{{permission.attributes.name}} </span> 
-                </td>
-                <td>
-                    <router-link :to="{name:'edituser',params:{id:user.id}}" class="btn btn-primary mx-1">Edit</router-link>
-                    <button class="btn btn-danger">delete</button>
+                </li>
+                <li class="list-group-item border-0 px-0"  v-for="permission in user.permissions">
+                  <span class=""  >{{permission.attributes.name}} </span>
 
-                </td>
-                
-
-              </tr>
-            </tbody>
-            </table>
-        
+                </li>
+              </ul>
+              <span class=" " >
+                 
+              </span>  
+            </div>
+           
+            <div class="col-12 text-center  d-flex  justify-content-between py-1">
+                <router-link :to="{name:'edituser',params:{id:user.id}}" class="btn btn-primary mx-1">Edit</router-link>
+                <button class="btn btn-danger">delete</button>
+            </div>
+          </div>       
     </div>
+    <foot />   
 </template>
 <script>
-import{mapGetters,mapActions} from 'vuex'
+import navbar from "../layouts/navbar.vue";
+import jambotron from '../layouts/jambotron.vue';
+import foot from '../layouts/foot.vue';
+import { useStore } from 'vuex'
+import {computed} from 'vue'
+import getusers from '../../compasable/users/getusers'
 export default {
-    name:"users",
-    data(){return{}},
-    created(){
-       this.users();
+  components:{ navbar,jambotron,foot    },
+    setup(){
+     
+      const store = useStore()
+        const token=computed(()=>{
+            return store.getters["auth/gettoken"]
 
-    },
-   
-    computed:{...mapGetters({ userslist:"auth/get_users_list" })},
-    methods:{
-        ...mapActions({
-           users: "auth/getusers"
         })
-      
-    },
+        const {getusersErrors,users,loadusers}=getusers()
+        
+        loadusers(token)
+        return{users}
     
 }
+}
 </script>
-<style lang="">
-    
-</style>

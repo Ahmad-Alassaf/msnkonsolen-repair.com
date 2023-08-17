@@ -39,8 +39,6 @@ import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
 import foot from '../layouts/foot.vue';
 import axios from 'axios';
-import { mapGetters ,mapActions} from 'vuex'
-
 import getplatforms from '../../compasable/platforms/getplatforms';
 import addnewdevice  from '../../compasable/devices/addnewdevice'
 import getdevices from '../../compasable/devices/getdevices'
@@ -117,57 +115,7 @@ export default {
         return {platforms,devicetxt,selectedplatform,devices,newdevice,deleteonedevice}
 
     },
-      /* async  deleteDevice(id){       
-            await axios.get('/sanctum/csrf-cookie');
-            let config={
-                                                        headers:{
-                                                            Accept: 'application/vnd.api+json',                                
-                                                            Authorization: `Bearer ${this.token}`
-                                                        }
-                         }
-            await axios.delete(`/api/devices/${id}`,config)
-            .then( this.alldevices())
-            .catch(error=>{
-                console.log(error );
-            })
-        },
-        deviceEditing(index,device)
-        {
-            if( this.rowindex===index)
-            {
-                this.updatedevice(device.id);
-                this.isEdit=!this.isEdit;
-              
-              
 
-            }
-            else{
-                this.isEdit=!this.isEdit;
-                this.rowindex=index;
-                this.editdata.title=device.attributes.title;
-                this.editdata.platform_id=device.relationships.id;
-
-            }
-            
-           
-            
-           
-
-            
-
-        },
-        async updatedevice(id)
-        {
-            console.log(this.editdata)
-            await axios.get('/sanctum/csrf-cookie');
-            await axios.put(`/api/devices/${id}`,this.editdata)
-            .then()
-            .catch(error=>{
-                console.log(error );
-            })
-
-        }
-         */
     
     
     

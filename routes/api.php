@@ -29,7 +29,7 @@ Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
 Route::get('/services',[ServicesController::class,'index']);
 Route::get('/services/{service}',[ServicesController::class,'show']);
-Route::resource('/users', UserController::class);
+
 Route::get('/devices',[DeviceController::class,'index']);
 Route::get('/devices/{device}',[DeviceController::class,'show']);
 
@@ -43,7 +43,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::put('/roles/assignPermission/{role}',[RoleController::class,'assignPermission']);
     Route::resource('/permissions', PermissionController::class);
 
-  
+    Route::resource('/users', UserController::class);
     
    
 

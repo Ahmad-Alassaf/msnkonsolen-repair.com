@@ -13,6 +13,7 @@ const Register = () => import('@/components/Register.vue')
 /* Authenticated Component */
 const home = () => import('@/components/home.vue')
 /* Authenticated Component */
+import users from '../components/users/users.vue'
 import edituser from '../components/users/edituser.vue'
 
 import services from '@/components/services/services.vue'
@@ -64,6 +65,15 @@ const routes = [
        
         component: contact,
             meta: {title: `Kontakt ` }
+    },
+    {
+        name: "users",
+        path: "/users",
+        component: users,
+        meta: {
+            title: `users`,
+          
+        }
     },
     {
         name: "edituser",
