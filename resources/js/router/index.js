@@ -18,6 +18,7 @@ import edituser from '../components/users/edituser.vue'
 
 import services from '@/components/services/services.vue'
 import adminpage from '../components/Adminpage.vue'
+import roles from '../components/roles/roles.vue'
 
 import devices from '../components/devices/devices.vue'
 
@@ -84,7 +85,15 @@ const routes = [
             props:true,
         }
     },
-    
+    {
+        name: "roles",
+        path: "/roles",
+        component: roles,
+        meta: {
+            title: `roles`,
+           
+        }
+    },
     {
         name: "services",
         path: "/services",

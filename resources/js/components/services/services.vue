@@ -67,8 +67,7 @@ export default {
     {service, navbar,  jambotron},
     setup(){
          const selected_platforms=ref('all')        
-        const {error,services,load}=getservices()  
-    
+        const {error,services,load}=getservices() 
         load()
         const nintedolistlength=ref(0)
         const sonylistlength=ref(0)

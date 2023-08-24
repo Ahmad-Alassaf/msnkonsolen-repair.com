@@ -1,43 +1,46 @@
 <template >
-    <div>
-        <h1 class="bg-dark text-white text-center rounded">
-             Rolles Management
-        </h1>
+      <h1 class="bg-dark text-white text-center ">
+        Roles Management
+    </h1>
+    <div class="container">
+      
         <div class="text-end p-1">
           <button class="btn btn-success " @click="add=!add">{{ add?'Close':'New' }} </button><br>
         </div> 
-        <form class="d-flex" v-if="add" @submit="addrole($event)">
-          <input type="text" placeholder="Role Name..." v-model="role.name"  class="form-control mx-1">
-          <input type="submit" class="btn btn-primary" :disabled="!role.name.trim()" value="Create" >
+        <form class="d-flex" v-if="add" @submit.prevent="addrole()">
+          <input type="text" placeholder="Role Name..." v-model="name"  class="form-control mx-1">
+          <input type="submit" class="btn btn-primary"  value="Create" >
         </form>
-        <table class="table">
+      
+
+        <table class="table table-hover">
             <thead>
-              <tr>
+              <tr >
                
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">guard Name</th>
-                <th scope="col">Permissions</th>
-                <th scope="col">Actions</th>
+                <th scope="1" >ID</th>
+                <th >Name</th>
+                <th >guard Name</th>
+                <th >Permissions</th>
+                <th >Actions</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="role in roleslist">
+              <tr v-for="role in roles">
                 <td>{{role.id}}</td>
                 <td>{{role.attributes.name}}</td>
                 <td>{{role.attributes.guard_name}}</td>
-                <td class="  ">
-                        <ul class="" style="list-style-type:none">
-                          <li v-for="permission in role.permissions">
-                            <span  class="bg-secondary  text-white px-1 rounded-5 ">{{permission.attributes.name}}</span> 
+                <td  class="">
+                        <ul class="list-group" style="list-style-type:none">
+                          <li v-for="permission in role.permissions" class="list-group-item">
+                           {{permission.attributes.name}}
 
                           </li>
                         </ul>
                             
                 </td>
-                <td>
+                <td colspan="1" class=" ">
                     <router-link :to="{name:'editrole',params:{id:role.id}}" class="btn btn-primary mx-1" >{{edit?'Save':'Edit'}}</router-link>
-                    <button class="btn btn-danger" @click="deleterole(role.id)">delete</button>
+                    <button class="btn btn-danger" @click="deleteROLE(role.id,role.attributes.name)">delete</button>
 
                 </td>
                 
@@ -49,81 +52,97 @@
     </div>
 </template>
 <script>
-import{mapGetters,mapActions} from 'vuex'
+import { useStore } from 'vuex'
+import { computed,ref } from 'vue';
+import getroles from '../../compasable/roles/getroles.js'
+import newrole from '../../compasable/roles/newrole'
+import deleterole from '../../compasable/roles/deleterole'
+import Swal from 'sweetalert2'
 export default {
     name:"roles",
-    data(){return{
-      role:{
-        name:''
-      },
-      add:false, 
-      edit:false,
-      newpermissionslist:[],
-      selected_permission:{}
-    }},
-    created(){
-       this.roles();
-       this.permissions();
+ 
+    setup(){
+      const add=ref(false)
+      const edit=ref(false)
+      const name=ref('')
+      const store = useStore()
+      const swalWithBootstrapButtons = Swal.mixin()
+      const token=computed(()=>{
+           return store.getters["auth/gettoken"]
+        })
+      const {rolesError,roles,loadroles}=getroles()
+      const {addnewroleError,addnewrole}=newrole()
 
-
-    },
-   
-    computed:{...mapGetters({
-        roleslist:"auth/get_roles_list",        
-          permissionsList:"auth/get_permissions_list",
-          token:"auth/gettoken"       
-    })
-  },
-    methods:{
-        ...mapActions({
-           roles: "auth/getroles",
-           permissions:"auth/getpermissions"
-          
-        }),
-        addpermissiontolist(permession){
-          this.newpermissionslist.push(permession)
-        },
       
-   async  addrole(e){        
-          e.preventDefault();          
-          await axios.get('/sanctum/csrf-cookie');
-          let config={
-                          headers:{
-                              Accept: 'application/vnd.api+json',
-                              Authorization: `Bearer ${this.token}`                               
-                            
-                          }
-                      }
-            await axios.post(`/api/roles`,this.role,config)
-                        .then(()=>{
-                          this.roles()
-                          this.role.name=''
-                          this.add=false
-                        }
-                          )
-                        .catch(error=>{console.log(error)})  
-
-        },
-      async  deleterole(id){
+      loadroles(token)
+      const addrole=()=>{
        
-          await axios.get('/sanctum/csrf-cookie');
-                        let config={
-                                        headers:{
-                                            Accept: 'application/vnd.api+json',
-                                            Authorization: `Bearer ${this.token}`                                
-                                          
-                                        }
-                                    }
-            await axios.delete(`/api/roles/${id}`,config)
-                        .then(()=>{this.roles()})
-                        .catch(error=>{console.log(error)})  
+        addnewrole(name.value,token.value).then(()=>{
+          Swal.fire(
+                                                                   
+                                                                      'Saved',
+                                                                       'Role: '+name.value+' erfolgreich hingefügt.',
+                                                                       'success',
+                                                                    
+                                                                     
+                                       ).then(()=>{
+                                          loadroles(token)
+                                          add.value=false
 
-        },
-        removePermission(id)
-        {
-          this.newpermissionslist= this.newpermissionslist.filter(permisson=>permisson.id !=id)
-        }
+                                        })    
+         
+        }).catch(error=>{
+                        Swal.fire({
+                                 icon: 'error',
+                                title: 'Oops...',
+                                text: error,
+                                
+                               
+                              })
+                      })
+       
+      }
+      const {deleteroleError,rundeleterole}=deleterole()
+      const deleteROLE=(id,role)=>{
+     
+                  swalWithBootstrapButtons.fire({
+                          title: 'Sind Sie sicher?',
+                          text: "Sie können nicht nachher Role anzeigen!",
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonText: 'Ja ',
+                          cancelButtonText: 'Nein',                        
+                        }).then((result) => { 
+                                                            
+                          if (result.value) {
+                            rundeleterole(id,token).then(()=>{
+                              swalWithBootstrapButtons.fire({
+                                                                    position: 'top',
+                                                                      icon: 'success',
+                                                                      title: 'Role: '+role+' erfolgreich gelöcht.',
+                                                                      showConfirmButton: false,
+                                                                      timer: 1500
+                                        }).then(()=>{
+                                          loadroles(token)           
+                                        }) 
+
+                            }).catch(error=>{})                          
+                                                             
+                                                                  
+                                       
+                          } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            swalWithBootstrapButtons.fire(
+                              'Cancelled',
+                              'Your imaginary file is safe :)',
+                              'error'
+                            )
+                          }
+                        })
       
+
+      }
+      return{add,edit,name,rolesError,roles,addrole,deleteroleError,deleteROLE}
+
     },
     
 }
