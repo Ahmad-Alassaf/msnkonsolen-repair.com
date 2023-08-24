@@ -1,9 +1,11 @@
 <template >
+  <jambotron />
+  <navbar />
+      
+    <div class="container py-5">
       <h1 class="bg-dark text-white text-center ">
         Roles Management
     </h1>
-    <div class="container">
-      
         <div class="text-end p-1">
           <button class="btn btn-success " @click="add=!add">{{ add?'Close':'New' }} </button><br>
         </div> 
@@ -48,10 +50,14 @@
               </tr>
             </tbody>
             </table>
-        
+               
     </div>
+    <foot />  
 </template>
 <script>
+import navbar from "../layouts/navbar.vue";
+import jambotron from '../layouts/jambotron.vue';
+import foot from '../layouts/foot.vue';
 import { useStore } from 'vuex'
 import { computed,ref } from 'vue';
 import getroles from '../../compasable/roles/getroles.js'
@@ -60,6 +66,7 @@ import deleterole from '../../compasable/roles/deleterole'
 import Swal from 'sweetalert2'
 export default {
     name:"roles",
+    components:{ navbar, jambotron,foot },
  
     setup(){
       const add=ref(false)
@@ -103,8 +110,7 @@ export default {
        
       }
       const {deleteroleError,rundeleterole}=deleterole()
-      const deleteROLE=(id,role)=>{
-     
+      const deleteROLE=(id,role)=>{     
                   swalWithBootstrapButtons.fire({
                           title: 'Sind Sie sicher?',
                           text: "Sie können nicht nachher Role anzeigen!",
@@ -125,10 +131,15 @@ export default {
                                         }).then(()=>{
                                           loadroles(token)           
                                         }) 
-
-                            }).catch(error=>{})                          
-                                                             
-                                                                  
+                            }).catch(error=>{
+                              Swal.fire({
+                                 icon: 'error',
+                                title: 'Oops...',
+                                text: error,
+                                
+                               
+                              })
+                            })                          
                                        
                           } else if (result.dismiss === Swal.DismissReason.cancel) {
                             swalWithBootstrapButtons.fire(

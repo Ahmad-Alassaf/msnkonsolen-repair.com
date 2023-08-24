@@ -53,7 +53,7 @@
                                             <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'roles'}">roles</router-link>    
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'services'}">permissions</router-link>    
+                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'permissions'}">permissions</router-link>    
                                         </li>
                                        
                                     </ul>
