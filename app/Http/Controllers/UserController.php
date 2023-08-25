@@ -86,7 +86,7 @@ class UserController extends Controller
         if($request->type=='role')
         {
             $role=Role::where('name',$request->name )->first();
-       $user->assignRole($role);
+            $user->assignRole($role);
 
         }
         else{

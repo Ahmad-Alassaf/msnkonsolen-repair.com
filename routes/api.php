@@ -37,6 +37,7 @@ Route::get('/devices/{device}',[DeviceController::class,'show']);
 // Protected Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout',[AuthController::class,'logout']);
+    
     Route::put('/removerole/{user}',[UserController::class,'removeRole']);
     Route::put('/removepermission/{user}',[UserController::class,'removepermission']);
     Route::resource('/roles', RoleController::class);
