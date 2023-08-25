@@ -89,7 +89,7 @@ class UserController extends Controller
             $user->assignRole($role);
 
         }
-        else{
+        else if($request->type=='permission'){
             $permission=Permission::where('name',$request->name)->first();
             $user->givePermissionTo($permission);
         }      

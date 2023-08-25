@@ -1,7 +1,7 @@
 import {ref} from 'vue'
-const addrole=()=>{
-    const addroleEror=ref(null)
-    const runnaddrole=async (id,rolename,token)=>{
+const addpermission=()=>{
+    const addpermissionEror=ref(null)
+    const runaddpermission=async (id,rolename,token)=>{
         try{                
             let config={
                     headers:{
@@ -10,7 +10,7 @@ const addrole=()=>{
                     }
                 } 
                 await axios.get('/sanctum/csrf-cookie')
-                await axios.put(`/api/users/${id}`,{name:rolename,type:'role'},config)
+                await axios.put(`/api/users/${id}`,{name:rolename,type:'permission'},config)
                            .then(()=>{})
                            .catch(error=>{
                             console.log(error)
@@ -18,11 +18,11 @@ const addrole=()=>{
                            })
         }
         catch(error){
-           addroleEror.value=error
+            addpermissionEror.value=error
         }
 
     }
-    return {addroleEror,runnaddrole}
+    return {addpermissionEror,runaddpermission}
 
 }
-export default addrole
+export default addpermission

@@ -9,48 +9,34 @@
         <div class="text-end p-1">
           <button class="btn btn-success " @click="add=!add">{{ add?'Close':'New' }} </button><br>
         </div> 
-        <form class="d-flex" v-if="add" @submit.prevent="addrole()">
+        <form class="d-flex mb-2" v-if="add" @submit.prevent="addrole()">
           <input type="text" placeholder="Role Name..." v-model="name"  class="form-control mx-1">
           <input type="submit" class="btn btn-primary"  value="Create" >
         </form>
-      
+        <div class=" ">
+          <div class="row px-1 bg-secondary text-white">           
+            <div class="col-2 ">Name</div>
+            <div class="col-2 ">guard Name</div>
+            <div class="col-6 ">Permissions</div>
+            <div class="col-2 text-center">Actions</div>
+          </div>
+          <div class="row py-1 mb-1 border shadow" v-for="role in roles">          
+            <div class="col-2 "  >{{role.attributes.name}}</div>
+            <div class="col-2 "  >{{role.attributes.guard_name}}</div>
+            <div class="col-6">
+              <ul class="list-group">
+                <li class="list-group-item" v-for="permession in role.permissions">
+                  {{ permession.attributes.name }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-2 text-center"  >
+            
+              <button class="btn btn-danger" @click="deleteROLE(role.id,role.attributes.name)">X</button>
 
-        <table class="table table-hover">
-            <thead>
-              <tr >
-               
-                <th scope="1" >ID</th>
-                <th >Name</th>
-                <th >guard Name</th>
-                <th >Permissions</th>
-                <th >Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="role in roles">
-                <td>{{role.id}}</td>
-                <td>{{role.attributes.name}}</td>
-                <td>{{role.attributes.guard_name}}</td>
-                <td  class="">
-                        <ul class="list-group" style="list-style-type:none">
-                          <li v-for="permission in role.permissions" class="list-group-item">
-                           {{permission.attributes.name}}
-
-                          </li>
-                        </ul>
-                            
-                </td>
-                <td colspan="1" class=" ">
-                    <router-link :to="{name:'editrole',params:{id:role.id}}" class="btn btn-primary mx-1" >{{edit?'Save':'Edit'}}</router-link>
-                    <button class="btn btn-danger" @click="deleteROLE(role.id,role.attributes.name)">delete</button>
-
-                </td>
-                
-
-              </tr>
-            </tbody>
-            </table>
-               
+            </div>
+          </div>
+        </div>      
     </div>
     <foot />  
 </template>
@@ -95,6 +81,7 @@ export default {
                                        ).then(()=>{
                                           loadroles(token)
                                           add.value=false
+                                          name.value=''
 
                                         })    
          

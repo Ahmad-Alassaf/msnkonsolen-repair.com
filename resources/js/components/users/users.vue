@@ -5,9 +5,9 @@
         <h1 class="text-center bg-secondary text-white">Benutzerverwaltung</h1>
        
           <div v-for="user in users" class="row mb-1 border-bottom py-2">
-            <div class=" col-sm-12 col-md-1 text-center">{{user.id}}</div>
-            <div class="col-sm-12 col-md-2  text-center">{{user.attributes.name}}</div>
-            <div class="col-sm-12 col-md-3  text-center">{{user.attributes.email}}</div>
+            
+            <div class="col-sm-12 col-md-3  text-center">{{user.attributes.name}}</div>
+            <div class="col-sm-12 col-md-4  text-center">{{user.attributes.email}}</div>
             <div class="col-sm-12 col-md-2  text-left">
               <ul class="list-group ">
                 <li class="list-group-item text-center active" aria-current="true">Roles</li>
@@ -17,7 +17,7 @@
               </ul>
              
             </div>
-            <div class="col-sm-12 col-md-2  ">
+            <div class="col-sm-12 col-md-3 ">
               <ul class="list-group">
                 <li class="list-group-item text-center active" aria-current="true">Permissions</li>
                 <li class="list-group-item text-center border-0 px-0"  v-for="role in user.roles">

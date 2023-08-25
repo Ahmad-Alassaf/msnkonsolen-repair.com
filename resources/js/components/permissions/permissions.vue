@@ -1,9 +1,9 @@
 <template >
   <jambotron />
   <navbar />
-    <div class=" container   px-0">
+    <div class=" container  py-5 ">
         <h1 class="bg-dark text-white text-center ">
-            All Permissions
+             Permissions Management
         </h1>
        
         <div class="text-end p-1">
