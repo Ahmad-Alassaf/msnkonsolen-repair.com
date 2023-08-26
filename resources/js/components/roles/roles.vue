@@ -14,16 +14,10 @@
           <input type="submit" class="btn btn-primary"  value="Create" >
         </form>
         <div class=" ">
-          <div class="row px-1 bg-secondary text-white">           
-            <div class="col-2 ">Name</div>
-            <div class="col-2 ">guard Name</div>
-            <div class="col-6 ">Permissions</div>
-            <div class="col-2 text-center">Actions</div>
-          </div>
-          <div class="row py-1 mb-1 border shadow" v-for="role in roles">          
-            <div class="col-2 "  >{{role.attributes.name}}</div>
-            <div class="col-2 "  >{{role.attributes.guard_name}}</div>
-            <div class="col-6">
+           <div class="card mb-1  " v-for="role in roles">          
+            <div class=" card-header text-center"  >{{role.attributes.name}} </div>
+           
+            <div class="card-body">
               <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between" v-for="permession in role.permissions">
                  <span>
@@ -45,9 +39,9 @@
                 </select>
             </div> 
             </div>
-            <div class="col-2 text-center"  >
+            <div class="card-footer text-center"  >
             
-              <button class="btn btn-danger" @click="deleteROLE(role.id,role.attributes.name)">X</button>
+              <button class="btn btn-danger" @click="deleteROLE(role.id,role.attributes.name)">Role {{role.attributes.name}} löschen</button>
 
             </div>
           </div>
