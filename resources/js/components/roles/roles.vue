@@ -25,10 +25,25 @@
             <div class="col-2 "  >{{role.attributes.guard_name}}</div>
             <div class="col-6">
               <ul class="list-group">
-                <li class="list-group-item" v-for="permession in role.permissions">
+                <li class="list-group-item d-flex justify-content-between" v-for="permession in role.permissions">
+                 <span>
                   {{ permession.attributes.name }}
+
+                 </span>
+                 <button class="btn btn-danger" @click="deletepermission(role.id,permession.attributes.name)">X</button>
                 </li>
               </ul>
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input"  name=""  @click="addpermissionchecked(role.id)"  id="">
+                <label for="" class="form-check-label">Click To Add Permission to Role</label>
+              
+              </div>
+              <div class="" v-if="addpermission && checkedrole==role.id">
+                <label for="" class="">To Add Permission to Role Select item:</label>                 
+                <select  class="form-control w-50 ml-auto"  @change="addpermissiontorole(role.id)" v-model="selected_permission">
+                    <option v-for="permission in permissions" :value="permission" class="text-center"> {{permission.attributes.name}}</option>                        
+                </select>
+            </div> 
             </div>
             <div class="col-2 text-center"  >
             
@@ -47,7 +62,10 @@ import foot from '../layouts/foot.vue';
 import { useStore } from 'vuex'
 import { computed,ref } from 'vue';
 import getroles from '../../compasable/roles/getroles.js'
+import getpermissions from '../../compasable/permissions/getpermissions'
 import newrole from '../../compasable/roles/newrole'
+import assigningpermission from '../../compasable/roles/assignpermission'
+import removepermission from '../../compasable/roles/removepermission'
 import deleterole from '../../compasable/roles/deleterole'
 import Swal from 'sweetalert2'
 export default {
@@ -56,8 +74,11 @@ export default {
  
     setup(){
       const add=ref(false)
+      const addpermission=ref(false)
+      const checkedrole=ref(0)
       const edit=ref(false)
       const name=ref('')
+      const selected_permission=ref(null)
       const store = useStore()
       const swalWithBootstrapButtons = Swal.mixin()
       const token=computed(()=>{
@@ -68,6 +89,8 @@ export default {
 
       
       loadroles(token)
+      const {permissionsError,permissions,loadpermissions}=getpermissions()
+      loadpermissions(token)
       const addrole=()=>{
        
         addnewrole(name.value,token.value).then(()=>{
@@ -139,12 +162,28 @@ export default {
       
 
       }
-      return{add,edit,name,rolesError,roles,addrole,deleteroleError,deleteROLE}
+      const addpermissiontorole=(id)=>{
+        const {runnassigning}=assigningpermission()
+              runnassigning(id,selected_permission.value.attributes.name,token.value)
+              loadroles(token)
+
+
+      }
+      const deletepermission=(id,permissionname)=>{
+        const  {runremoving}=removepermission()
+             runremoving(id,permissionname,token)
+             loadroles(token)
+      }
+      const addpermissionchecked=(roleID)=>{
+      
+        addpermission.value=!addpermission.value
+        checkedrole.value=roleID
+
+
+      }
+      return{add,addpermission,checkedrole,edit,name,rolesError,roles,permissions,selected_permission,addrole,deleteroleError,deleteROLE,addpermissiontorole,deletepermission,addpermissionchecked}
 
     },
     
 }
 </script>
-<style lang="">
-    
-</style>

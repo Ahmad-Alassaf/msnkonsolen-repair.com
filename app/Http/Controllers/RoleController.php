@@ -112,4 +112,16 @@ class RoleController extends Controller
       
 
     }
+    public function removepermission(Request $request, Role $role)
+    {
+       
+
+        
+       
+        $role->revokePermissionTo($request->name);
+        return  new RoleResource($role);
+        
+      
+
+    }
 }

@@ -42,6 +42,7 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::put('/removepermission/{user}',[UserController::class,'removepermission']);
     Route::resource('/roles', RoleController::class);
     Route::put('/roles/assignPermission/{role}',[RoleController::class,'assignPermission']);
+    Route::put('/roles/removepermission/{role}',[RoleController::class,'removepermission']);
     Route::resource('/permissions', PermissionController::class);
 
     Route::resource('/users', UserController::class);
