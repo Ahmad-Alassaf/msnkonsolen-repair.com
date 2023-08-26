@@ -27,17 +27,22 @@
                  <button class="btn btn-danger" @click="deletepermission(role.id,permession.attributes.name)">X</button>
                 </li>
               </ul>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input"  name=""  @click="addpermissionchecked(role.id)"  id="">
-                <label for="" class="form-check-label">Click To Add Permission to Role</label>
-              
-              </div>
-              <div class="" v-if="addpermission && checkedrole==role.id">
-                <label for="" class="">To Add Permission to Role Select item:</label>                 
-                <select  class="form-control w-50 ml-auto"  @change="addpermissiontorole(role.id)" v-model="selected_permission">
+              <div class="">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input"  name=""  @click="addpermissionchecked(role.id)"  id="">
+                  <label for="" class="form-check-label">Click To Add Permission to Role</label>
+                
+                </div>
+                <div class=" " v-if="addpermission && checkedrole==role.id">
+                  <label for="" class="">To Add Permission to Role Select item:</label>                 
+                  <select  class="form-select  "  @change="addpermissiontorole(role.id)" v-model="selected_permission" >
+                    
                     <option v-for="permission in permissions" :value="permission" class="text-center"> {{permission.attributes.name}}</option>                        
-                </select>
-            </div> 
+                  </select>
+                </div>
+
+              </div>
+               
             </div>
             <div class="card-footer text-center"  >
             
