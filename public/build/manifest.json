@@ -15,6 +15,10 @@
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
   },
+  "public/storage/images/nintendo/4.jpg": {
+    "file": "assets/4-b5da7517.jpg",
+    "src": "public/storage/images/nintendo/4.jpg"
+  },
   "public/storage/images/nintendo/2.jpg": {
     "file": "assets/2-aa906f1c.jpg",
     "src": "public/storage/images/nintendo/2.jpg"
@@ -22,10 +26,6 @@
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
     "src": "public/storage/images/reinigung2.jpg"
-  },
-  "public/storage/images/nintendo/4.jpg": {
-    "file": "assets/4-b5da7517.jpg",
-    "src": "public/storage/images/nintendo/4.jpg"
   },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
@@ -37,7 +37,7 @@
     "src": "resources/js/app.css"
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-4e8766cf.js",
+    "file": "assets/Register-a0137e5e.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -45,7 +45,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-7d7fb24e.js",
+    "file": "assets/Login-3a3cdb06.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -53,7 +53,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-98fd73c5.js",
+    "file": "assets/app-d0f1dace.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [

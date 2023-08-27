@@ -154,7 +154,7 @@ const routes = [
         meta: {
             title:'Einkaufwage',
             middleware: "auth",
-            props: true,
+         
         }
     },   
     

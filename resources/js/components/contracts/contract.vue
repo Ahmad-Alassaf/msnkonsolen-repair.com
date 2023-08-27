@@ -1,33 +1,33 @@
 <template >
-   
-            <div class="col-2 text-center  p-1">               
-                <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt="" class="img-fluid">               
-            </div>
-            <div class="col-10">
-                <h3 class=" text-center bg-secondary text-white w-100 "> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
-                <div class="d-flex  ">                    
-                    <div class=" d-flex col-10 justify-content-between">               
-                        <div class="px-2 ">
-                            <p class="m-0">Auftrag: {{contract.attributes.Contract_Type}}</p>                        
-                            <p class="m-0">Gerät:{{contract.attributes.device}}</p>               
-                            <p class="m-0">Gerät Serienummer:{{contract.attributes.serialnumber}}</p>  
-                        </div>
-                        <div>
-                            <ul class=" mb-0">
-                                <li v-for="service in contract.relationships.services"> 
-                                    {{ service.attributes.title }} 
-                                    <span class="bg-danger text-white rounded px-1">{{ service.attributes.prise }}</span> €
-                                </li>
-                            </ul>
-                            <div class="bg-primary text-center text-white  px-2  w-100 ">Auftragkosten:{{ gesamtprise  }}€ + Versandkosten</div>
-                        </div>
-                    </div> 
-                    <div class="col-2  d-flex align-items-center">
-                        <button class="btn btn-danger m-auto" @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button> 
-                    </div>         
+           <div class="row  shadow mb-2">
+                <div class="col-md-2 text-center p-0"  >               
+                    <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt=""  class="img-fluid">               
                 </div>
-            </div>
-   
+                <div class="col-sm-12  col-md-8  p-0 text-center">
+                        <h3 class=" text-center bg-dark text-white w-100 "> JobsRef#: {{contract.attributes.jobsnumber}}</h3>
+                            <div class="px-1 ">     
+                                <p class="m-0">{{contract.attributes.device}}</p>               
+                                <p class="m-0">SN:{{contract.attributes.serialnumber}}</p>  
+                            </div>
+                            <div class="">
+                                <ul class=" list-group mb-0">
+                                    <li class="list-group-item active rounded-0">Bestellung</li>
+                                    <li v-for="service in contract.relationships.services" class="list-group-item"> 
+                                        {{ service.attributes.title }} 
+                                        <span class="bg-danger text-white rounded px-1">{{ service.attributes.prise }}</span> €
+                                    </li>
+                                </ul>
+                               
+                            </div>
+                            <span class="bg-danger text-center text-white  px-2  float-start py-1 my-1 ">
+                                Auftragkosten:{{ gesamtprise  }}€ + Versandkosten
+                            </span>   
+                    </div>
+                    <div class="col-sm-12 col-md-2  text-center align-self-center py-2 ">
+                        <button class="btn btn-danger  " @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button> 
+                    </div>  
+           
+        </div>
 </template>
 <script>
 import dayjs from 'dayjs';
