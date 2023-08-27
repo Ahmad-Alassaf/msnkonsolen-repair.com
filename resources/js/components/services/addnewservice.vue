@@ -4,22 +4,22 @@
     <div class="container">
        
         <form @submit.prevent="addnewservice()" method="post" class="form row pt-5" enctype="multipart/form-data">
-            <div class="col-3">
+            <div class="col-md-3 ">
                 <img v-if="url" :src="url"  alt="" class="img-thumbnail border-0">
                 <input type="file" class="form-control" name="foto"  @change="onImageChange">
                
             </div>
-            <div class="col-8">
+            <div class="col-md-8">
                 <input type="text" v-model="formdata.title" class="form-control" placeholder="Service Name...">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <span v-for="device in devices.data" class="d-flex m-2">
                             <input type="checkbox" class="fform-check-inpu" v-model="formdata.list" :value="device.id" > 
                             {{ device.attributes.title }}
                           </span>
 
                     </div>
-                    <div class="col-8 pt-2">
+                    <div class="col-md-8 pt-2">
                         <textarea class="form-control" cols="30" rows="5" v-model="formdata.description" placeholder="Service Description...."></textarea>
                         <div class="d-flex">
                             <div class="w-50 m-1 ">
