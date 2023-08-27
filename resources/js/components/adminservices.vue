@@ -2,14 +2,14 @@
     <navbar />
     <jambotron />
   
-    <div class="container pt-5 shadow">
+    <div class="container py-5 ">
       <router-link :to="{name:'addnewservice'}" class="btn btn-primary ">New</router-link>     
       
-        <div class="row mb-1  " v-for="service in services ">
-          <div class="col-12  col-lg-2">
+        <div class="row mb-2  shadow rounded-0" v-for="service in services ">
+          <div class="col-12  col-lg-2 p-0">
             <img :src="`storage/images/${service.attributes.foto}`" alt="" class="img-thumbnail border-0 w-100">
           </div>
-          <div class="col-lg-10">
+          <div class="card col-lg-10 p-0 border-0 rounded-0 ">
             <div class="card-header border-0">
               <h4>{{service.attributes.title}}</h4> 
                   <span v-for="device in service.relationships.devices" >
@@ -20,12 +20,12 @@
               </div>
               <div class="card-body py-2">
               <p class="lead bg-white">{{service.attributes.description}}</p>
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between ">
                   <span class="bg-dark text-white rounded px-1">{{service.attributes.prise}} €</span>
                   <span  class="bg-dark text-white rounded px-1">{{service.attributes.waranty}} Month</span>
               </div> 
               </div>
-              <div class="card-footer d-flex justify-content-between" v-if="authenticated " >
+              <div class="card-footer d-flex justify-content-between  mt-auto" v-if="authenticated " >
                   <router-link :to="{name:'editservice',params:{id:service.id}}" class="btn btn-primary" >Editt</router-link>
                   <button class="btn btn-danger">Delete</button>
               </div>
