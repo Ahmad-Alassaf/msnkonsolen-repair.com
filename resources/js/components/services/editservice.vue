@@ -8,19 +8,25 @@
             <div class="card-header" v-if="service">
                
                <input type="text" class="form-control" v-model="service.attributes.title" >
-              <span v-for="device in devices" >
-                    <input type="checkbox" :id="device.id"   :value="device"  @click="adddevice(device)"   :checked="service.relationships.devices.find(e=>e.attributes.title===device.attributes.title)"> {{ device.attributes.title }}
-                                        
+               <div class="row">
+                   <div class="col-md-3 py-2" v-for="device in devices">
+                      <input type="checkbox" :id="device.id"   :value="device"  @click="adddevice(device)"   :checked="service.relationships.devices.find(e=>e.attributes.title===device.attributes.title)"> {{ device.attributes.title }}
+                    
+
+                   </div>
+               </div>
+              <span  >
+                                       
                 </span >
             </div>
             <div class="card-body p-0">
-                <div class="d-flex">
-                    <div class="col-3   ">
-                        <img   :src="`../storage/images/${service.attributes.foto}` " alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" >
+                <div class="row">
+                    <div class="col-md-3   ">
+                        <img   :src="`../storage/images/${service.attributes.foto}` " alt="" class="img-thumbnail m-1 ">
                         <!-- <img  :src="url" alt="" class="img-thumbnail m-1 " style="height: 15rem; width:auto" > -->
                       
                     </div>
-                    <div class="col-9">
+                    <div class="col-md-9">
                         <textarea name="" class="form-control mx-auto bg-white m-1"  id="" rows="10" v-model="service.attributes.description" >{{service.attributes.description}}</textarea>
                         <div class="d-flex">
                             <div class="w-50 m-1 ">
