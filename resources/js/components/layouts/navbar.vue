@@ -35,6 +35,10 @@
                                   
                                     <ul class="dropdown-menu rounded-0 border-0  bg-dark mt-0 text-white text-center" aria-labelledby="dropdownMenuLink">
                                         <li class=" ">
+                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'contracts'}">Contracts</router-link>
+    
+                                        </li>
+                                        <li class=" ">
                                             <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'adminservices'}">services</router-link>
     
                                         </li>

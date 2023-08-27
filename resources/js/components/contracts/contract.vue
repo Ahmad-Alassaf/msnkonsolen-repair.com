@@ -5,8 +5,7 @@
             </div>
             <div class="col-10">
                 <h3 class=" text-center bg-secondary text-white w-100 "> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
-                <div class="d-flex  ">
-                    
+                <div class="d-flex  ">                    
                     <div class=" d-flex col-10 justify-content-between">               
                         <div class="px-2 ">
                             <p class="m-0">Auftrag: {{contract.attributes.Contract_Type}}</p>                        
@@ -24,21 +23,10 @@
                         </div>
                     </div> 
                     <div class="col-2  d-flex align-items-center">
-                        <button class="btn btn-danger m-auto" @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button>  
-        
-                    </div>
-                                   
+                        <button class="btn btn-danger m-auto" @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button> 
+                    </div>         
                 </div>
-               
-                
-  
             </div>
-           
-          
-        
-               
-               
-        
    
 </template>
 <script>
