@@ -3,6 +3,7 @@ const  getcontracts=()=>{
   
    const contracts=ref([])
    const contractserror=ref(null)
+   const contractsprise=ref(0)
    const loadcontracts=async(token)=>{
        try{
          
@@ -21,7 +22,13 @@ const  getcontracts=()=>{
               }
               else{
                 contracts.value=response.data.data
-            
+                ////
+               
+                response.data.data.forEach(contract=>{
+                 contract.relationships.services.forEach(service=>{
+                    contractsprise +=parseInt(service.attributes.prise) 
+                    })
+                })
               }
            }) 
 
@@ -32,7 +39,7 @@ const  getcontracts=()=>{
 
        }
    }
-   return {contracts,contractserror,loadcontracts}
+   return {contracts,contractserror,loadcontracts,contractsprise}
    
 }
 export default getcontracts

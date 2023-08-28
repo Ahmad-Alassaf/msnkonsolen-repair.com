@@ -4,10 +4,10 @@
     <div class="container ">
         <div class=" pt-5 ">
                 <div class=" p-3">                   
-                            <div v-for="contract in contractslist" class="mb-1  d-flex">                                             
+                            <div v-for="contract in contracts" class="mb-1  d-flex">                                             
                                 <contract :contract="contract"  />
                             </div>
-                            <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ totalprice }}</p>
+                            <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ contractsprise }}</p>
                 </div>    
                 <div class="   d-flex align-items-center pb-4">
                     <StripeCheckout
@@ -32,38 +32,55 @@ import {mapActions, mapGetters} from 'vuex'
 import contract from '../contracts/contract.vue'
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import axios from 'axios';
+import {ref,computed,onMounted} from 'vue'
+import getcontracts from '../../compasable/contracts/getcontracts';
 export default {
     name:"products",
     components:{navbar,contract,  StripeCheckout, jambotron, foot },
-    data(){        
-        return{            
-            publishableKey : 'pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij',
-            sessionId:null,           
-        }
-    },
-    mounted(){this.getsession() },
-    created(){ this.contracts() },
-    computed:{
-        ...mapGetters({
-            contractslist:"auth/get_contracts_list",
-            totalprice:"auth/get_contracts_prise",
-            token:"auth/gettoken",
-        }),        
-    },
-    methods:{
-        gesamtprise(){
-                                 let totalprise=0
-                                    contractslist.forEach(contract => {
-                                        contract.relationships.services.forEach(service=>{
-                                            console.log('Service:'+service.attributes.title)
-                                            totalprise += (parseInt(service.attributes.prise));
-                                        })                                        
-                                    });
-                                    console.log("Total price:"+totalprise)
-                                    return totalprise;
+    setup(){
+        const publishableKey=ref('pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij')
+        const sessionId=ref(null)
+        const getsession=onMounted(async()=>{
+            let config={   
+                                        headers:{
+                                                                        "Access-Control-Allow-Origin" : '*',
+                                                                        "Accept": 'application/vnd.api+json',                                
+                                                                        "Authorization": `Bearer ${token}`,
+                                                                        'Access-Control-Allow-Credentials':true
+                                            }
 
-        },
-        ...mapActions({contracts:"auth/getcontracts"}),
+                                    }
+                        await axios.get('/sanctum/csrf-cookie');  
+                        console.log(contracts.value)          
+                        await  axios.post('/api/getsession',{contractslist:contracts.value},config).then(response=>{
+                               // get Session ID from Stripe
+                               console.log(response.data)//Checkout
+                                sessionId.value=response.data.id                            
+                            }) .catch((er)=>{console.log(er)})
+
+        })
+        const token=computed(()=>{
+           return store.getters["auth/gettoken"]
+        })
+        const {contracts,contractserror,loadcontracts,contractsprise}=getcontracts()
+        loadcontracts(token)
+
+        ////Stackoverflow
+      
+      
+      //  const submit=async()=>{ $refs.checkoutRef.redirectToCheckout()
+
+        
+        return{publishableKey,contracts,contractsprise}
+
+    }
+  
+   
+   ,
+    methods:{
+        async submit(){ this.$refs.checkoutRef.redirectToCheckout()},
+       
+      
         formatDate(dateString) 
                        {
                                 const date = dayjs(dateString);
@@ -71,49 +88,9 @@ export default {
                                 return date.format('dddd:D MMMM , YYYY');
                         },
         
-       async  getsession(){
-                            let config={   
-                                        headers:{
-                                                                        "Access-Control-Allow-Origin" : '*',
-                                                                        "Accept": 'application/vnd.api+json',                                
-                                                                        "Authorization": `Bearer ${this.token}`,
-                                                                        'Access-Control-Allow-Credentials':true
-                                            }
-
-                                    }
-                        await axios.get('/sanctum/csrf-cookie');            
-                        await  axios.post('/api/getsession',{contractslist:this.contractslist},config).then(response=>{
-                               // get Session ID from Stripe
-                               console.log(response.data)//Checkout
-                                this.sessionId=response.data.id                            
-                            }) .catch((er)=>{console.log(er)})
-
-         },
-      async   submit () {
-                         
-                                    this.$refs.checkoutRef.redirectToCheckout()
-                    
-                     
-                    },
-         async   payment(){
-              let data={
-                price_data:{
-                    'currency':'usd',
-                }
-
-              };
-            await axios.get('/sanctum/csrf-cookie');
-                axios.post('/api/payment',data,{
-                    headers:{
-                                                         "Access-Control-Allow-Origin" : '*',
-                                                           "Accept": 'application/vnd.api+json',                                
-                                                           "Authorization": `Bearer ${this.token}`,
-                                                           'Access-Control-Allow-Credentials':true
-                              }
-                }).then(response=>{
-                    console.log(response)                  
-                }) .catch((er)=>{console.log(er)})
-            }
+    
+   
+       
     }
 
     

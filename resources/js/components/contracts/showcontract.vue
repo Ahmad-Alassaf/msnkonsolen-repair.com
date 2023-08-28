@@ -5,9 +5,9 @@
     <div class="container pt-5" v-if="contract!=null">
         <h3 class="px-2 py-2"> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
         <div class="row m-0 p-0">
-            <div class="col-5 border p-0">
+            <div class="col-md-5 border p-0">
                 <h4 class="bg-secondary text-white px-2 py-1">Kundendaten:</h4>
-                <div class="px-3">
+                <div class="row px-3">
                     <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                         <span>Name:</span>
                         <span>{{contract.relationships.user.attributes.name}}</span>
@@ -32,7 +32,7 @@
                 </div>
                 
             </div>
-            <div class="col-7 border p-0">
+            <div class="col-md-7 border p-0">
                 <h4 class="bg-secondary text-white px-2 py-1">Auftrag-Gerät Daten:</h4>
                 <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                    <span>Auftrag Type</span>
