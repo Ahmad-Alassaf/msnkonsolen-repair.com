@@ -11,7 +11,7 @@
                 </div>    
                 <div class="   d-flex align-items-center pb-4">
                     <StripeCheckout
-                          v-if="sessionId!=null" 
+                         
                             ref="checkoutRef"
                             :pk="publishableKey"
                              :sessionId="sessionId"
