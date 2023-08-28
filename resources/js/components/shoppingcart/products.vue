@@ -15,7 +15,6 @@
                             ref="checkoutRef"
                             :pk="publishableKey"
                              :sessionId="sessionId"
-                   
                     />
                     <button class="btn btn-primary m-auto w-50" @click="submit">Pay now!</button>    
                 </div> 
@@ -40,6 +39,7 @@ export default {
     setup(){
         const publishableKey=ref('pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij')
         const sessionId=ref(null)
+        const checkoutRef=ref(null)
         const getsession=onMounted(async()=>{
             let config={   
                                         headers:{
@@ -54,6 +54,7 @@ export default {
                         console.log(contracts.value)          
                         await  axios.post('/api/getsession',{contractslist:contracts.value},config).then(response=>{
                                // get Session ID from Stripe
+                               console.log('Checkout')
                                console.log(response.data)//Checkout
                                 sessionId.value=response.data.id                            
                             }) .catch((er)=>{console.log(er)})
@@ -64,21 +65,20 @@ export default {
         })
         const {contracts,contractserror,loadcontracts,contractsprise}=getcontracts()
         loadcontracts(token)
+        const submit=async()=>{
+            checkoutRef.value.redirectToCheckout()
 
-        ////Stackoverflow
-      
-      
-      //  const submit=async()=>{ $refs.checkoutRef.redirectToCheckout()
 
-        
-        return{publishableKey,contracts,contractsprise}
+
+        } 
+        return{publishableKey,sessionId,contracts,contractsprise,submit,checkoutRef}
 
     }
   
    
    ,
     methods:{
-        async submit(){ this.$refs.checkoutRef.redirectToCheckout()},
+        //async submit(){ this.$refs.checkoutRef.redirectToCheckout()},
        
       
         formatDate(dateString) 
