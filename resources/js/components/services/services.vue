@@ -1,8 +1,8 @@
 <template  class="container pt-5">
     <navbar />
     <jambotron />   
-    <div class="container pt-5 ">  
-        <div class="row border px-1 py-3 my-3 rounded bg-white shadow">
+    <div class="container-md px-2 pt-5 ">  
+        <div class="row border px-3 py-3 my-3 rounded bg-white shadow">
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="all" class="form-check-input" id="services">
                 <label class="form-check-label" for="services" > All Services({{ services.length }})  </label>
