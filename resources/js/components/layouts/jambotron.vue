@@ -1,6 +1,6 @@
 <template lang="">
     
-        <div class=" jumbotron bg-primary text-white">
+        <div class=" jumbotron bg-primary text-white d-none d-md-block">
             <div class="container  py-5">
                 <h1>Vedio-Spiel Konsolen </h1>
                 <ul>

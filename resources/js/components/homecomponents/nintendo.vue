@@ -1,5 +1,5 @@
 <template >
-    <div class="container  py-5 ">
+    <div class="container-md border shadow  py-5 px-1">
 
         <div class=" row   justify-content-md-around">
             <div class="  col-12 col-md-6 col-lg-3 mb-2 mx-auto">
