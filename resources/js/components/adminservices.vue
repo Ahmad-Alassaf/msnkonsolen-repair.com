@@ -26,8 +26,8 @@
               </div> 
               </div>
               <div class="card-footer d-flex justify-content-between  mt-auto" v-if="authenticated " >
-                  <router-link :to="{name:'editservice',params:{id:service.id}}" class="btn btn-primary" >Editt</router-link>
-                  <button class="btn btn-danger">Delete</button>
+                  <router-link :to="{name:'editservice',params:{id:service.id}}" class="btn btn-primary" >Bearbeiten</router-link>
+                  <button class="btn btn-danger" @click="deleteservic(service.id)">Delete</button>
               </div>
 
           </div>

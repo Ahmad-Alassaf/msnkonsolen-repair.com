@@ -1,7 +1,7 @@
 <template >
     <navbar />
     <jambotron />
-    <div class="container-sm px-0 ">
+    <div class="container-sm px-1 ">
         <div class=" pt-5 ">
                                
                             <div v-for="contract in contracts" class="">                                             

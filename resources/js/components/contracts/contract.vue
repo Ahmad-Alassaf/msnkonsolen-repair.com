@@ -1,5 +1,5 @@
 <template >
-           <div class="card  mb-3" style="">
+           <div class="card  mb-3 " style="">
             <div class="row  g-0">
                 <div class="col-3 text-center p-0"  >               
                     <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt="" style="height:100%"  class="img-fluid">               
