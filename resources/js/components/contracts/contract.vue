@@ -1,32 +1,42 @@
 <template >
-           <div class="row  shadow mb-2">
-                <div class="col-md-2 text-center p-0"  >               
-                    <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt=""  class="img-fluid">               
+           <div class="card  mb-3" style="">
+            <div class="row  g-0">
+                <div class="col-3 text-center p-0"  >               
+                    <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt="" style="height:100%"  class="img-fluid">               
                 </div>
-                <div class="col-sm-12  col-md-8  p-0 text-center">
-                        <h3 class=" text-center bg-dark text-white w-100 "> JobsRef#: {{contract.attributes.jobsnumber}}</h3>
-                            <div class="px-1 ">     
-                                <p class="m-0">{{contract.attributes.device}}</p>               
-                                <p class="m-0">SN:{{contract.attributes.serialnumber}}</p>  
-                            </div>
-                            <div class="">
-                                <ul class=" list-group mb-0">
-                                    <li class="list-group-item active rounded-0">Bestellung</li>
-                                    <li v-for="service in contract.relationships.services" class="list-group-item"> 
-                                        {{ service.attributes.title }} 
-                                        <span class="bg-danger text-white rounded px-1">{{ service.attributes.prise }}</span> €
-                                    </li>
-                                </ul>
-                               
-                            </div>
-                            <span class="bg-danger text-center text-white  px-2  float-start py-1 my-1 ">
-                                Auftragkosten:{{ gesamtprise  }}€ + Versandkosten
-                            </span>   
-                    </div>
-                    <div class="col-sm-12 col-md-2  text-center align-self-center py-2 ">
+                <div class="col-9 p-0">
+                    <div class="card-body p-0">
+                                    <div class="card-header ">
+                                    <h3 class="">
+                                        JobsRef#: {{contract.attributes.jobsnumber}}
+                                    </h3> 
+                                    </div>
+                                            <div class="px-1 ">     
+                                                <p class="m-0">{{contract.attributes.device}}. SN:{{contract.attributes.serialnumber}}</p>               
+                                                
+                                            </div>
+                                            <div class="">
+                                                <ul class=" list-group mb-0 p-0">
+                                                    <li class="list-group-item border-0 rounded-0">Bestellung</li>
+                                                    <li v-for="service in contract.relationships.services" class="list-group-item border-0"> 
+                                                        {{ service.attributes.title }} 
+                                                        <span class="bg-danger text-white rounded px-1 ">{{ service.attributes.prise }}</span> €
+                                                    </li>
+                                                </ul>                                    
+                                            </div>
+                                              
+                                
+                        </div>
+
+                </div>
+
+                    <div class="card-footer text-center  py-2 d-flex justify-content-between">
+                        <span class="  px-2  ">
+                            Auftragkosten:{{ gesamtprise  }}€ + Versandkosten
+                        </span> 
                         <button class="btn btn-danger  " @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button> 
                     </div>  
-           
+                </div>
         </div>
 </template>
 <script>

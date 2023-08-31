@@ -13,6 +13,7 @@ class Payment extends Model
         
         'session_id',
         'customer',
+        'status'
     ];
 
     public function contract()// One Payment to One Contract

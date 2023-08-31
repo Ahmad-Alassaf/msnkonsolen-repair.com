@@ -37,7 +37,7 @@ import editcontract from '../components/contracts/editcontract.vue'
 import showcontract from '../components/contracts/showcontract.vue'
 import createcontract from  '../components/contracts/createcontract.vue'
 
-import products from '../components/shoppingcart/products.vue'
+import shoppingcart from '../components/shoppingcart/products.vue'
 import editrole from '../components/roles/editrole.vue'
 import success from '../components/success.vue'
 import cancel from '../components/cancel.vue'
@@ -150,9 +150,9 @@ const routes = [
     {
         name: "shoppingcart",
         path: "/shoppingcart",
-        component: products,        
+        component: shoppingcart,        
         meta: {
-            title:'Einkaufwage',
+            title:'Kaufwagen',
             middleware: "auth",
          
         }

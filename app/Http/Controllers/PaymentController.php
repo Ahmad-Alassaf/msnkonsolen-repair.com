@@ -72,36 +72,27 @@ class PaymentController extends Controller
               ];
          }        
        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
+      
       $checkout=  $stripe->checkout->sessions->create([
-     //   'success_url' =>'http://127.0.0.1:8000/success',
-        'success_url' => 'https://msnkonsolen-repair.com/success',
+      'success_url'  => 'http://127.0.0.1:8000/success',
+       //  'success_url' => 'https://msnkonsolen-repair.com/success',
        //   'cancel_url' => 'http://127.0.0.1:8000/cancel',
       'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
+        
         return $checkout;
-    }
-    public function success(Request $request){
-        
-        $payment=Payment::create([
-            'session_id'=>'55',
-            'customer'=>'test'
-        ]);
-        
-      
-        
-    
-       
-       
-        if(!$payment)
+                   
+        }
+        public function success( )
         {
-            return route('/cancel');
+         
+            
 
         }
-       return route('/success');
-    }
-    public function cancel(Request $request){
-        return route('/cancel');
-    }
+    
+
+    
+   
 }

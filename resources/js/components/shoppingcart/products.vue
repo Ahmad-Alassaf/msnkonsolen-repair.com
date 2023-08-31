@@ -4,7 +4,7 @@
     <div class="container ">
         <div class=" pt-5 ">
                 <div class=" p-3">                   
-                            <div v-for="contract in contracts" class="mb-1  d-flex">                                             
+                            <div v-for="contract in contracts" class="">                                             
                                 <contract :contract="contract"  />
                             </div>
                             <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ contractsprise }}</p>
@@ -27,7 +27,7 @@ import dayjs from 'dayjs';
 import navbar from '../layouts/navbar.vue'
 import jambotron from '../layouts/jambotron.vue';
 import foot from '../layouts/foot.vue';
-import {mapActions, mapGetters} from 'vuex'
+
 import contract from '../contracts/contract.vue'
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import axios from 'axios';
