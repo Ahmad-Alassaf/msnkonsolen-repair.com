@@ -1,14 +1,14 @@
 <template >
     <navbar />
     <jambotron />
-    <div class="container ">
+    <div class="container-sm px-0 ">
         <div class=" pt-5 ">
-                <div class=" p-3">                   
+                               
                             <div v-for="contract in contracts" class="">                                             
                                 <contract :contract="contract"  />
                             </div>
                             <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ contractsprise }}</p>
-                </div>    
+                
                 <div class="   d-flex align-items-center pb-4">
                     <StripeCheckout
                           v-if="sessionId!=null" 
@@ -97,5 +97,11 @@ export default {
 }
 </script>
 <style >
+@media (max-width: 575.98px) { 
+    .container{
+        padding: 0px!important;
+
+    }
+ }
     
 </style>
