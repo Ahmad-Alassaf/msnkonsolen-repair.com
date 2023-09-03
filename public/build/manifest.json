@@ -1,11 +1,11 @@
 {
-  "public/storage/images/nintendo/3.jpg": {
-    "file": "assets/joycons-ac918e53.jpg",
-    "src": "public/storage/images/nintendo/3.jpg"
-  },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-6bbba60b.jpg",
     "src": "public/storage/images/laser.jpg"
+  },
+  "public/storage/images/nintendo/3.jpg": {
+    "file": "assets/joycons-ac918e53.jpg",
+    "src": "public/storage/images/nintendo/3.jpg"
   },
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-afde2eb4.jpg",
@@ -15,13 +15,13 @@
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
   },
-  "public/storage/images/nintendo/2.jpg": {
-    "file": "assets/2-aa906f1c.jpg",
-    "src": "public/storage/images/nintendo/2.jpg"
-  },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
     "src": "public/storage/images/reinigung2.jpg"
+  },
+  "public/storage/images/nintendo/2.jpg": {
+    "file": "assets/2-aa906f1c.jpg",
+    "src": "public/storage/images/nintendo/2.jpg"
   },
   "public/storage/images/nintendo/4.jpg": {
     "file": "assets/4-b5da7517.jpg",
@@ -33,27 +33,27 @@
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app-ee89ba98.css",
+    "file": "assets/app-88aaff6c.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-6e6acabd.js",
-    "src": "resources/js/components/Register.vue",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-b8454ab9.js",
+    "file": "assets/Login-6c1b1084.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-de1a9083.js",
+    "src": "resources/js/components/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/js/app.js": {
-    "file": "assets/app-42983450.js",
+    "file": "assets/app-8f977609.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -61,7 +61,7 @@
       "resources/js/components/Register.vue"
     ],
     "css": [
-      "assets/app-ee89ba98.css"
+      "assets/app-88aaff6c.css"
     ],
     "assets": [
       "assets/joycons-ac918e53.jpg",

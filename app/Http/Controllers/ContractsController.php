@@ -51,7 +51,7 @@ class ContractsController extends Controller
             'waterdamage'=>$request->waterdamage,
             'earlierrepair'=>$request->earlierrepair,
             'accesories'=>'dsfsdfsdfsd',
-            'warantysiegel'=>$request->siegelstatus,        
+            'warantysiegel'=>$request->warantysiegel,        
             'status'=>'In ShoppingCart',
             'user_id'=>Auth::id(),
             'payment_id'=>1,

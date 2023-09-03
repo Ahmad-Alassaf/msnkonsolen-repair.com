@@ -33,10 +33,16 @@
                             <option value="New">Neuer Auftraf </option>
                             <option value="Waranty">Garantie </option>
                         </select>
-                        
+                        <ul class="list-group" v-if="contract_type=='Waranty'">
+                            <li class="list-group-item active">Ihre Aufträge</li>
+                            <li class="list-group-item "></li>
+                        </ul>
+                        <div v-else>
+
+                       
                         <select name="" id=""  v-model="selected_device"  class="form-select mb-3" >
                             <option value="">--Wählen Sie Gerät aus--</option>
-                            <option v-for="device in devices.data" :value="device">{{ device.attributes.title }} </option>                               
+                            <option v-for="device in devices" :value="device">{{ device.attributes.title }} </option>                               
                         </select>
                         <ul class="list-group  mr-auto my-2 px-5" v-if="selected_device!=''">
                             <li v-for=" service in selected_device.relationships.services" class="list-group-item d-flex justify-content-between mb-3 border  ">
@@ -65,11 +71,11 @@
                          <div class="py-3">
                             <h4 class="bg-secondary text-white px-2 py-1  shadow rounded">Garanty Siegeln Zustand</h4>
                             <div class=" form-check ">                            
-                                <input type="radio" name="siegelstatus" v-model="siegelstatus" value="Die sind entfernt oder beschädigt" class="form-check-inpu mx-1">
+                                <input type="radio" name="siegelstatus" v-model="warantysiegel" value="Die sind entfernt oder beschädigt" class="form-check-inpu mx-1">
                                 <label for="" class="form-check-label ">Die sind entfernt oder beschädigt </label>
                              </div>
                              <div class=" form-check ">                                
-                                <input type="radio" name="siegelstatus" v-model="siegelstatus" value="Die Sind vorhanden und festbekleppt"  class="form-check-inpu mx-1">
+                                <input type="radio" name="siegelstatus" v-model="warantysiegel" value="Die Sind vorhanden und festbekleppt"  class="form-check-inpu mx-1">
                                 <label for="" class="form-check-label ">Die Sind vorhanden und festbekleppt </label>
                              </div>            
                          </div>
@@ -121,7 +127,8 @@
                                 <input type="checkbox" name="agb"  v-model="agbagreement" class="form-check-input mx-2">
                                 <label for="" class="form-check-label "><a href="#"> AGB</a> gelesen und einverstanden</label>
                             </div>
-                         </div>             
+                         </div>  
+                        </div>           
                         <input type="submit" class="btn btn-primary w-100 mb-3" value="Speichern und Add zum Warenkorp" :disabled="!agbagreement">
                     </form>
                 </div>
@@ -135,8 +142,13 @@ import navbar from "../layouts/navbar.vue";
 import useraddress from "../Addresses/useraddress.vue"
 import foot from '../layouts/foot.vue';
 import jambotron from '../layouts/jambotron.vue';
-import {mapGetters} from 'vuex'
-import { mapActions } from "vuex";
+import getdevices from '../../compasable/devices/getdevices'
+import getservices from '../../compasable/getservices'
+import getcontracts from '../../compasable/contracts/getcontracts'
+import addcontract from '../../compasable/contracts/addcontract'
+import { useStore } from 'vuex'
+import{ref,computed} from 'vue'
+import { useRouter, useRoute } from 'vue-router';
 export default {
     name:"createcontract",
     components:{
@@ -145,97 +157,79 @@ export default {
         foot   ,
         useraddress   
     },
-    data(){
-        return{
-            services:[],
-            devices:[],        
-            selectedservices:[],
-            serialnumber:'',
-            selected_device:'', 
-            contract_type:'',
-            norserialnumber:'',
-            faultdescription:'',
-            accesories:'',
-            siegelstatus:'',
-            earlierrepair:'',
-            waterdamage:'',
-            casestatus:'',
-            agbagreement:false
-        }
-    },
-    created(){
-        this.getalldevices();       
-    },
-    computed:{
-        ...mapGetters({
-            user:"auth/getuser",
-            authenticated:"auth/getauthenticated",
-            contractscount:"auth/GET_CONTRACTS_COUNT",
-            token:"auth/gettoken",
-            allservices:"auth/GET_SERVICES",
-        }),
+    setup(){
+        const id=ref(null)
+        const selectedservices=ref([])
+        const serialnumber=ref([])
+        const selected_device=ref('')
+        const contract_type=ref('')
+        const norserialnumber=ref('')
+        const faultdescription=ref('')
+        const accesories=ref('')
+        const warantysiegel=ref('')
+        const earlierrepair=ref('')
+        const waterdamage=ref('')
+        const casestatus=ref('')
+        const agbagreement=ref('')
+        const store = useStore()
+        const router = useRouter();
+        const token=computed(()=>{
+            return store.getters["auth/gettoken"]
+
+        })
+        const user=computed(()=>{
+            return store.getters["auth/getuser"]
+
+        })
+        const {deviceserror,devices,loaddevices}=getdevices()
+        loaddevices()
+        const  {services,error,load}=getservices()
+        load()
+
+        const {contracts,contractserror,loadcontracts,contractsprise}=getcontracts()
+        loadcontracts(token)
        
-    },
-    methods:{
-        ...mapActions({
-            contracts:"auth/getcontracts",
-        }),
-        async getalldevices()
-        {
-            await axios.get('/sanctum/csrf-cookie');
-                        let config={
-                                        headers:{
-                                            Accept: 'application/vnd.api+json',                                
-                                            Authorization: `Bearer ${this.token}`
-                                        }
-                                    }
-            await axios.get(`/api/devices`,config)
-                        .then(response=>{
-                                    this.devices=response.data
-                                })
-                        .catch(error=>{console.log(error)})                                   
+        const submit=()=>{
+            const {addcontracterror,runaddcontract,newcontractid}=addcontract()
+             runaddcontract({
+                'Contract_Type':contract_type.value,
+                'device':selected_device.value.attributes.title,
+                'serialnumber':serialnumber.value,
+                'accesories':accesories.value,
+                'faultdescription':faultdescription.value,
+                'status':'In ShoppingCart',
+                'warantysiegel':warantysiegel.value,
+                'casestatus':casestatus.value,
+                'waterdamage':waterdamage.value,
+                'earlierrepair':earlierrepair.value,
 
-        },
-        async submit()
-        {
-            await axios.get('/sanctum/csrf-cookie');
-            let config={
-                            headers:{
-                                Accept: 'application/vnd.api+json',                                
-                                Authorization: `Bearer ${this.token}`
-                            }
-                        }
-            let device_title=this.selected_device.attributes.title;
-            let serviceslist=[];
-            this.selectedservices.forEach(e=>{
-                serviceslist.push(e.id)
-            })
-           
-            await axios.post(`/api/contracts`,{
-                Contract_Type:this.contract_type,
-                device:device_title,
-                serialnumber:this.serialnumber,
-                services:serviceslist,
-                faultdescription:this.faultdescription,
-                accesories:this.accesories,
-                siegelstatus:this.siegelstatus.trim(),
-                earlierrepair:this.earlierrepair,
-                waterdamage:this.waterdamage.trim(),
-                casestatus:this.casestatus.trim(),
-                agbagreement:this.agbagreement
 
-            },config)
-                        .then((response)=>{
-                            console.log(response.data)
-                            this.contracts();
-                            this.$router.push({name:'showcontract',params:{id:response.data.data.id}})
 
-                        })
-                        .catch(error=>{console.log(error)})
-                       
+
+             },token).then(()=>{
+             
+                id.value=newcontractid.value
+                 selectedservices.value=[]
+                 serialnumber.value=[]            
+                 selected_device.value=''
+                 contract_type.value=''
+                 norserialnumber.value=''
+                 faultdescription.value=''
+                 accesories.value=''
+                 warantysiegel.value=''
+                 earlierrepair.value=''
+                 waterdamage.value=''
+                 casestatus.value=''
+                 agbagreement.value=''
+              
+                 router.push({name:'showcontract',params:{id:id.value}})
+
+             })
 
         }
-    }
+        return {contract_type,faultdescription,serialnumber,casestatus,waterdamage,accesories,warantysiegel,earlierrepair,devices,services,selectedservices,selected_device,norserialnumber,agbagreement,contracts,user,submit}
+
+    },
     
 }
 </script>
