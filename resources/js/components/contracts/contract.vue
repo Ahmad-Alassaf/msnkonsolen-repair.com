@@ -1,5 +1,5 @@
 <template >
-           <div class="card  mb-3 " style="">
+           <div class="card  mb-3 " style="" v-if="contract !=null">
             <div class="row  g-0">
                 <div class="col-3 text-center p-0"  >               
                     <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt="" style="height:100%"  class="img-fluid">               
@@ -41,64 +41,27 @@
 </template>
 <script>
 import dayjs from 'dayjs';
-import {mapActions, mapGetters} from 'vuex'
+
+import{ref, computed,toRefs } from 'vue'
+import getcontract from '../../compasable/contracts/getcontract';
+import deletecontract from '../../compasable/contracts/deletecontract'
+import { useRoute } from 'vue-router';
 export default {
-    name:'contract',
-    props:['contract'],
-    data(){
-        return{
-            serviceslist:this.contract.relationships.services
-        }
-
-    },
    
-    components:{},
-    computed:{
-        ...mapGetters({
-            token:"auth/gettoken",
-                 
-
-        }),
-        gesamtprise(){
-            let costing=0;
-            this.serviceslist.forEach(element => {
-                costing +=parseInt(element.attributes.prise)
-                
-            });
-           
-          return costing
-
-        }
-
-    }, 
+   
+    setup(props){
       
-    methods:{
-        ...mapActions({
-            contracts:'auth/getcontracts'}),
-       async deletecontract(id)
-        {
-            let config={
-                                headers:{
-                                    Accept: 'application/vnd.api+json',                                
-                                    Authorization: `Bearer ${this.token}`
-                                }
-                        } 
-            await axios.get('/sanctum/csrf-cookie');                                           
-            await  axios.delete(`/api/contracts/${id}`,config)
-                        .then(()=>{
-                                console.log('Contract deleted successfully')
-                                this.contracts()
-                            })
-                        .catch((er)=>{console.log(er)})
+        const { contract } = toRefs(props)
+      
+       
+       
+        return {contract}
 
-        },
-        formatDate(dateString) 
-                       {
-                                const date = dayjs(dateString);
-                                    // Then specify how you want your dates to be formatted
-                                return date.format('dddd:D MMMM , YYYY');
-                        },
     }
+   
+  
+      
+   
    
 }
 </script>
