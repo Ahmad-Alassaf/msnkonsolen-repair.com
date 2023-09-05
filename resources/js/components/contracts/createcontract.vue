@@ -23,7 +23,7 @@
                 
             </div>
             <div class="md-8 mt-1">
-                <div class=" form  shadow m-auto  ">
+                <div class=" form  shadow m-auto pb-3">
                     <h4 class="bg-primary text-white px-2 py-1  shadow ">
                        Gerät
                     </h4>
@@ -33,11 +33,26 @@
                             <option value="New">Neuer Auftraf </option>
                             <option value="Waranty">Garantie </option>
                         </select>
-                        <ul class="list-group" v-if="contract_type=='Waranty'">
-                            <li class="list-group-item active">Ihre Aufträge</li>
-                            <li class="list-group-item "></li>
-                        </ul>
-                        <div v-else>
+                         <div class="accordion" id="accordionExample" v-if="contract_type=='Waranty'">
+                                    <div class="accordion-item"  v-for="contract in contracts">
+                                      <h2 class="accordion-header" :id="`heading${contract.id}`">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="`#collapse${contract.id}`" aria-expanded="true" :aria-controls="`collapse${contract.id}`">
+                                            JobsRef#:{{ contract.attributes.jobsnumber }}  Geräte: {{contract.attributes.device }}. created at:{{ formatedDate( contract.attributes.created_at) }}
+                                        </button>
+                                      </h2>
+                                      <div :id="`collapse${contract.id}`" class="accordion-collapse collapse " :aria-labelledby="`heading${contract.id}`" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                         
+                                            <div class="form-group mb-3">
+                                                <h4 class="bg-secondary text-white px-2 py-1  shadow rounded">Fehler Beschreibung(Waranty)</h4>
+                                                <textarea name="" class="form-control" id="" v-model="faultdescription" rows="5" placeholder="Beschreibung für Waranty..."></textarea>
+                                            </div>
+                                            <button class="btn btn-primary" @click.prevent="warantyorder(contract)">Waranty Bestellung</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div>          
+                        <div v-else-if="contract_type=='New'">
 
                        
                         <select name="" id=""  v-model="selected_device"  class="form-select mb-3" >
@@ -127,9 +142,10 @@
                                 <input type="checkbox" name="agb"  v-model="agbagreement" class="form-check-input mx-2">
                                 <label for="" class="form-check-label "><a href="#"> AGB</a> gelesen und einverstanden</label>
                             </div>
-                         </div>  
+                         </div> 
+                         <input type="submit" class="btn btn-primary w-100 mb-3" value="Speichern und Add zum Warenkorp" :disabled="!agbagreement"> 
                         </div>           
-                        <input type="submit" class="btn btn-primary w-100 mb-3" value="Speichern und Add zum Warenkorp" :disabled="!agbagreement">
+                      
                     </form>
                 </div>
             </div>
@@ -149,6 +165,7 @@ import addcontract from '../../compasable/contracts/addcontract'
 import { useStore } from 'vuex'
 import{ref,computed} from 'vue'
 import { useRouter, useRoute } from 'vue-router';
+import dayjs from 'dayjs';
 export default {
     name:"createcontract",
     components:{
@@ -181,6 +198,12 @@ export default {
             return store.getters["auth/getuser"]
 
         })
+        const formatedDate=(input)=>{
+            const date = dayjs(input);
+              // Then specify how you want your dates to be formatted
+            return  date.format('dddd:D MMMM , YYYY');
+        }
+    
         const {deviceserror,devices,loaddevices}=getdevices()
         loaddevices()
         const  {services,error,load}=getservices()
@@ -188,9 +211,9 @@ export default {
 
         const {contracts,contractserror,loadcontracts,contractsprise}=getcontracts()
         loadcontracts(token)
-       
+        const {addcontracterror,runaddcontract,newcontractid}=addcontract()
         const submit=()=>{
-            const {addcontracterror,runaddcontract,newcontractid}=addcontract()
+          
              runaddcontract({
                 'Contract_Type':contract_type.value,
                 'device':selected_device.value.attributes.title,
@@ -227,7 +250,43 @@ export default {
              })
 
         }
-        return {contract_type,faultdescription,serialnumber,casestatus,waterdamage,accesories,warantysiegel,earlierrepair,devices,services,selectedservices,selected_device,norserialnumber,agbagreement,contracts,user,submit}
+        const warantyorder=(contract)=>{
+            console.log(contract.attributes.device)
+            runaddcontract({
+                'Contract_Type':'Waranty',
+                'device':contract.attributes.device,
+                'serialnumber':contract.attributes.serialnumber,
+                'accesories':contract.attributes.accesories,
+                'faultdescription':`erst fehler Bescreibung\n${contract.attributes.faultdescription} \nWaranty Fehler Beschreibung\n${faultdescription.value}`,
+                'status':'In ShoppingCart',
+                'warantysiegel':contract.attributes.warantysiegel,
+                'casestatus':contract.attributes.casestatus,
+                'waterdamage':contract.attributes.waterdamage,
+                'earlierrepair':contract.attributes.earlierrepair,
+
+
+
+
+        }).then(()=>{
+                 id.value=newcontractid.value
+                 selectedservices.value=[]
+                 serialnumber.value=[]            
+                 selected_device.value=''
+                 contract_type.value=''
+                 norserialnumber.value=''
+                 faultdescription.value=''
+                 accesories.value=''
+                 warantysiegel.value=''
+                 earlierrepair.value=''
+                 waterdamage.value=''
+                 casestatus.value=''
+                 agbagreement.value=''
+              
+                 router.push({name:'showcontract',params:{id:id.value}})
+        })
+    }
+        return {contract_type,faultdescription,serialnumber,casestatus,waterdamage,accesories,warantysiegel,earlierrepair,
+            devices,services,selectedservices,selected_device,norserialnumber,agbagreement,contracts,user,submit,formatedDate,warantyorder}
 
     },
     

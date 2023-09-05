@@ -82,7 +82,7 @@
         </div>
         <div class="border">
             <h4 class="bg-secondary text-white px-2 py-1">Fehler Beschreibung</h4>
-            <p>{{contract.attributes.faultdescription}}</p>
+            <p class="  text-wrap">{{contract.attributes.faultdescription}}</p>
         </div>
         <div class="border">
             <h4 class="bg-secondary text-white px-2 py-1">Zubehör</h4>
@@ -100,6 +100,7 @@
 import navbar from "../layouts/navbar.vue"
 import jambotron from "../layouts/jambotron.vue";
 import {mapGetters} from 'vuex'
+import dayjs from 'dayjs';
 export default {
     name:"showcontract",
     components:{
@@ -144,6 +145,11 @@ export default {
 
                     }, 
                    
+            },
+            formatedDate(dateString)
+            {
+                     const date = dayjs(dateString);            
+                      return  date.format('dddd:D MMMM , YYYY');
             }   
         }
     
