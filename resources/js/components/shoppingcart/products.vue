@@ -2,11 +2,41 @@
     <navbar />
     <jambotron />
     <div class="container-sm px-1 ">
-        <div class=" pt-5 ">
-                               
-                            <div v-for="contract in contracts" class="">                                             
-                                <contract :contract="contract"  />
+        <div class=" pt-5 ">  
+            <div class="card  mb-3 " style="" v-for="contract in contracts">
+                <div class="row  g-0">
+                    <div class="col-3 text-center p-0"  >               
+                        <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt="" style="height:100%"  class="img-fluid">               
+                    </div>
+                    <div class="col-9 p-0">
+                        <div class="card-body p-0">
+                                        <div class="card-header ">
+                                        <h3 class="">
+                                            JobsRef#: {{contract.attributes.jobsnumber}}
+                                        </h3> 
+                                        </div>
+                                                <div class="px-1 ">     
+                                                    <p class="m-0">{{contract.attributes.device}}. SN:{{contract.attributes.serialnumber}}</p>  
+                                                </div>
+                                                <div class="">
+                                                    <ul class=" list-group mb-0 p-0">
+                                                        <li class="list-group-item border-0 rounded-0">Bestellung</li>
+                                                        <li v-for="service in contract.relationships.services" class="list-group-item border-0"> 
+                                                            {{ service.attributes.title }} 
+                                                            <span class="bg-danger text-white rounded px-1 ">{{ service.attributes.prise }}</span> €
+                                                        </li>
+                                                    </ul>                                    
+                                                </div>
                             </div>
+                    </div>
+                        <div class="card-footer text-center  py-2 d-flex justify-content-between">
+                            <span class="  px-2  ">
+                                Auftragkosten:{{ gesamtprise  }}€ + Versandkosten
+                            </span> 
+                            <button class="btn btn-danger  " @click="deletecontract(contract.id)"><i class="fa-solid fa-trash"></i></button> 
+                        </div>  
+                    </div>
+            </div>
                             <p class="bg-secondary text-white text-center py-3">gesamtprise:{{ contractsprise }}</p>
                 
                 <div class="   d-flex align-items-center pb-4">
@@ -28,19 +58,19 @@ import navbar from '../layouts/navbar.vue'
 import jambotron from '../layouts/jambotron.vue';
 import foot from '../layouts/foot.vue';
 
-import contract from '../contracts/contract.vue'
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import axios from 'axios';
-import {ref,computed,onMounted} from 'vue'
+import {ref,computed,onMounted,onUnmounted} from 'vue'
 import getcontracts from '../../compasable/contracts/getcontracts';
 export default {
     name:"products",
-    components:{navbar,contract,  StripeCheckout, jambotron, foot },
+    components:{navbar,  StripeCheckout, jambotron, foot },
     setup(){
         const publishableKey=ref('pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij')
         const sessionId=ref(null)
         const checkoutRef=ref(null)
-        const getsession=onMounted(async()=>{
+        //get session ID
+        onMounted(async()=>{
             let config={   
                                         headers:{
                                                                         "Access-Control-Allow-Origin" : '*',
@@ -56,7 +86,7 @@ export default {
                                // get Session ID from Stripe
                                console.log('Checkout')
                                console.log(response.data)//Checkout
-                                sessionId.value=response.data.id                            
+                                 sessionId.value=response.data.id                            
                             }) .catch((er)=>{console.log(er)})
 
         })
@@ -67,33 +97,24 @@ export default {
         loadcontracts(token)
         const submit=async()=>{
             checkoutRef.value.redirectToCheckout()
-
-
-
         } 
-        return{publishableKey,sessionId,contracts,contractsprise,submit,checkoutRef}
+        onUnmounted(() => {
+            sessionId.value=null
+            
 
+        })
+        return{publishableKey,sessionId,contracts,contractsprise,submit,checkoutRef}
     }
-  
-   
    ,
     methods:{
-        //async submit(){ this.$refs.checkoutRef.redirectToCheckout()},
-       
-      
         formatDate(dateString) 
                        {
                                 const date = dayjs(dateString);
                                     // Then specify how you want your dates to be formatted
                                 return date.format('dddd:D MMMM , YYYY');
                         },
-        
-    
-   
        
     }
-
-    
 }
 </script>
 <style >

@@ -59,10 +59,10 @@
                             <option value="">--Wählen Sie Gerät aus--</option>
                             <option v-for="device in devices" :value="device">{{ device.attributes.title }} </option>                               
                         </select>
-                        <ul class="list-group  mr-auto my-2 px-5" v-if="selected_device!=''">
+                        <ul class="list-group  mr-auto my-2 px-5" v-if="selected_device !=null">
                             <li v-for=" service in selected_device.relationships.services" class="list-group-item d-flex justify-content-between mb-3 border  ">
                                 <div class="d-flex w-100" >
-                                    <input type="checkbox" class="m-1" name="" id="" v-model="selectedservices"  :value="service" >
+                                    <input type="checkbox" class="m-1" name="" id="" v-model="selectedservices"  :value="service.id" >
                                     <div class="d-flex  justify-content-between  w-100">
                                         <span class="">{{service.title}}</span> 
                                         <span class="">  {{service.prise}} €</span> 
@@ -163,7 +163,7 @@ import getservices from '../../compasable/getservices'
 import getcontracts from '../../compasable/contracts/getcontracts'
 import addcontract from '../../compasable/contracts/addcontract'
 import { useStore } from 'vuex'
-import{ref,computed} from 'vue'
+import{ref,computed,} from 'vue'
 import { useRouter, useRoute } from 'vue-router';
 import dayjs from 'dayjs';
 export default {
@@ -177,8 +177,8 @@ export default {
     setup(){
         const id=ref(null)
         const selectedservices=ref([])
-        const serialnumber=ref([])
-        const selected_device=ref('')
+        const serialnumber=ref('')
+        const selected_device=ref(null)
         const contract_type=ref('')
         const norserialnumber=ref('')
         const faultdescription=ref('')
@@ -206,14 +206,17 @@ export default {
     
         const {deviceserror,devices,loaddevices}=getdevices()
         loaddevices()
-        const  {services,error,load}=getservices()
-        load()
+   /*      const  {services,error,load}=getservices()
+        load() */
 
         const {contracts,contractserror,loadcontracts,contractsprise}=getcontracts()
         loadcontracts(token)
         const {addcontracterror,runaddcontract,newcontractid}=addcontract()
         const submit=()=>{
-          
+            console.log('selectedservices.value')
+               console.log(selectedservices.value)
+               console.log('selected_device.value')
+               console.log(selected_device.value)
              runaddcontract({
                 'Contract_Type':contract_type.value,
                 'device':selected_device.value.attributes.title,
@@ -225,16 +228,14 @@ export default {
                 'casestatus':casestatus.value,
                 'waterdamage':waterdamage.value,
                 'earlierrepair':earlierrepair.value,
-
-
-
+                'services':selectedservices.value
 
              },token).then(()=>{
-             
-                id.value=newcontractid.value
+                   console.log(newcontractid.value)
+                  id.value=newcontractid.value
                  selectedservices.value=[]
                  serialnumber.value=[]            
-                 selected_device.value=''
+                 selected_device.value=null
                  contract_type.value=''
                  norserialnumber.value=''
                  faultdescription.value=''
@@ -244,7 +245,8 @@ export default {
                  waterdamage.value=''
                  casestatus.value=''
                  agbagreement.value=''
-              
+                 console.log( 'id.value')
+                 console.log( id.value)
                  router.push({name:'showcontract',params:{id:id.value}})
 
              })
@@ -263,7 +265,7 @@ export default {
                 'casestatus':contract.attributes.casestatus,
                 'waterdamage':contract.attributes.waterdamage,
                 'earlierrepair':contract.attributes.earlierrepair,
-
+                'services':selectedservices
 
 
 
@@ -271,7 +273,7 @@ export default {
                  id.value=newcontractid.value
                  selectedservices.value=[]
                  serialnumber.value=[]            
-                 selected_device.value=''
+                 selected_device.value=null
                  contract_type.value=''
                  norserialnumber.value=''
                  faultdescription.value=''
@@ -285,8 +287,10 @@ export default {
                  router.push({name:'showcontract',params:{id:id.value}})
         })
     }
-        return {contract_type,faultdescription,serialnumber,casestatus,waterdamage,accesories,warantysiegel,earlierrepair,
-            devices,services,selectedservices,selected_device,norserialnumber,agbagreement,contracts,user,submit,formatedDate,warantyorder}
+        return {    contract_type,faultdescription,serialnumber,casestatus,
+                    waterdamage,accesories,warantysiegel,earlierrepair,
+                    devices,selectedservices,selected_device,norserialnumber,
+                    agbagreement,contracts,user,submit,formatedDate,warantyorder}
 
     },
     

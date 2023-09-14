@@ -67,7 +67,7 @@
                         <div class="d-flex ">
                             <ul class="navbar-nav  d-flex w-100">
                                 <li class="nav-item " v-if="authenticated">
-                                    <router-link :to="{name:'shoppingcart'}" class="nav-link">
+                                    <router-link :to="{name:'products'}" class="nav-link">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                         <span class="bg-danger text-whit rounded px-1">
                                           {{contractscount}}

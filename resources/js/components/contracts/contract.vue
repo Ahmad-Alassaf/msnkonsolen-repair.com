@@ -12,8 +12,7 @@
                                     </h3> 
                                     </div>
                                             <div class="px-1 ">     
-                                                <p class="m-0">{{contract.attributes.device}}. SN:{{contract.attributes.serialnumber}}</p>               
-                                                
+                                                <p class="m-0">{{contract.attributes.device}}. SN:{{contract.attributes.serialnumber}}</p>  
                                             </div>
                                             <div class="">
                                                 <ul class=" list-group mb-0 p-0">
@@ -24,12 +23,8 @@
                                                     </li>
                                                 </ul>                                    
                                             </div>
-                                              
-                                
                         </div>
-
                 </div>
-
                     <div class="card-footer text-center  py-2 d-flex justify-content-between">
                         <span class="  px-2  ">
                             Auftragkosten:{{ gesamtprise  }}€ + Versandkosten

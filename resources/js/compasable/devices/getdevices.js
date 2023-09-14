@@ -29,6 +29,7 @@ const getdevices=()=>{
     
         }
         catch(err){
+            console.log(err)
             deviceserror.value=err.message
         }
     

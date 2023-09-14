@@ -37,10 +37,8 @@ class ContractsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ContractRequest $request)
-    {
-      
-        $request->validated($request);
-      
+    {      
+        $request->validated($request);      
         $contract=Contract::create([
             'Contract_Type'=>$request->Contract_Type,
             'jobsnumber'=>rand(1000,99999),
@@ -55,12 +53,9 @@ class ContractsController extends Controller
             'status'=>'In ShoppingCart',
             'user_id'=>Auth::id(),
             'payment_id'=>1,
-            
-
-
         ]);
-        $contract->services()->attach($request->services);
-      
+        
+        $contract->services()->attach($request->services);      
         return new ContractResource($contract);
     }
 

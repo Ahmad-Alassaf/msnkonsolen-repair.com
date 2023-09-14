@@ -12,10 +12,12 @@ const addcontract=()=>{
                                 Authorization: `Bearer ${token}`
                             }
                         }
+                        console.log(data.services)
             await axios.post(`/api/contracts`,data ,config)
                         .then((response)=>{
-
-                           
+                            console.log(response.data)
+                            console.log('response.data.data.id')
+                           console.log(response.data.data.id)
                             newcontractid.value=response.data.data.id
                         
                            
