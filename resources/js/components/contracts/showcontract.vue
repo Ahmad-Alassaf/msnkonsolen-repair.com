@@ -82,7 +82,7 @@
         </div>
         <div class="border">
             <h4 class="bg-secondary text-white px-2 py-1">Fehler Beschreibung</h4>
-            <p class="  text-wrap">{{contract.attributes.faultdescription}}</p>
+            <pre class="  ">{{contract.attributes.faultdescription}}</pre>
         </div>
         <div class="border">
             <h4 class="bg-secondary text-white px-2 py-1">Zubehör</h4>

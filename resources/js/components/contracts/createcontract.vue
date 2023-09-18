@@ -222,7 +222,7 @@ export default {
                 'device':selected_device.value.attributes.title,
                 'serialnumber':serialnumber.value,
                 'accesories':accesories.value,
-                'faultdescription':faultdescription.value,
+                'faultdescription':`${faultdescription.value}`,
                 'status':'In ShoppingCart',
                 'warantysiegel':warantysiegel.value,
                 'casestatus':casestatus.value,
@@ -254,18 +254,22 @@ export default {
         }
         const warantyorder=(contract)=>{
             console.log(contract.attributes.device)
+
+
+            let serviceslist=[]
+            contract.relationships.services.forEach(service=>{serviceslist.push(service.id)})
             runaddcontract({
                 'Contract_Type':'Waranty',
                 'device':contract.attributes.device,
                 'serialnumber':contract.attributes.serialnumber,
                 'accesories':contract.attributes.accesories,
-                'faultdescription':`erst fehler Bescreibung\n${contract.attributes.faultdescription} \nWaranty Fehler Beschreibung\n${faultdescription.value}`,
+                'faultdescription':`${contract.attributes.faultdescription}. \r\n WARANTY:${faultdescription.value}`,
                 'status':'In ShoppingCart',
                 'warantysiegel':contract.attributes.warantysiegel,
                 'casestatus':contract.attributes.casestatus,
                 'waterdamage':contract.attributes.waterdamage,
                 'earlierrepair':contract.attributes.earlierrepair,
-                'services':selectedservices
+                'services':serviceslist
 
 
 
