@@ -1,5 +1,5 @@
 <template lang="">
-    <div>
+    <div class="container py-5">
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">

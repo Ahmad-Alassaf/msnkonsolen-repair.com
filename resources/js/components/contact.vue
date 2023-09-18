@@ -1,9 +1,7 @@
 <template >
-    <div>
-       
-            <navbar />
-            <jambotron />
-            
+    <navbar />
+     <jambotron />
+    <div> 
             <div class=" px-0">
                
                 <div class="row justify-content-center ">
@@ -48,13 +46,9 @@
 
             </div>
             <accordion />
-           
-            
-
-                
-            <foot />       
         
     </div>
+   
 </template>
 <script>
 import navbar from "./layouts/navbar.vue";
