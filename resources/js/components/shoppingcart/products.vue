@@ -49,8 +49,10 @@
                     <button class="btn btn-primary m-auto w-50" @click="submit">Pay now!</button>    
                 </div> 
         </div>
+       
     </div>
     <foot />
+   
 </template>
 <script>
 import dayjs from 'dayjs';

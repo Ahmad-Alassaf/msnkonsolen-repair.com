@@ -1,4 +1,4 @@
-<template  class="container pt-5">
+<template  >
     <navbar />
     <jambotron />   
     <div class="container-md px-2 pt-5 ">  
@@ -53,18 +53,20 @@
 
 </div>  
     </div> 
+    <foot />
 </template>
 <script >
 import service from'./service.vue'
 import { computed,ref } from 'vue';
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
+import foot from '../layouts/foot.vue';
 import getservices from '../../compasable/getservices';
 
 export default {
     name:"services",
     components:
-    {service, navbar,  jambotron},
+    {service, navbar,  jambotron,foot},
     setup(){
          const selected_platforms=ref('all')        
         const {error,services,load}=getservices() 
