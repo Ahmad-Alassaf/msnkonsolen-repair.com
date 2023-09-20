@@ -51,20 +51,20 @@
               </table>
            
              </div>
-         <foot /> 
+        
         </div>  
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import{ref, computed} from 'vue'
 
 import addcontract from './addcontract.vue';
 import getcontracts from '../../compasable/contracts/getcontracts';
 export default {
     name:'contracts',
-    components:{addcontract, navbar,jambotron, foot},
+    components:{addcontract, navbar,jambotron, msnfooter},
   
     setup(){
         const searchTxt=ref('')

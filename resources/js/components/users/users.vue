@@ -40,17 +40,17 @@
             </div>
           </div>       
     </div>
-    <foot />   
+    <msnfooter />   
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import { useStore } from 'vuex'
 import {computed} from 'vue'
 import getusers from '../../compasable/users/getusers'
 export default {
-  components:{ navbar,jambotron,foot    },
+  components:{ navbar,jambotron,msnfooter    },
     setup(){
      
       const store = useStore()

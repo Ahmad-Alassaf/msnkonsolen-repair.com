@@ -51,14 +51,14 @@
         </div>
        
     </div>
-    <foot />
+
    
 </template>
 <script>
 import dayjs from 'dayjs';
 import navbar from '../layouts/navbar.vue'
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import axios from 'axios';
@@ -67,7 +67,7 @@ import getcontracts from '../../compasable/contracts/getcontracts';
 import deletecontract from '../../compasable/contracts/deletecontract';
 export default {
     name:"products",
-    components:{navbar,  StripeCheckout, jambotron, foot },
+    components:{navbar,  StripeCheckout, jambotron, msnfooter },
     setup(){
         const publishableKey=ref('pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij')
         const sessionId=ref(null)

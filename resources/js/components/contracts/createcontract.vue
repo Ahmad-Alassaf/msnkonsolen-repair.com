@@ -151,12 +151,12 @@
             </div>
         </div>
    
-    <foot /> 
+    <msnfooter /> 
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import useraddress from "../Addresses/useraddress.vue"
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import jambotron from '../layouts/jambotron.vue';
 import getdevices from '../../compasable/devices/getdevices'
 import getservices from '../../compasable/getservices'
@@ -171,7 +171,7 @@ export default {
     components:{
         navbar,      
         jambotron,
-        foot   ,
+        msnfooter   ,
         useraddress   
     },
     setup(){

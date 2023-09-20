@@ -11,7 +11,7 @@
         <superangebute />
         <emailbanner />
        
-        <foot />   
+     
 
     </div>
     
@@ -21,7 +21,7 @@
 
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import foot from './layouts/foot.vue';
+import msnfooter from './layouts/msnfooter.vue';
 import advantesbar from './homecomponents/advantagesbar.vue';
 import superangebute from './homecomponents/Superangebute.vue';
 import msnbanner from './homecomponents/msnbanner.vue'
@@ -43,7 +43,7 @@ export default {
         sony,
         nintendo,
         emailbanner,
-        foot    
+        msnfooter    
     },
     data(){
         return {

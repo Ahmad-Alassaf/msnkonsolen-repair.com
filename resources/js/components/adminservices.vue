@@ -34,21 +34,21 @@
         </div>
       </div>    
 
-    <foot />
+
 </template>
 <script>
 import {computed} from 'vue'
 import { useStore } from 'vuex'
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import foot from './layouts/foot.vue';
+import msnfooter from './layouts/msnfooter.vue';
 import getservices from "../compasable/getservices";
 
 import deleteservice from '../compasable/deleteservice';
 import Swal from 'sweetalert2'
 export default {
     name:"adminservices",
-    components:{navbar,jambotron,foot},
+    components:{navbar,jambotron,msnfooter},
     setup(){
         const {services,error,load}=getservices()        
         const store = useStore()

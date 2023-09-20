@@ -7,18 +7,18 @@
         </h1>
         
     </div>
-    <foot /> 
+
 </template>
 <script>
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import foot from './layouts/foot.vue';
+import msnfooter from './layouts/msnfooter.vue';
 export default {
     name:"success",
     components:{
                     navbar,      
                     jambotron,
-                    foot   
+                    msnfooter   
                 },
     props:['test'],
     mounted:()=>{

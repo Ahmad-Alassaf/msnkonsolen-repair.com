@@ -32,12 +32,12 @@
 
         </div>
     </div>
-    <foot />
+   
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import axios from 'axios';
 import getplatforms from '../../compasable/platforms/getplatforms';
 import addnewdevice  from '../../compasable/devices/addnewdevice'
@@ -48,7 +48,7 @@ import { computed,ref,reactive } from "vue";
 import Swal from 'sweetalert2'
 export default {
     name:"devices",
-    components:{navbar,jambotron,foot},
+    components:{navbar,jambotron,msnfooter},
     setup(){
        const devicetxt=ref('')
        const selectedplatform=ref(null)

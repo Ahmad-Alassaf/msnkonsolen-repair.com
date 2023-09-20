@@ -53,7 +53,7 @@
 <script>
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import foot from './layouts/foot.vue';
+import msnfooter from './layouts/msnfooter.vue';
 import sendemail from './sendemail.vue'
 import location from "./location.vue"
 import accordion from "./accordion.vue"
@@ -66,7 +66,7 @@ export default {
         jambotron, 
         accordion,
         location  ,
-        foot   
+        msnfooter   
     },
     computed:{
        

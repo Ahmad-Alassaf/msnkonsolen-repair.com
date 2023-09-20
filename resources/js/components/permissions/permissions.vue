@@ -33,12 +33,12 @@
          
           
     </div>
-    <foot />     
+    <msnfooter />     
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import { useStore } from 'vuex'
 import {ref,computed} from 'vue'
 import getpermissions from '../../compasable/permissions/getpermissions'
@@ -47,7 +47,7 @@ import deletepermission from '../../compasable/permissions/deletepermission'
 import Swal from 'sweetalert2'
 export default {
     name:"permissions",
-    components:{ navbar, jambotron,foot },
+    components:{ navbar, jambotron,msnfooter },
  
     setup(){
       const swalWithBootstrapButtons = Swal.mixin()

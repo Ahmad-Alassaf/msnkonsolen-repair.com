@@ -36,12 +36,12 @@
 
     </div>
   
-    <foot />
+    <msnfooter />
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import getplatforms from '../../compasable/platforms/getplatforms'
 import deleteplatform  from '../../compasable/platforms/deleteplatform'
 import addnewplatform from '../../compasable/platforms/addplatform'
@@ -49,7 +49,7 @@ import { computed,ref,reactive } from "vue";
 import { useStore } from 'vuex'
 import Swal from 'sweetalert2'
 export default {
-    components:{navbar,jambotron,foot},
+    components:{navbar,jambotron,msnfooter},
     setup(){
         const platformtxt= ref(null)
         const platformexist=ref(false)

@@ -52,12 +52,12 @@
           </div>
         </div>      
     </div>
-    <foot />  
+    <msnfooter />  
 </template>
 <script>
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
-import foot from '../layouts/foot.vue';
+import msnfooter from '../layouts/msnfooter.vue';
 import { useStore } from 'vuex'
 import { computed,ref } from 'vue';
 import getroles from '../../compasable/roles/getroles.js'
@@ -69,7 +69,7 @@ import deleterole from '../../compasable/roles/deleterole'
 import Swal from 'sweetalert2'
 export default {
     name:"roles",
-    components:{ navbar, jambotron,foot },
+    components:{ navbar, jambotron,msnfooter },
  
     setup(){
       const add=ref(false)

@@ -10,12 +10,13 @@
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        @vite(['resources/js/app.js'])
+        @vite(['resources/js/app.js','resources/css/app.css'])
     </head>
     <body>
         <div id="app">
             <router-view></router-view>
-           
+            <Msn-Footer></Msn-Footer>
+            
         </div>
     </body>
 </html>

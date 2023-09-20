@@ -40,22 +40,20 @@
         </div>
         
     </div>
-    <foot /> 
+   
 </template>
 
 <script>
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import foot from './layouts/foot.vue';
+
 import { mapActions } from 'vuex'
 export default {
     name:"login",
     components:{
       
       navbar,      
-      jambotron,
-    
-      foot    
+      jambotron, 
   },
     data(){
         return {
