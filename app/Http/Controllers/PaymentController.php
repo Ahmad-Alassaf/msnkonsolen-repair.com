@@ -54,7 +54,7 @@ class PaymentController extends Controller
          {
             $contractprise=0;
             $productdata=[];
-            if($contract['relationships']['services'] !=null)
+            if($contract['relationships']['services'] !=null )
             foreach($contract['relationships']['services'] as $service)
             {
                 $contractprise +=$service['attributes']['prise'];

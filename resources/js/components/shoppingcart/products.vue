@@ -84,13 +84,20 @@ export default {
 
                                     }
                         await axios.get('/sanctum/csrf-cookie');  
-                        console.log(contracts.value)          
-                        await  axios.post('/api/getsession',{contractslist:contracts.value},config).then(response=>{
+                        console.log(contracts.value.length) 
+                        if(contracts.value.length>0)
+                        {
+                            await  axios.post('/api/getsession',{contractslist:contracts.value},config)
+                            .then(response=>{
                                // get Session ID from Stripe
                                console.log('Checkout')
                                console.log(response.data)//Checkout
                                  sessionId.value=response.data.id                            
-                            }) .catch((er)=>{console.log(er)})
+                            }) 
+                            .catch((er)=>{console.log(er)})
+
+                        }         
+                        
 
         })
         const token=computed(()=>{
@@ -100,6 +107,10 @@ export default {
        
 
         loadcontracts(token)
+      /*   const unpaidcontracts=computed(()=>{
+            return contracts.filter(contract=>{contract.paidstatus=='payed'})
+        }) */
+    
         const submit=async()=>{
             checkoutRef.value.redirectToCheckout()
         } 

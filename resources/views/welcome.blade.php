@@ -12,11 +12,13 @@
 
         @vite(['resources/js/app.js'])
     </head>
-    <body>
+    <body >
         <div id="app">
             <router-view></router-view>
-            <Msn-Footer></Msn-Footer>
-            
+           
+          
+            <msn-footer></msn-footer> 
         </div>
+       
     </body>
 </html>
