@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Models\Payment;
+use GuzzleHttp\Psr7\Message;
 use Stripe\Payout;
 
 use function Psy\debug;
@@ -15,7 +16,7 @@ use function Psy\debug;
 class PaymentController extends Controller
 {
     //
-    
+    public $session_id='';
     public function checkout(Request $request){
         header( "Access-Control-Allow-Origin : *");
         header("Access-Control-Allow-Credentials:true");
@@ -73,22 +74,27 @@ class PaymentController extends Controller
               ];
          }        
        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
-      
+      $api_key=env('STRIPE_API_KEY');
       $checkout=  $stripe->checkout->sessions->create([
-      'success_url'  => 'http://127.0.0.1:8000/success',
+      'success_url'  =>  'http://127.0.0.1:8000/success',
        //  'success_url' => 'https://msnkonsolen-repair.com/success',
        //   'cancel_url' => 'http://127.0.0.1:8000/cancel',
       'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
-        
+     
         return $checkout;
                    
         }
-        public function success( )
+        public function success(Request $request )
         {
-         
+            $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
+          
+            $checkout=  $stripe->checkout->sessions->retrieve($request->sessionID);
+           
+            return   $checkout;
+           
             
 
         }

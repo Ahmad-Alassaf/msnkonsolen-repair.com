@@ -8,6 +8,7 @@ export default {
         authenticated:false,
         verified:false,
         token:'',
+        session_id:'',
         user:{},
         contracts:0, 
         contractsList:[],
@@ -24,6 +25,7 @@ export default {
         getauthenticated(state){return state.authenticated  },
         getuser(state){ return state.user  },
         gettoken(state){ return state.token},
+        getsessionid(state){ return state.session_id},
         GET_CONTRACTS_COUNT(state){return state.contracts},
         get_contracts_list(state){return state.contractsList},
         get_contracts_prise(state){return state.Totalprice},
@@ -42,6 +44,7 @@ export default {
         SET_AUTHENTICATED (state, value) {state.authenticated = value },
         SET_USER (state, value) { state.user = value },
         SET_TOKEN(state,value){state.token=value },
+        SET_SESSION_ID(state,value){state.session_id=value },
 
         SET_CONTRACTS_COUNT(state,value){state.contracts=value },
         SET_CONTRACT_LIST(state,value){state.contractsList=value},
@@ -107,6 +110,11 @@ export default {
             commit('SET_USER',{})
             commit('SET_AUTHENTICATED',false)
             commit('SET_TOKEN','')
+        },
+        sessionid({commit},data)
+        {
+            commit('SET_SESSION_ID',data)
+
         },
         async getcontracts({commit,getters}){
             if(getters.gettoken){

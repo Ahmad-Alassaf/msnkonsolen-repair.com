@@ -10,25 +10,49 @@
 
 </template>
 <script>
-import navbar from "./layouts/navbar.vue";
+import navbar from './layouts/navbar.vue'
 import jambotron from './layouts/jambotron.vue';
-import msnfooter from './layouts/msnfooter.vue';
+import {ref,computed,onMounted,watch} from 'vue'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
-    name:"success",
-    components:{
-                    navbar,      
-                    jambotron,
-                    msnfooter   
-                },
-    props:['test'],
-    mounted:()=>{
-       
-    },
-    created() {
-        console.log('test:')
-        console.log(this.test);
-        
-    },
+    components:{navbar,   jambotron },
+    setup(){
+        const route = useRoute()
+        const store = useStore()
+        onMounted(async()=>{
+            let config={   
+                                        headers:{
+                                                                        "Access-Control-Allow-Origin" : '*',
+                                                                        "Accept": 'application/vnd.api+json',                                
+                                                                        "Authorization": `Bearer ${token}`,
+                                                                        'Access-Control-Allow-Credentials':true
+                                            }
+
+                                    }
+                                   
+                        await axios.get('/sanctum/csrf-cookie');  
+                       console.log(sessionID.value)
+                         await  axios.post('/api/success',{
+                            sessionID:sessionID.value
+                         },config)
+                            .then(response=>{
+                              
+                               console.log(response)//Checkout
+                                                
+                            }) 
+                            .catch((er)=>{console.log(er)})
+
+        })
+  
+        const token=computed(()=>{
+           return store.getters["auth/gettoken"]
+        })
+        const sessionID=computed(()=>{
+           return store.getters["auth/getsessionid"]
+        })
+    }
+   
     
 }
 </script>

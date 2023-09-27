@@ -63,12 +63,14 @@ import msnfooter from '../layouts/msnfooter.vue';
 import { StripeCheckout } from '@vue-stripe/vue-stripe';
 import axios from 'axios';
 import {ref,computed,onMounted,onUnmounted} from 'vue'
+import { useStore } from 'vuex'
 import getcontracts from '../../compasable/contracts/getcontracts';
 import deletecontract from '../../compasable/contracts/deletecontract';
 export default {
     name:"products",
     components:{navbar,  StripeCheckout, jambotron, msnfooter },
     setup(){
+        const store = useStore()
         const publishableKey=ref('pk_test_51NRR9iJmrCQ5cBeW5Mk3NT6Zy2O9CfCc3JWkeECXfamrlJ1P5xontXDeQJdc7ek5nTo8pANsmloesdI9keh5uARn00fvM20aij')
         const sessionId=ref(null)
         const checkoutRef=ref(null)
@@ -91,8 +93,9 @@ export default {
                             .then(response=>{
                                // get Session ID from Stripe
                                console.log('Checkout')
-                               console.log(response.data)//Checkout
-                                 sessionId.value=response.data.id                            
+                               console.log(response.data.success_url)//Checkout
+                                 sessionId.value=response.data.id  
+                                 store.dispatch('auth/sessionid',response.data.id)                          
                             }) 
                             .catch((er)=>{console.log(er)})
 
