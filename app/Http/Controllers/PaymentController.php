@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use Stripe\Charge;
 use Stripe\Stripe;
 use Illuminate\Http\Request;
@@ -76,13 +77,20 @@ class PaymentController extends Controller
        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
       $api_key=env('STRIPE_API_KEY');
       $checkout=  $stripe->checkout->sessions->create([
-       //'success_url'  =>  'http://127.0.0.1:8000/success',
-        'success_url' => 'https://msnkonsolen-repair.com/success',
-       //   'cancel_url' => 'http://127.0.0.1:8000/cancel',
-      'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
+       // 'success_url'  =>  'http://127.0.0.1:8000/success',
+       'success_url' => 'https://msnkonsolen-repair.com/success',
+       //    'cancel_url' => 'http://127.0.0.1:8000/cancel',
+     'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
+          foreach($request->contractslist as $contract)
+          {
+            $localcontract=Contract::where('id',$contract['id'])->first();
+            $localcontract->session_id=$checkout->id;
+            $localcontract->paidstatus='unpaid';
+            $localcontract->save();
+          } 
      
         return $checkout;
                    
@@ -92,7 +100,15 @@ class PaymentController extends Controller
             $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
           
             $checkout=  $stripe->checkout->sessions->retrieve($request->sessionID);
-           
+            $unpaidcontracts=Contract::where('session_id',$checkout->id)->get();
+            foreach($unpaidcontracts as $contract)
+            {
+                $contract->paidstatus='payed';
+                $contract->save();
+
+            }
+                
+          
             return   $checkout;
            
             
