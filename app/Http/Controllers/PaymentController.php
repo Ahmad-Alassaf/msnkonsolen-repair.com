@@ -77,19 +77,26 @@ class PaymentController extends Controller
        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
       $api_key=env('STRIPE_API_KEY');
       $checkout=  $stripe->checkout->sessions->create([
-       // 'success_url'  =>  'http://127.0.0.1:8000/success',
-       'success_url' => 'https://msnkonsolen-repair.com/success',
-       //    'cancel_url' => 'http://127.0.0.1:8000/cancel',
-     'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
+       //   'success_url'  =>  'http://127.0.0.1:8000/success',
+     'success_url' => 'https://msnkonsolen-repair.com/success',
+       //     'cancel_url' => 'http://127.0.0.1:8000/cancel',
+    'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
           foreach($request->contractslist as $contract)
           {
-            $localcontract=Contract::where('id',$contract['id'])->first();
-            $localcontract->session_id=$checkout->id;
-            $localcontract->paidstatus='unpaid';
-            $localcontract->save();
+            $localcontract=Contract::where('id',$contract['id'])->where('paidstatus','unpaid')->first();
+            
+            if($localcontract){
+                $localcontract->session_id=$checkout->id;
+                $localcontract->paidstatus='unpaid';
+                $localcontract->save();
+            }
+            else{
+                throw new NotFoundHttpException();
+            }
+           
           } 
      
         return $checkout;
@@ -97,19 +104,35 @@ class PaymentController extends Controller
         }
         public function success(Request $request )
         {
-            $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
           
-            $checkout=  $stripe->checkout->sessions->retrieve($request->sessionID);
-            $unpaidcontracts=Contract::where('session_id',$checkout->id)->get();
-            foreach($unpaidcontracts as $contract)
-            {
-                $contract->paidstatus='payed';
-                $contract->save();
+                $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
+          
+                $checkout=  $stripe->checkout->sessions->retrieve($request->sessionID);
+                if(!$checkout)
+                {
+                    throw new NotFoundHttpException();
+                }
+                $unpaidcontracts=Contract::where('session_id',$checkout->id)->where('paidstatus','unpaid')->get();
+                if($unpaidcontracts->count()==0)
+                {
+                    throw new NotFoundHttpException();
+
+                }
+               
+                foreach($unpaidcontracts as $contract)
+                {
+                    $contract->paidstatus='payed';
+                    $contract->status='Sended To Repair';
+                    $contract->save();
+    
+                }
+                    
+              
+               
 
             }
-                
+           
           
-            return   $checkout;
            
             
 
@@ -118,4 +141,4 @@ class PaymentController extends Controller
 
     
    
-}
+    

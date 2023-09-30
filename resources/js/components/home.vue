@@ -102,7 +102,7 @@ export default {
 
 .home{
     background-color: #d8d8d866;
-    position: relative;
+  
    
 }
   

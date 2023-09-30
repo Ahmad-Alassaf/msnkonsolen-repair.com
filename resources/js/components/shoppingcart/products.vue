@@ -4,7 +4,7 @@
     <div class="container-sm px-1 ">
         <div class=" pt-5 ">  
             <div class="card  mb-3 " style="" v-for="contract in contracts">
-                <div class="row  g-0">
+                <div class="row  g-0" v-if="contract.attributes.status=='In ShoppingCart'">
                     <div class="col-md-1 text-center p-0 " >               
                         <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt=""   class="img-fluid">               
                     </div>
@@ -91,13 +91,25 @@ export default {
                         {
                             await  axios.post('/api/getsession',{contractslist:contracts.value},config)
                             .then(response=>{
-                               // get Session ID from Stripe
-                               console.log('Checkout')
-                               console.log(response.data.success_url)//Checkout
+                                if(response.status!=404)
+                                {
+                                    console.log('Checkout')
+                                   console.log(response.data.success_url)//Checkout
                                  sessionId.value=response.data.id  
-                                 store.dispatch('auth/sessionid',response.data.id)                          
+                                 store.dispatch('auth/sessionid',response.data.id)    
+
+                                }
+                                else{
+                                    alert('Page Not Found')
+                                }
+                               // get Session ID from Stripe
+                                                    
                             }) 
-                            .catch((er)=>{console.log(er)})
+                            .catch((er)=>{
+                                console.log(er)
+                                alert(er.message)
+                               
+                            })
 
                         }         
                         

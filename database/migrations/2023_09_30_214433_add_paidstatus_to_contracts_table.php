@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('contracts', function (Blueprint $table) {
-            $table->enum('paidstatus',['payed','unpaid'])->after('user_id');
+            $table->string('paidstatus')->default('unpaid')->after('user_id');
         });
     }
 

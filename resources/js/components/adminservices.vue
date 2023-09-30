@@ -2,7 +2,7 @@
     <navbar />
     <jambotron />
   
-    <div class="container py-5 ">
+    <div class="container py-5 services">
       <router-link :to="{name:'addnewservice'}" class="btn btn-primary ">New</router-link>     
       
         <div class="row mb-2  shadow rounded-0" v-for="service in services ">
@@ -41,14 +41,14 @@ import {computed} from 'vue'
 import { useStore } from 'vuex'
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
-import msnfooter from './layouts/msnfooter.vue';
+
 import getservices from "../compasable/getservices";
 
 import deleteservice from '../compasable/deleteservice';
 import Swal from 'sweetalert2'
 export default {
     name:"adminservices",
-    components:{navbar,jambotron,msnfooter},
+    components:{navbar,jambotron},
     setup(){
         const {services,error,load}=getservices()        
         const store = useStore()
@@ -101,6 +101,9 @@ export default {
     }
 }
 </script>
-<style lang="">
+<style >
+.services{
+
+}
     
 </style>

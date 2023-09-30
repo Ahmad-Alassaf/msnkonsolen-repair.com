@@ -1,7 +1,7 @@
 <template  >
     <navbar />
     <jambotron />   
-    <div class="container-md px-2 pt-5 ">  
+    <div class="container-md px-2 pt-5 services">  
         <div class="row border px-3 py-3 my-3 rounded bg-white shadow">
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="all" class="form-check-input" id="services">
@@ -117,3 +117,9 @@ export default {
    
 }
 </script>
+<style >
+.services{
+ 
+}
+    
+</style>

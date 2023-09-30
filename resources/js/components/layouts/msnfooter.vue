@@ -1,11 +1,11 @@
 <template >
-    <div class="py-1 bg-dark footer ">
+    <footer class="py-1 bg-dark footer ">
         <div class="container">
             <p class="text-white text-center ">Copyright: <span>©</span> Ahmad Al Asaf</p>
         </div>
        
         
-    </div>
+    </footer>
 </template>
 <script>
 export default {
@@ -15,8 +15,7 @@ export default {
 </script>
 <style >
 .footer{
-   
-  
+ 
 }
        
   

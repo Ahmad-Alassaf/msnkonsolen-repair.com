@@ -43,6 +43,7 @@ import success from '../components/success.vue'
 import cancel from '../components/cancel.vue'
 import verified from '../components/verified.vue'
 import sendemail from '../components/sendemail.vue'
+import pagenotfound from '../components/pagenotfound.vue'
 
 
 
@@ -297,6 +298,14 @@ const routes = [
             props:true,
            
             title: `success`
+        }
+    },
+    {
+        name: "pagenotfound",
+        path: "/pagenotfound",
+        component:pagenotfound ,
+        meta: {
+          
         }
     },
     {
