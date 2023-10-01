@@ -38,8 +38,8 @@ export default {
                             sessionID:sessionID.value
                          },config)
                             .then(response=>{
-                                console.log('customer')
-                                console.log(response.data.customer_details)
+                                console.log('unpaidcontract')
+                                console.log(response)
                                if(response.status==404)
                                {
                                 alert('Page Not Found !!!!')

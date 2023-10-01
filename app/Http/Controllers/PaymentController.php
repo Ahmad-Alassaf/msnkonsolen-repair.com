@@ -131,6 +131,7 @@ class PaymentController extends Controller
                 
                 // events send email
                event(new userpaid($checkout->customer_details->email,$unpaidcontracts))  ;
+               return $unpaidcontracts;
               
            
 

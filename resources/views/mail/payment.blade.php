@@ -10,11 +10,11 @@
     <li>
         {{$contract->jobsnubmer}}-{{$contract->device}} -{{$contract->serialnumber}}
     </li>
-    <li>
+  {{--   <li>
             @foreach ($contract->relationships->services as $service)
                 <li>{{$service->title}} - {{$service->prise}}</li>
             @endforeach
-    </li>
+    </li> --}}
 @endforeach
 </ul>
   
