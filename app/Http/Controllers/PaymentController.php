@@ -120,22 +120,18 @@ class PaymentController extends Controller
                     throw new NotFoundHttpException();
 
                 }
-                $services=[];
+               
                 foreach($unpaidcontracts as $contract)
                 {
                     $contract->paidstatus='payed';
                     $contract->status='Sended To Repair';
                     $contract->save();
-                    $services=[
-                        $contract->services()
-
-                    ];
-    
+                  
                 }
                 
                 // events send email
-               event(new userpaid($checkout->customer_details->email,$unpaidcontracts,$services))  ;
-               return $unpaidcontracts;
+            event(new userpaid($checkout->customer_details->email,$unpaidcontracts))  ;
+             
               
            
 

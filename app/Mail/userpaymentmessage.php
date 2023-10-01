@@ -14,7 +14,7 @@ class userpaymentmessage extends Mailable
 {
     use Queueable, SerializesModels;
      public $contracts ;
-     public $services ;
+ 
     /**
      * Create a new message instance.
      *
@@ -46,7 +46,7 @@ class userpaymentmessage extends Mailable
     {
         return new Content(
             view: 'mail.payment',
-            with: ['contracts' => $this->contracts,'services'=>$this->services],
+            with: ['contracts' => $this->contracts],
         );
     }
 

@@ -14,11 +14,8 @@
 
 @endforeach
 </ul>
-  {{$services}}
+
 </body>
 </html>
-<h1>
-    customer has payed 
-   
-</h1>
+
  
