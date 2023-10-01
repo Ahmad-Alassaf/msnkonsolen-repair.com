@@ -38,8 +38,8 @@ export default {
                             sessionID:sessionID.value
                          },config)
                             .then(response=>{
-                                console.log('response')
-                                console.log(response)
+                                console.log('customer')
+                                console.log(response.data.customer_details)
                                if(response.status==404)
                                {
                                 alert('Page Not Found !!!!')
@@ -48,6 +48,7 @@ export default {
                                                 
                             }) 
                             .catch((er)=>{
+                                console.log(er)
                                router.push('/pagenotfound')
                                
                             })

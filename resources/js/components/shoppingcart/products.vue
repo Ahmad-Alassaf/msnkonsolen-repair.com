@@ -4,7 +4,7 @@
     <div class="container-sm px-1 ">
         <div class=" pt-5 ">  
             <div class="card  mb-3 " style="" v-for="contract in contracts">
-                <div class="row  g-0" v-if="contract.attributes.status=='In ShoppingCart'">
+                <div class="row  g-0" >
                     <div class="col-md-1 text-center p-0 " >               
                         <img :src="`storage/images/${contract.relationships.services[0].attributes.foto}`" alt=""   class="img-fluid">               
                     </div>

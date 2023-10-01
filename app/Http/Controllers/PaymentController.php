@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\userpaid;
 use App\Models\Contract;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -77,10 +78,10 @@ class PaymentController extends Controller
        $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
       $api_key=env('STRIPE_API_KEY');
       $checkout=  $stripe->checkout->sessions->create([
-       //   'success_url'  =>  'http://127.0.0.1:8000/success',
-     'success_url' => 'https://msnkonsolen-repair.com/success',
-       //     'cancel_url' => 'http://127.0.0.1:8000/cancel',
-    'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
+       //  'success_url'  =>  'http://127.0.0.1:8000/success',
+      'success_url' => 'https://msnkonsolen-repair.com/success',
+     //     'cancel_url' => 'http://127.0.0.1:8000/cancel',
+      'cancel_url' => 'https://msnkonsolen-repair.com/cancel',
             'line_items' => $lineitems,
             'mode' => 'payment',
           ]);
@@ -108,6 +109,7 @@ class PaymentController extends Controller
                 $stripe = new \Stripe\StripeClient(env('STRIPE_API_KEY'));
           
                 $checkout=  $stripe->checkout->sessions->retrieve($request->sessionID);
+              
                 if(!$checkout)
                 {
                     throw new NotFoundHttpException();
@@ -126,9 +128,11 @@ class PaymentController extends Controller
                     $contract->save();
     
                 }
-                    
+                
+                // events send email
+               event(new userpaid($checkout->customer_details->email))  ;
               
-               
+           
 
             }
            
