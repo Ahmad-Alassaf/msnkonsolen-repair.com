@@ -14,14 +14,16 @@ class userpaid
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
    public $email;
+   public $contracts;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($email,$contracts)
     {
         $this->email=$email;
+        $this->contracts=$contracts;
     }
 
     /**

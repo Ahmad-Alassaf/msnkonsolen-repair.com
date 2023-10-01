@@ -28,6 +28,6 @@ class Emailaboutpaying
      */
     public function handle(userpaid $event)
     {
-      Mail::to($event->email)->send(new userpaymentmessage()) ;
+      Mail::to($event->email)->send(new userpaymentmessage($event->contracts)) ;
     }
 }

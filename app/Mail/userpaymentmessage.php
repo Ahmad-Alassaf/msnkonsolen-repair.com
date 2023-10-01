@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Contract;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -12,15 +13,15 @@ use Illuminate\Queue\SerializesModels;
 class userpaymentmessage extends Mailable
 {
     use Queueable, SerializesModels;
-
+     public $contracts ;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $contracts)
     {
-        //
+        $this->contracts=$contracts;
     }
 
     /**
@@ -44,6 +45,7 @@ class userpaymentmessage extends Mailable
     {
         return new Content(
             view: 'mail.payment',
+            with: ['contracts' => $this->contracts],
         );
     }
 
