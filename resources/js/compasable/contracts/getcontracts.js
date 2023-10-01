@@ -26,10 +26,10 @@ const  getcontracts=()=>{
                
                 response.data.data.forEach(contract=>{
                  contract.relationships.services.forEach(service=>{
-                    console.log('contract ID'+contract.id)
+                   
                    
                     contractsprise.value +=parseInt(service.attributes.prise) 
-                    console.log('Prise'+contractsprise.value)
+                   
                     })
                 })
               }

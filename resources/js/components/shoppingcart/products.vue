@@ -51,8 +51,6 @@
         </div>
        
     </div>
-
-   
 </template>
 <script>
 import dayjs from 'dayjs';
@@ -86,34 +84,27 @@ export default {
 
                                     }
                         await axios.get('/sanctum/csrf-cookie');  
-                        console.log(contracts.value.length) 
+                        console.log(contracts.value) 
                         if(contracts.value.length>0)
                         {
-                            await  axios.post('/api/getsession',{contractslist:contracts.value},config)
-                            .then(response=>{
-                                if(response.status!=404)
-                                {
-                                    console.log('Checkout')
-                                   console.log(response.data.success_url)//Checkout
-                                 sessionId.value=response.data.id  
-                                 store.dispatch('auth/sessionid',response.data.id)    
+                                await  axios.post('/api/getsession',{contractslist:contracts.value},config)
+                                .then(response=>{
+                                    if(response.status!=404)
+                                    {                                  
+                                    sessionId.value=response.data.id  
+                                    store.dispatch('auth/sessionid',response.data.id) 
+                                    }
+                                    else{
+                                        alert('Page Not Found')
+                                    }                        
+                                }) 
+                                .catch((er)=>{
+                                    console.log(er)
+                                    alert(er.message)
+                                
+                                })
 
-                                }
-                                else{
-                                    alert('Page Not Found')
-                                }
-                               // get Session ID from Stripe
-                                                    
-                            }) 
-                            .catch((er)=>{
-                                console.log(er)
-                                alert(er.message)
-                               
-                            })
-
-                        }         
-                        
-
+                        }  
         })
         const token=computed(()=>{
            return store.getters["auth/gettoken"]
