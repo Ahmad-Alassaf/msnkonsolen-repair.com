@@ -7,25 +7,25 @@
     "file": "assets/laser-6bbba60b.jpg",
     "src": "public/storage/images/laser.jpg"
   },
-  "public/storage/images/nintendo/1.jpg": {
-    "file": "assets/1-9ebb9bbc.jpg",
-    "src": "public/storage/images/nintendo/1.jpg"
-  },
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-afde2eb4.jpg",
     "src": "public/storage/images/netzteil.jpg"
+  },
+  "public/storage/images/nintendo/1.jpg": {
+    "file": "assets/1-9ebb9bbc.jpg",
+    "src": "public/storage/images/nintendo/1.jpg"
   },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
     "src": "public/storage/images/reinigung2.jpg"
   },
-  "public/storage/images/nintendo/4.jpg": {
-    "file": "assets/4-b5da7517.jpg",
-    "src": "public/storage/images/nintendo/4.jpg"
-  },
   "public/storage/images/nintendo/2.jpg": {
     "file": "assets/2-aa906f1c.jpg",
     "src": "public/storage/images/nintendo/2.jpg"
+  },
+  "public/storage/images/nintendo/4.jpg": {
+    "file": "assets/4-b5da7517.jpg",
+    "src": "public/storage/images/nintendo/4.jpg"
   },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
