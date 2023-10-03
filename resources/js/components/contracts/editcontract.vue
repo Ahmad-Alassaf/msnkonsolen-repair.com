@@ -119,7 +119,7 @@
 
                      </div>
                      <div class="py-3" v-for="role in user.roles">
-                        <textarea class="form-control" id="" cols="30" rows="10" placeholder="Reparatur beschreibung..."></textarea>
+                        <textarea v-if="role.attributes.name=='Admin'" class="form-control" id="" cols="30" rows="10" placeholder="Reparatur beschreibung..."></textarea>
 
                      </div>
 
