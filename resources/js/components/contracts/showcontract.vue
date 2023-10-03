@@ -88,9 +88,10 @@
             <h4 class="bg-secondary text-white px-2 py-1">Zubehör</h4>
             <p>{{contract.attributes.accesories}}</p>
         </div>
-        <div class="d-flex py-1 px-2 justify-content-between">
-            <router-link :to="{name:'editcontract',params:{id:this.$route.params.id}}" class="btn btn-primary" > Edit</router-link>
-            <button class="btn btn-danger"> Zur Kasse</button>
+        <div class="d-flex py-1 px-2 justify-content-end">
+            <router-link :to="{name:'editcontract',params:{id:this.$route.params.id}}" class="btn btn-primary m-1" > Edit</router-link>
+           
+            <button class="btn btn-danger m-1"> Zur Kasse</button>
         </div>
       
         

@@ -1,18 +1,22 @@
 <template >
-    <div class="home">
-    
-    <jambotron />
-    <navbar />
-        <advantesbar />
-        <msnbanner @setupmicrsoft="showmicrosoft" @setupsony="showsony" @setupnintendo="shownintendo" />
-        <micrsoft  v-if="micrsoft"/>
-        <sony  v-if="sony"/>
-        <nintendo  v-if="nintendo"/>
-        <superangebute />
-        <emailbanner />
-       
-     
+    <div >
+        <section class="headersection" id="headersection">
+            <navbar />
+            <jambotron />
 
+        </section>
+      
+         <section class="bodysection" id="bodysection">
+            <advantesbar />
+            <msnbanner @setupmicrsoft="showmicrosoft" @setupsony="showsony" @setupnintendo="shownintendo" />
+            <micrsoft  v-if="micrsoft"/>
+            <sony  v-if="sony"/>
+            <nintendo  v-if="nintendo"/>
+            <superangebute />
+            <emailbanner />
+
+         </section>
+       
     </div>
     
   
@@ -53,6 +57,7 @@ export default {
             nintendo:false,
         }
     },
+   
     created(){
        
         this.allservices();
@@ -100,10 +105,5 @@ export default {
 </script>
 <style >
 
-.home{
-    background-color: #d8d8d866;
-  
-   
-}
   
 </style>

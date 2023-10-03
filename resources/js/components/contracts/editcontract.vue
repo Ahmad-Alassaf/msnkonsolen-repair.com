@@ -1,10 +1,9 @@
 <template >
     <div>
         <navbar />
-        <h1>
-            Edit
-        </h1>
+        
         <div class=" mt-1"  v-if="contract !=null">
+         
             <div class=" form col-8 shadow m-auto  ">
                 <h4 class="bg-primary text-white px-2 py-1  shadow ">
                    Gerät
@@ -108,8 +107,23 @@
                             <input type="checkbox" name="agb"  v-model="agbagreement" class="form-check-input mx-2">
                             <label for="" class="form-check-label "><a href="#"> AGB</a> gelesen und einverstanden</label>
                         </div>
-                     </div>             
-                    <input type="submit" class="btn btn-primary w-100 mb-3" value="Speichern und Add zum Warenkorp" :disabled="!agbagreement">
+                     </div>
+                     <div class="py-3" v-for="role in user.roles">
+                        <select  class="form-select mb-3"  v-if="contract.attributes.paidstatus=='payed' && role.attributes.name=='Admin'" >
+                            <option value="">--Auftrag Status--</option>
+                            <option value="">  Recieved</option>
+                            <option value=" "> Bearbeiten </option>
+                            <option value=""> Abschliesen </option>
+                            <option value=""> rausschicken </option>
+                        </select>
+
+                     </div>
+                     <div class="py-3" v-for="role in user.roles">
+                        <textarea class="form-control" id="" cols="30" rows="10" placeholder="Reparatur beschreibung..."></textarea>
+
+                     </div>
+
+                    <input type="submit" class="btn btn-primary w-100 mb-3" value="Speichern " :disabled="!agbagreement">
                 </form>
             </div>
         </div>

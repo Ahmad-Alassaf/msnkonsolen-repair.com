@@ -27,6 +27,7 @@ class ContractResource extends JsonResource
                             'warantysiegel'=>$this->warantysiegel,
                             'waterdamage'=>$this->waterdamage,
                             'accesories'=>$this->accesories,
+                            'paidstatus'=>$this->paidstatus,
                             'device'=>$this->device,    
                             'status'=>$this->status,                 
                             'created_at'=>$this->created_at,

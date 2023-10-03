@@ -1,7 +1,11 @@
 <template  >
-    <navbar />
-    <jambotron />   
-    <div class="container-md px-2 pt-5 services">  
+
+       <section class="headersection" id="headersection">
+            <navbar />
+            <jambotron />
+
+        </section>  
+    <div class="container-md px-2 pt-5 services" id="bodysection">  
         <div class="row border px-3 py-3 my-3 rounded bg-white shadow">
             <div class="form-check col-12 col-md-3">
                 <input type="radio" name="services" v-model="selected_platforms" value="all" class="form-check-input" id="services">
@@ -56,8 +60,8 @@
    
 </template>
 <script >
-import service from'./service.vue'
-import { computed,ref } from 'vue';
+
+import { computed,ref ,onMounted} from 'vue';
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
 import msnfooter from '../layouts/msnfooter.vue';
@@ -66,10 +70,11 @@ import getservices from '../../compasable/getservices';
 export default {
     name:"services",
     components:
-    {service, navbar,  jambotron,msnfooter},
+    { navbar,  jambotron,msnfooter},
     setup(){
          const selected_platforms=ref('all')        
         const {error,services,load}=getservices() 
+        
         load()
         const nintedolistlength=ref(0)
         const sonylistlength=ref(0)
@@ -111,6 +116,11 @@ export default {
                    { return services.value}
        
        })
+    
+     
+    
+   
+       
      
         return{error,services,matchedlist,selected_platforms,nintedolistlength,sonylistlength,microsoftlistlength}
     },
@@ -118,8 +128,6 @@ export default {
 }
 </script>
 <style >
-.services{
- 
-}
+
     
 </style>

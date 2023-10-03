@@ -1,6 +1,6 @@
-<template lang="">
+<template >
     
-        <div class=" jumbotron jumbotronheight bg-primary text-white d-none d-md-block">
+        <div class=" jumbotron jumbotronheight bg-primary   text-white d-none d-md-block">
             <div class="container  ">
                 <h1>Vedio-Spiel Konsolen </h1>
                 <ul>
@@ -33,7 +33,7 @@ export default {
 </script>
 <style >
 .jumbotronheight{
-    height: 25vh;
+   
 }
 
     
