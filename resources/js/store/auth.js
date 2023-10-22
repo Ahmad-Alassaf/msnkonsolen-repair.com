@@ -27,6 +27,7 @@ export default {
         gettoken(state){ return state.token},
         getsessionid(state){ return state.session_id},
         GET_CONTRACTS_COUNT(state){return state.contracts},
+       
         get_contracts_list(state){return state.contractsList},
         get_contracts_prise(state){return state.Totalprice},
 

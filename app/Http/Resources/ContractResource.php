@@ -29,7 +29,8 @@ class ContractResource extends JsonResource
                             'accesories'=>$this->accesories,
                             'paidstatus'=>$this->paidstatus,
                             'device'=>$this->device,    
-                            'status'=>$this->status,                 
+                            'status'=>$this->status,
+                            'trackingnumber'=>$this->trackingnumber,                 
                             'created_at'=>$this->created_at,
                             'updated_at'=>$this->updated_at,
 

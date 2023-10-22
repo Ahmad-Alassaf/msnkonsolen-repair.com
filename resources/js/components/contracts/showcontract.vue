@@ -2,8 +2,9 @@
     <navbar />
     <jambotron />
     
-    <div class="container pt-5" v-if="contract!=null">
+    <div class="container pt-5" v-if="contract!=null" id="contract">
         <h3 class="px-2 py-2"> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
+      
         <div class="row m-0 p-0">
             <div class="col-md-5 border p-0">
                 <h4 class="bg-secondary text-white px-2 py-1">Kundendaten:</h4>
@@ -24,9 +25,9 @@
                     
                     <h6>Address</h6>
                     <div class="d-flex justify-content-between col-6" v-for=" address in contract.relationships.user.relationships.Address">
-                        <span >{{address.attributes.street}}</span>
-                        <span >{{address.attributes.hausnumber}}</span>
-                        <span >{{address.attributes.postal}}</span>
+                        <span >{{address.attributes.street}}. </span>
+                        <span >{{address.attributes.hausnumber}}, </span>
+                        <span >{{address.attributes.postal}} </span>
                         <span >{{address.attributes.city}}</span>
                     </div>
                 </div>
@@ -40,7 +41,7 @@
                 </div>
                 <div class="d-flex py-1 px-2 justify-content-between border-bottom ">
                     <span>Erstellt am</span>
-                    <span>{{contract.attributes.created_at}}</span>
+                    <span>{{formatedDate(contract.attributes.created_at)}}</span>
                  </div>
                 <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                     <span>Gerät</span>
@@ -61,7 +62,7 @@
                  </div>
                  <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                     <span>Flüssigkeitschaden</span>
-                    <span>{{contract.attributes.waterdamage}}</span>
+                    <span>{{contract.attributes.waterdamage===0?'Nein':'Ja' }}</span>
                  </div>
                  <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                     <span>früher Reparatur</span>
@@ -88,10 +89,17 @@
             <h4 class="bg-secondary text-white px-2 py-1">Zubehör</h4>
             <p>{{contract.attributes.accesories}}</p>
         </div>
-        <div class="d-flex py-1 px-2 justify-content-end">
-            <router-link :to="{name:'editcontract',params:{id:this.$route.params.id}}" class="btn btn-primary m-1" > Edit</router-link>
+        <div class="py-2 d-none" id="customersignitur">
+            <h3> Kunden Unterschreiben:</h3>
+            <p>{{contract.relationships.user.attributes.name}}</p>
+            <p>---------------------------</p>
+        </div>
+        <div class="d-flex py-1 px-2 justify-content-end" id="actionsbutton">
            
-            <button class="btn btn-danger m-1"> Zur Kasse</button>
+            <router-link :to="{name:'editcontract',params:{id:this.$route.params.id}}" class="btn btn-primary m-1 " > bearbeiten</router-link>
+            <button class="btn btn-primary m-1" @click="saveaspdf()">PDF Speichern</button>
+            <router-link :to="{name:'kasse',params:{}}" class="btn btn-danger m-1"> Zur Kasse</router-link>
+           
         </div>
       
         
@@ -99,9 +107,14 @@
 </template>
 <script>
 import navbar from "../layouts/navbar.vue"
-import jambotron from "../layouts/jambotron.vue";
-import {mapGetters} from 'vuex'
-import dayjs from 'dayjs';
+import jambotron from "../layouts/jambotron.vue"
+
+import html2pdf from "html2pdf.js";
+import dayjs from 'dayjs'
+import { computed } from "vue"
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+import getcontract from '../../compasable/contracts/getcontract.js'
 export default {
     name:"showcontract",
     components:{
@@ -109,53 +122,44 @@ export default {
         jambotron,
          
     },
-    data(){
-        return {
-            contract:null
+    setup(){
+        const route = useRoute();
+        const store = useStore()
+        const token=computed(()=>{
+           return store.getters["auth/gettoken"]
+        })
+        const {contract,contracterror,loadcontract,contractprise}=getcontract(); 
+        loadcontract(route.params.id,token)       
+        const formatedDate=((data)=>{
+               const date = dayjs(data);            
+               return date.format('dddd:D MMMM , YYYY');
+        })
+        const saveaspdf=async ()=>{
+            let actionsbuttun=document.getElementById('actionsbutton')
+            actionsbuttun.classList.add('d-none')
+           let customersignitur=document.getElementById('customersignitur')
+           customersignitur.classList.remove('d-none')
+           customersignitur.classList.add('d-block')            
+            let pdf= document.getElementById("contract")
+          
+            
+          html2pdf(pdf, {
+				margin: 1,
+  		     filename: contract.value.attributes.jobsnumber,
+			}).then(()=>{
+                actionsbuttun.classList.remove('d-none')
+           actionsbuttun.classList.add('d-block')
+           customersignitur.classList.add('d-none')
+
+            });
+         
+          
+      
+
         }
-    },
-    computed:{
-        ...mapGetters({
-            token:"auth/gettoken", 
-            contractslist:"auth/get_contracts_list",
-                
-
-        }), 
-    },
-    created(){
-        this.getcontract()
-
-    },
-    methods: { 
-                async getcontract()
-                    {
-                                    let config={
-                                                        headers:{
-                                                            Accept: 'application/vnd.api+json',                                
-                                                            Authorization: `Bearer ${this.token}`
-                                                        }
-                                                    } 
-                                    await axios.get('/sanctum/csrf-cookie');                                           
-                                    await  axios.get(`/api/contracts/${this.$route.params.id}`,config)
-                                                .then(response=>
-                                                {
-                                                    this.contract=response.data.data
-
-                                                })
-                                                .catch(()=>{console.log('Failed!!!!!')})
-
-                    }, 
-                   
-            },
-            formatedDate(dateString)
-            {
-                     const date = dayjs(dateString);            
-                      return  date.format('dddd:D MMMM , YYYY');
-            }   
-        }
-    
-
+      
+        return {contract,saveaspdf,formatedDate}
+    }
+          
+   }
 </script>
-<style lang="">
-    
-</style>

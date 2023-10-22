@@ -15,6 +15,7 @@ const home = () => import('@/components/home.vue')
 /* Authenticated Component */
 import users from '../components/users/users.vue'
 import edituser from '../components/users/edituser.vue'
+import mycontracts from '../components/users/mycontracts.vue'
 
 import services from '@/components/services/services.vue'
 import adminpage from '../components/Adminpage.vue'
@@ -45,6 +46,7 @@ import verified from '../components/verified.vue'
 import sendemail from '../components/sendemail.vue'
 import pagenotfound from '../components/pagenotfound.vue'
 
+import kasse from '../components/Kasse/kasse.vue'
 
 
 const routes = [
@@ -62,6 +64,7 @@ const routes = [
         component: verified,
             meta: {title: `verified `,middleware:'guest' }
     },
+    //Contact
     {
         path: '/contact',
         name: "contact",
@@ -69,6 +72,7 @@ const routes = [
         component: contact,
             meta: {title: `Kontakt ` }
     },
+    //Users
     {
         name: "users",
         path: "/users",
@@ -87,6 +91,16 @@ const routes = [
             props:true,
         }
     },
+    {
+        name: "mycontracts",
+        path: "/mycontracts",
+        component: mycontracts,
+        meta: {
+            title: `Meine Auftrage`,
+          
+        }
+    },
+    //Roles
     {
         name: "roles",
         path: "/roles",
@@ -227,6 +241,7 @@ const routes = [
     
     meta: {
         middleware: "auth",
+        title:"Auftragänderung"
        
     }
 },
@@ -253,7 +268,7 @@ const routes = [
     }
 }
 ,
-   
+  // AdminPage 
     {
         name: "adminpage",
         path: "/adminpage",
@@ -300,6 +315,7 @@ const routes = [
             title: `success`
         }
     },
+    //Page Not Found
     {
         name: "pagenotfound",
         path: "/pagenotfound",
@@ -308,6 +324,7 @@ const routes = [
           
         }
     },
+    //Cancel
     {
         name: "cancel",
         path: "/cancel",
@@ -319,10 +336,22 @@ const routes = [
         }
     },
     ,
+    //Send Email
     {
         name: "sendemail",
         path: "/sendemail",
         component: sendemail,
+        
+        meta: {
+            middleware: "auth",
+          
+        }
+    },
+    //Kasse
+    {
+        name: "kasse",
+        path: "/kasse",
+        component: kasse,
         
         meta: {
             middleware: "auth",

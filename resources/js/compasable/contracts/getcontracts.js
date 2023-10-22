@@ -2,6 +2,8 @@ import {ref } from 'vue'
 const  getcontracts=()=>{
   
    const contracts=ref([])
+   const unpaidcontracts=ref([])
+   const paidcontracts=ref([])
    const contractserror=ref(null)
    const contractsprise=ref(0)
    const loadcontracts=async(token)=>{
@@ -22,8 +24,8 @@ const  getcontracts=()=>{
               }
               else{
                 contracts.value=response.data.data
-                ////
-               
+                unpaidcontracts.value=response.data.data.filter(element=>element.attributes.paidstatus=='unpaid')
+                paidcontracts.value=response.data.data.filter(element=>element.attributes.paidstatus=='payed')
                 response.data.data.forEach(contract=>{
                  contract.relationships.services.forEach(service=>{
                    
@@ -42,7 +44,7 @@ const  getcontracts=()=>{
 
        }
    }
-   return {contracts,contractserror,loadcontracts,contractsprise}
+   return {contracts,unpaidcontracts,paidcontracts,contractserror,loadcontracts,contractsprise}
    
 }
 export default getcontracts

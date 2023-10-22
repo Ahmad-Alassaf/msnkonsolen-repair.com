@@ -15,10 +15,6 @@
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
   },
-  "public/storage/images/reinigung2.jpg": {
-    "file": "assets/reinigung2-fa3025e1.jpg",
-    "src": "public/storage/images/reinigung2.jpg"
-  },
   "public/storage/images/nintendo/2.jpg": {
     "file": "assets/2-aa906f1c.jpg",
     "src": "public/storage/images/nintendo/2.jpg"
@@ -27,41 +23,68 @@
     "file": "assets/4-b5da7517.jpg",
     "src": "public/storage/images/nintendo/4.jpg"
   },
+  "public/storage/images/reinigung2.jpg": {
+    "file": "assets/reinigung2-fa3025e1.jpg",
+    "src": "public/storage/images/reinigung2.jpg"
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app-f6ae189a.css",
+    "file": "assets/app-3b1e7227.css",
     "src": "resources/js/app.css"
   },
-  "resources/js/components/Login.vue": {
-    "file": "assets/Login-5628dbad.js",
-    "src": "resources/js/components/Login.vue",
+  "_html2canvas-5f2275a6.js": {
+    "file": "assets/html2canvas-5f2275a6.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-c719ecb4.js",
+    "file": "assets/Register-7714f374.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
+  "resources/js/components/Login.vue": {
+    "file": "assets/Login-311a321b.js",
+    "src": "resources/js/components/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "node_modules/dompurify/dist/purify.es.js": {
+    "file": "assets/purify.es-a139d824.js",
+    "src": "node_modules/dompurify/dist/purify.es.js",
+    "isDynamicEntry": true
+  },
+  "node_modules/canvg/lib/index.es.js": {
+    "file": "assets/index.es-ae21eec3.js",
+    "src": "node_modules/canvg/lib/index.es.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
   "resources/js/app.js": {
-    "file": "assets/app-e7e726e7.js",
+    "file": "assets/app-3728fa32.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
+      "_html2canvas-5f2275a6.js",
+      "node_modules/dompurify/dist/purify.es.js",
+      "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",
       "resources/js/components/Register.vue"
     ],
     "css": [
-      "assets/app-f6ae189a.css"
+      "assets/app-3b1e7227.css"
     ],
     "assets": [
       "assets/joycons-ac918e53.jpg",

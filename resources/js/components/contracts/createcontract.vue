@@ -115,11 +115,11 @@
                          <div class="py-3">
                             <h4 class="bg-secondary text-white px-2 py-1 shadow rounded">Flüssigkeitschaden</h4>
                             <div class=" form-check ">                            
-                                <input type="radio" name="waterdamage" v-model="waterdamage" value="Nein, kein Wasserschaden oder Flüssigkeitschaden"  class="form-check-inpu mx-1">
+                                <input type="radio" name="waterdamage" v-model="waterdamage" value=0  class="form-check-inpu mx-1">
                                 <label for="">Nein, kein Wasserschaden oder Flüssigkeitschaden</label>                                
                              </div>
                              <div class=" form-check ">
-                                <input type="radio" name="waterdamage" v-model="waterdamage" value="Die Konsole hat  Wasserschaden oder andere Flüssigkeitschaden" class="form-check-inpu mx-1">
+                                <input type="radio" name="waterdamage" v-model="waterdamage" value=1 class="form-check-inpu mx-1">
                                 <label for="" class="form-check-label ">  Die Konsole hat  Wasserschaden oder andere Flüssigkeitschaden </label>
                              </div>
                          </div>

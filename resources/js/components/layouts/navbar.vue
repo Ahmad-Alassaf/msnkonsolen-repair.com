@@ -14,22 +14,22 @@
                     <div class=" collapse navbar-collapse " id="navbarNavDropdown">
                         <ul class="navbar-nav    me-auto text-white" style="">
                             <li class="nav-item p-0 ">
-                                <router-link :to="{name:'home'}" class="text-white nav-link navlink-hover  text-center">Home <span class="sr-only">(current)</span></router-link>
+                                <router-link :to="{name:'home'}" class="text-white nav-link navlink-hover  text-center active">Home </router-link>
                             </li>
                             <li class="nav-item">
-                                <router-link :to="{name:'services'}" class="nav-link navlink-hover text-white text-center">services <span class="sr-only">(current)</span></router-link>
+                                <router-link :to="{name:'services'}" class="nav-link navlink-hover text-white text-center">services </router-link>
                             </li>
                             <li class="nav-item ">
-                                <router-link :to="{name:'contact'}" class="nav-link navlink-hover text-white text-center">Kontakt  <span class="sr-only">(current)</span></router-link>
+                                <router-link :to="{name:'contact'}" class="nav-link navlink-hover text-white text-center">Kontakt </router-link>
                             </li>
                             
                             <li class="nav-item"  >
                                 <router-link :to="{name:'createcontract'}" class="nav-link navlink-hover text-white text-center">Auftrag Erstellen </router-link>
                             </li>
-                            <li class="nav-item text-center" v-for="role in user.roles" >
+                            <li class="nav-item text-center" v-if="authenticated">
                                 <!-- <router-link :to="{name:'adminpage'}" class="nav-link">Admin </router-link> -->
-                                <div class="dropdown "  v-if="role.attributes.name=='Admin'">
-                                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="dropdown "  v-for="role in user.roles">
+                                    <a class="nav-link dropdown-toggle text-white" v-if="role.attributes.name=='Admin'" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                       Admin
                                     </a>
                                   
@@ -68,22 +68,22 @@
                             <ul class="navbar-nav  d-flex w-100">
                                 <li class="nav-item " v-if="authenticated">
                                     <router-link :to="{name:'products'}" class="nav-link">
-                                        <i class="fa-solid fa-cart-shopping"></i>
-                                        <span class="bg-danger text-whit rounded px-1">
-                                          {{contractscount}}
+                                        <i class="fa-solid fa-cart-shopping text-white"></i>
+                                        <span class="bg-danger text-whit rounded px-1" v-if="unpaidcontracts.length>0">
+                                          {{unpaidcontracts.length}} 
                                         </span>
                                     </router-link>
                                    
                                 </li>
                                 <li class="nav-item dropdown" v-if="authenticated">
                                     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      {{user.attributes.name}}
+                                     {{user.attributes.name}} 
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                                         <router-link class="dropdown-item"  :to="{name:'profile'}"> {{user.name}}</router-link>
-                                        <router-link class="dropdown-item"  :to="{name:'profile',params:{'id':user.id}}"> My Contracts</router-link>
-                                        <a class="dropdown-item" href="javascript:void(0)" @click="logout">Logout</a>
+                                        <router-link class="dropdown-item"  :to="{name:'mycontracts'}"> My Contracts</router-link>
+                                        <a class="dropdown-item"  @click="signOut">Logout</a>
                                     </div>
                                    
                                 </li>
@@ -108,63 +108,54 @@
 </template>
 <script>
 import {mapActions,mapGetters} from 'vuex'
-export default {
-    data(){
-        return {
-            roles:[],
-            Permissions:[],
-            sticky:105,
-        }
-    },
-    created(){
-        this.contracts()
-        window.addEventListener('scroll', this.makesticky);
-    },  
-    computed:{
-        ...mapGetters({
-            user:"auth/getuser",
-            authenticated:"auth/getauthenticated",
-            token:"auth/gettoken",
-            contractscount:"auth/GET_CONTRACTS_COUNT",
-        }), 
-    },
-    methods:{
-        ...mapActions({
-            signOut:"auth/logout",
-            signIn:"auth/login",
-            contracts:"auth/getcontracts"
-        }),
-        async logout(){
-            await axios.get('/sanctum/csrf-cookie');
-            let config={
-                                                        headers:{
-                                                            Accept: 'application/vnd.api+json',
-                                                                                     
-                                                            Authorization: `Bearer ${this.token}`
-                                                        }
-                                                    } 
-          
-            
-            
-            await axios.post('/api/logout',config).then(({data})=>{
-              
-                 this.signOut()
-                 this.$router.push("/")
-            })
-        },
-        login()
-        {
-            this.signIn()
-        },
-        makesticky() {
-                      let navbar=window.document.getElementById("navbar");
-                        if (window.pageYOffset >= this.sticky) {navbar.classList.add("sticky")} 
-                        else {navbar.classList.remove("sticky");}
-                    }
+import {ref,computed,onMounted} from 'vue'
+import getcontracts from '../../compasable/contracts/getcontracts'
 
-    }
+import Logout from "../../compasable/logout"
+import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
+export default {
+    setup(){
+        const sticky=ref(15)
+        const permissions=ref([])
+        const store=useStore()
+        const router=useRouter()
+        const token =computed(()=>{
+             return store.getters["aut/gettoken"]
+
+        })
+        const {contracts,unpaidcontracts,contractserror,loadcontracts,contractsprise}=getcontracts()
+       loadcontracts(token)
+        const signOut=()=>{
+            const {runlogout}=Logout()
+            runlogout(token).then(()=>{
+                store.dispatch("auth/logout")
+               
+            }).then(()=>{ router.push("/")})
+            .catch(err=>{console.log(err)})
+           
+        }
+       
+        const authenticated=computed(()=>{
+            return store.getters["auth/getauthenticated"]
+        })
+        const user=computed(()=>{
+            return store.getters["auth/getuser"]
+        })
+        onMounted(()=>{
+            document.addEventListener('scroll',()=>{
+                let navbar=window.document.getElementById("navbar");
+                        if (window.pageYOffset >= sticky) {navbar.classList.add("sticky")} 
+                        else {navbar.classList.remove("sticky");}
+
+            })
+        })
+       
+        return{contracts,unpaidcontracts,signOut,authenticated,user}
+
+
+    },
    
-      
 
     
 

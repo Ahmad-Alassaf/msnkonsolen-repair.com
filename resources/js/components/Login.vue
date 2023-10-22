@@ -47,7 +47,9 @@
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
 
-import { mapActions } from 'vuex'
+import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
+import {ref,computed} from 'vue'
 export default {
     name:"login",
     components:{
@@ -55,60 +57,63 @@ export default {
       navbar,      
       jambotron, 
   },
-    data(){
-        return {
-            auth:{
-                email:"",
+  setup(){
+   
+    const store=useStore()
+    const router=useRouter()
+    const auth=ref({
+                 email:"",
                 password:""
-            },
-            validationErrors:{},
-            processing:false,
-            credintioalError:""
-        }
-    },
-    methods:{
-        ...mapActions({
-            signIn:'auth/login'
-        }),
-        async loginn(){
-            this.processing = true
-         await   this.$store.dispatch('auth/login',this.auth).then(result=>{
+    })
+   
+   
+    const processing=ref(false)
+    const validationErrors=ref({})
+    const credintioalError=ref("")
+    const loginn=async ()=>{
+        
+        processing.value = true
+         await   store.dispatch('auth/login',auth.value).then(result=>{
               
                if(result.data=="")
                {
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError.value=result.message
+                processing.value = false
                }
                else if(result.message=='The password field is required.'){
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError.value=result.message
+                processing.value = false
 
                }
                else if(result.message=='The email field is required.'){
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError.value=result.message
+                processing.value= false
 
                }
                else if(result.message=='The password must be at least 6 characters.'){
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError.value=result.message
+                processing.value = false
 
                }
                else if(result.message=='The email must be a valid email address.'){
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError=result.message
+                processing = false
 
                }
                else if(result.message=='The email must be a valid email address. (and 1 more error)'){
-                this.credintioalError=result.message
-                this.processing = false
+                credintioalError.value=result.message
+                processing.value = false
 
                }
                else{
-                this.$router.push("/")
+                router.push("/")
                }
             })
-        },
+
     }
+    return {loginn,auth,processing,validationErrors,credintioalError}
+
+  
+}// end Setup()
 }
 </script>

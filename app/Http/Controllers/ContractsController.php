@@ -90,9 +90,27 @@ class ContractsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contract $contract )
     {
-        //
+       // return $request;
+        $contract->device=$request->device;
+        $contract->serialnumber=$request->serialnumber;
+        $contract->faultdescription=$request->faultdescription;
+        $contract->casestatus=$request->casestatus;
+        $contract->waterdamage=$request->waterdamage;
+        $contract->earlierrepair=$request->earlierrepair;
+        $contract->accesories=$request->accesories;
+        $contract->paidstatus=$request->paidstatus;
+        $contract->warantysiegel=$request->warantysiegel;
+        $contract->status=$request->status;
+        $contract->trackingnumber=$request->trackingnumber;
+        $contract->paidstatus=$request->paidstatus;
+        
+        $contract->services()->syncWithoutDetaching ($request->services ); 
+         $contract->save();
+     //   
+        
+        return new ContractResource($contract);
     }
 
     /**

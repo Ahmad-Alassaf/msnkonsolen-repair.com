@@ -10,6 +10,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ContractsController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PlatformsController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\SendEmailController;
@@ -73,6 +74,9 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel');
 
     Route::post('/sendemail',[SendEmailController::class,'send']);
+
+    //Save as pdf
+    Route::post('/saveaspdf',[PDFController::class,'save']);   
 
    
 });
