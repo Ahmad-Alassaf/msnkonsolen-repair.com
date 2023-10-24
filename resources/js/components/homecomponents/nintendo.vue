@@ -110,8 +110,13 @@
     </div>
 </template>
 <script>
+
 export default {
-    name:"nintendo"
+    name:"nintendo",
+    setup()
+    {
+       
+    }
     
 }
 </script>

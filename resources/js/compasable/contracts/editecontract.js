@@ -25,7 +25,9 @@ const editecontract=()=>{
                 await  axios.put(`/api/contracts/${data.id}`,{
                                                             'device':data.attributes.device,
                                                             'serialnumber':data.attributes.serialnumber,
-                                                            'faultdescription':data.attributes.faultdescription,  
+                                                            'faultdescription':data.attributes.faultdescription, 
+                                                            'techniciandiagnose':data.attributes.techniciandiagnose,  
+                                                            'repairdetail':data.attributes.repairdetail,   
                                                             'casestatus':data.attributes.casestatus,
                                                             'waterdamage':data.attributes.waterdamage,
                                                             'earlierrepair':data.attributes.earlierrepair,

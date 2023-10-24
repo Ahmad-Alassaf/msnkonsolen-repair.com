@@ -96,6 +96,8 @@ class ContractsController extends Controller
         $contract->device=$request->device;
         $contract->serialnumber=$request->serialnumber;
         $contract->faultdescription=$request->faultdescription;
+        $contract->repairdetail=$request->repairdetail;
+        $contract->techniciandiagnose=$request->techniciandiagnose;
         $contract->casestatus=$request->casestatus;
         $contract->waterdamage=$request->waterdamage;
         $contract->earlierrepair=$request->earlierrepair;

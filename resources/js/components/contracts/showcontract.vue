@@ -3,8 +3,19 @@
     <jambotron />
     
     <div class="container pt-5" v-if="contract!=null" id="contract">
-        <h3 class="px-2 py-2"> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
-      
+        <div class="d-flex justify-content-between ">
+            <h3 class="px-2 py-2"> Auftragnummer: {{contract.attributes.jobsnumber}}</h3>
+            <div class="">
+                <h4 class="py-2 px-2 ">{{contract.attributes.status}}</h4>
+                <p class="  text-center text-danger" v-if="contract.attributes.paidstatus=='unpaid'">{{contract.attributes.paidstatus}}</p>
+                <p class="  text-center text-success" v-else>{{contract.attributes.paidstatus}}</p>
+
+
+            </div>
+           
+        </div>
+       
+        
         <div class="row m-0 p-0">
             <div class="col-md-5 border p-0">
                 <h4 class="bg-secondary text-white px-2 py-1">Kundendaten:</h4>
@@ -53,7 +64,7 @@
                  </div>
                  
                  <div class="d-flex py-1 px-2 justify-content-between border-bottom">
-                    <span>Case oder Gehäuse status</span>
+                    <span>Case status</span>
                     <span>{{contract.attributes.casestatus}}</span>
                  </div>
                  <div class="d-flex py-1 px-2 justify-content-between border-bottom">
@@ -64,9 +75,9 @@
                     <span>Flüssigkeitschaden</span>
                     <span>{{contract.attributes.waterdamage===0?'Nein':'Ja' }}</span>
                  </div>
-                 <div class="d-flex py-1 px-2 justify-content-between border-bottom">
-                    <span>früher Reparatur</span>
-                    <span>{{contract.attributes.earlierrepair}}</span>
+                 <div class=" py-1 px-2  border-bottom">
+                    <span class="d-block ">früher Reparatur</span>
+                    <span class="px-3">{{contract.attributes.earlierrepair}}</span>
                  </div>
                  <div class="d-flex py-1 px-2 justify-content-between border-bottom">
                     <span>Services</span>
@@ -89,6 +100,14 @@
             <h4 class="bg-secondary text-white px-2 py-1">Zubehör</h4>
             <p>{{contract.attributes.accesories}}</p>
         </div>
+        <div class="border" v-if="contract.attributes.techniciandiagnose!=''">
+            <h4 class="bg-secondary text-white px-2 py-1" >Technicker Diagnose</h4>
+            <p>{{contract.attributes.techniciandiagnose}}</p>
+        </div>
+        <div class="border" v-if="contract.attributes.repairdetail!=''">
+            <h4 class="bg-secondary text-white px-2 py-1" >Reparatur Beschreibung</h4>
+            <p>{{contract.attributes.repairdetail}}</p>
+        </div>
         <div class="py-2 d-none" id="customersignitur">
             <h3> Kunden Unterschreiben:</h3>
             <p>{{contract.relationships.user.attributes.name}}</p>
@@ -98,7 +117,7 @@
            
             <router-link :to="{name:'editcontract',params:{id:this.$route.params.id}}" class="btn btn-primary m-1 " > bearbeiten</router-link>
             <button class="btn btn-primary m-1" @click="saveaspdf()">PDF Speichern</button>
-            <router-link :to="{name:'kasse',params:{}}" class="btn btn-danger m-1"> Zur Kasse</router-link>
+            <router-link :to="{name:'kasse',params:{}}" class="btn btn-danger m-1" v-if="contract.attributes.paidstatus=='unpaid'"> Zur Kasse</router-link>
            
         </div>
       

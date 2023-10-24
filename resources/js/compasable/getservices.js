@@ -2,6 +2,7 @@
  const  getservices=()=>{
    
     const services=ref([])
+
     const error=ref(null)
     const load=async()=>{
         try{
@@ -21,6 +22,7 @@
                }
                else{
                 services.value=response.data.data
+               
              
                }
             }) 

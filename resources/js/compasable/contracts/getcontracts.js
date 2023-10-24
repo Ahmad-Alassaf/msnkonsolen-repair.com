@@ -1,13 +1,16 @@
-import {ref } from 'vue'
+import {reactive, ref } from 'vue'
+import { useStore } from 'vuex'
+
 const  getcontracts=()=>{
   
    const contracts=ref([])
    const unpaidcontracts=ref([])
    const paidcontracts=ref([])
-   const contractserror=ref(null)
+   const contractserror=ref('')
    const contractsprise=ref(0)
+   const store=useStore()
    const loadcontracts=async(token)=>{
-       try{
+      
          
            await axios.get('/sanctum/csrf-cookie');
            let config={
@@ -35,14 +38,15 @@ const  getcontracts=()=>{
                     })
                 })
               }
-           }) 
-
-       }
-       catch(err){
-        contractserror.value=err.message
-          
-
-       }
+           })
+           .catch(err=>{
+            contractserror.value=err
+            if(contractserror.value.response.status==401)
+            {
+              store.dispatch("auth/logout")
+            }
+  
+        })       
    }
    return {contracts,unpaidcontracts,paidcontracts,contractserror,loadcontracts,contractsprise}
    

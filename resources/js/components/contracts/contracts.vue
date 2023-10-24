@@ -1,9 +1,9 @@
 <template >
     <div>
 
-   
+      <navbar />
         <jambotron />
-        <navbar />
+       
         <div class="container py-5">
             <div class=" my-1">
                 <form class="form d-flex">
@@ -58,8 +58,8 @@
 import navbar from "../layouts/navbar.vue";
 import jambotron from '../layouts/jambotron.vue';
 import msnfooter from '../layouts/msnfooter.vue';
-import{ref, computed} from 'vue'
-
+import{ref, computed,onMounted} from 'vue'
+import { useStore } from "vuex";
 import addcontract from './addcontract.vue';
 import getcontracts from '../../compasable/contracts/getcontracts';
 export default {
@@ -69,12 +69,16 @@ export default {
     setup(){
         const searchTxt=ref('')
         const user=ref(null)
+        const store=useStore()
         const token=computed(()=>{
            return store.getters["auth/gettoken"]
         })
-        const {contracts,contractserror,loadcontracts}=getcontracts()
-        loadcontracts(token)
-        return {contracts,searchTxt,user}
+        const {contracts,unpaidcontracts,paidcontracts,contractserror,loadcontracts,contractsprise}=getcontracts()
+       loadcontracts(token)
+
+      
+      
+        return {contracts,contractserror,searchTxt,user}
     }
   
     

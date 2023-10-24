@@ -22,6 +22,8 @@ class ContractResource extends JsonResource
                             'jobsnumber'=>(string)$this->jobsnumber,    
                             'serialnumber'=>(string)$this->serialnumber,
                             'faultdescription'=>$this->faultdescription,
+                            'techniciandiagnose'=>$this->techniciandiagnose,
+                            'repairdetail'=>$this->repairdetail,
                             'casestatus'=>$this->casestatus,
                             'earlierrepair'=>$this->earlierrepair,
                             'warantysiegel'=>$this->warantysiegel,

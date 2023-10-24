@@ -246,12 +246,14 @@ const routes = [
     }
 },
 ,
+//Show Contract
 {
     name: "showcontract",
     path: "/showcontract/:id",
     component: showcontract,    
     meta: {
         middleware: "auth",
+        title:'Show Contract'
       
     }
 },
