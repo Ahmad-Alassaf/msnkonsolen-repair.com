@@ -83,15 +83,10 @@ export default {
         },
          attempt({commit},data)
         {
-                   console.log('atempt: data')
-                   console.log(data)
-                   commit('SET_AUTHENTICATED',true)
-                   console.log('atempt data.data.data.user')
-                   console.log(data.user)
+                 
+                   commit('SET_AUTHENTICATED',true)                  
                    commit('SET_USER',data.user)
                    commit('SET_TOKEN',data.token)
-                
-       
  
         },
         async  register({dispatch},data)
@@ -105,10 +100,7 @@ export default {
                 }
             }
         await axios.post('/api/register',data,config).then((response)=>{
-        
              dispatch('attempt',response.data.data)
-             console.log('register : response.data.data')
-             console.log(response.data.data)
         }).catch((er)=>{console.log(er)})
         }
         ,

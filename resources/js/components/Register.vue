@@ -47,30 +47,33 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+
+import { ref } from 'vue'
+import { useStore } from 'vuex'
+import {useRouter} from 'vue-router'
 export default {
     name:'register',
-    data(){
-        return {
-            user:{
+    setup(){
+        const user=ref({
                 name:"",
                 email:"",
                 password:"",
                 password_confirmation:""
-            },
-            validationErrors:{},
-            processing:false
-        }
-    },
-    methods:{
-        ...mapActions({
-            signIn:'auth/register'
-        }),
-        async register(){
-            this.processing = true
-         
-           this.signIn(this.user)
-        }
+
+        })
+    const validationErrors=ref({})
+    const processing=ref(false)
+    const store=useStore()
+    const router=useRouter()
+    const register=async()=>{
+        processing.value=true
+        store.dispatch('auth/register',user.value).then(router.push('/'))
+           
+    
     }
+    return {register,user,validationErrors}
+
+    }
+   
 }
 </script>
