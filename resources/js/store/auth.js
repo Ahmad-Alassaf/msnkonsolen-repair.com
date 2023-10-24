@@ -87,9 +87,9 @@ export default {
                    console.log(data)
                    commit('SET_AUTHENTICATED',true)
                    console.log('atempt data.data.data.user')
-                   console.log(data.data.data.user)
-                   commit('SET_USER',data.data.data.user)
-                   commit('SET_TOKEN',data.data.data.token)
+                   console.log(data.user)
+                   commit('SET_USER',data.user)
+                   commit('SET_TOKEN',data.token)
                 
        
  
