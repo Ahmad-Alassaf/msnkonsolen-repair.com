@@ -173,13 +173,21 @@
 
                      </div>
                      <div class="py-3" v-for="role in user.roles">
-                        <h4 class="bg-secondary text-white px-2 py-1 shadow rounded">Techniker Diagnose</h4>
-                        <textarea v-if="role.attributes.name=='Admin'" v-model="contract.attributes.techniciandiagnose" class="form-control" id="" cols="30" rows="10" placeholder="Technicher Diagnose..."></textarea>
+                        <div v-if="role.attributes.name=='Admin'" >
+                            <h4 class="bg-secondary text-white px-2 py-1 shadow rounded">Techniker Diagnose</h4>
+                            <textarea v-model="contract.attributes.techniciandiagnose" class="form-control" id="" cols="30" rows="10" placeholder="Technicher Diagnose..."></textarea>
+    
 
+                        </div>
+                      
                      </div>
                      <div class="py-3" v-for="role in user.roles">
-                        <h4 class="bg-secondary text-white px-2 py-1 shadow rounded">Reparatur beschreibung</h4>
-                        <textarea v-if="role.attributes.name=='Admin'" v-model="contract.attributes.repairdetail" class="form-control" id="" cols="30" rows="10" placeholder="Beschreibung..."></textarea>
+                        <div v-if="role.attributes.name=='Admin'">
+                            <h4 class="bg-secondary text-white px-2 py-1 shadow rounded">Reparatur beschreibung</h4>
+                            <textarea  v-model="contract.attributes.repairdetail" class="form-control" id="" cols="30" rows="10" placeholder="Beschreibung..."></textarea>
+    
+
+                        </div>
 
                      </div>
 
