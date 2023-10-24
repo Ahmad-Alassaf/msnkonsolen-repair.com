@@ -36,7 +36,7 @@
            
             <div class="col-12 text-center  d-flex  justify-content-between py-1">
                 <router-link :to="{name:'edituser',params:{id:user.id}}" class="btn btn-primary mx-1">Edit</router-link>
-                <button class="btn btn-danger">delete</button>
+                <button class="btn btn-danger" @click="deleteoneuser(user.id)">delete</button>
             </div>
           </div>       
     </div>
@@ -49,6 +49,7 @@ import msnfooter from '../layouts/msnfooter.vue';
 import { useStore } from 'vuex'
 import {computed} from 'vue'
 import getusers from '../../compasable/users/getusers'
+import deleteuser from "../../compasable/users/deleteuser";
 export default {
   components:{ navbar,jambotron,msnfooter    },
     setup(){
@@ -61,7 +62,12 @@ export default {
         const {getusersErrors,users,loadusers}=getusers()
         
         loadusers(token)
-        return{users}
+        const deleteoneuser=(id)=>{
+          const  {rundelete,deleteusererror}=deleteuser()
+          rundelete(id)
+
+        }
+        return{users,deleteoneuser}
     
 }
 }
