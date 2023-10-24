@@ -60,14 +60,15 @@ export default {
 
         })
         const {getusersErrors,users,loadusers}=getusers()
-        
+        const  {rundelete,deleteusererror}=deleteuser()
         loadusers(token)
         const deleteoneuser=(id)=>{
-          const  {rundelete,deleteusererror}=deleteuser()
-          rundelete(id)
-          loadusers(token)
+          rundelete(id).then(
+            loadusers(token)
 
+          )
         }
+       
         return{users,deleteoneuser}
     
 }

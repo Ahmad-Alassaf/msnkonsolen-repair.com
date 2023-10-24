@@ -15,7 +15,8 @@ const deleteuser=()=>{
             }
         }
         await axios.delete(`/api/users/${id}`,config).then(response=>{
-           console.log(response)
+           
+         
            
         }).catch(err=>{
             console.log(err);
