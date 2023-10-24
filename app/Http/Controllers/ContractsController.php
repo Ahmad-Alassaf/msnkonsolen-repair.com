@@ -17,7 +17,7 @@ class ContractsController extends Controller
      */
     public function index()
     {
-        return ContractResource::collection(Contract::all());
+        return ContractResource::collection(Contract::where('user_id',Auth::id())->get());
     }
 
     /**
