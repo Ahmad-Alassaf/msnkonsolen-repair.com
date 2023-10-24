@@ -65,6 +65,7 @@ export default {
         const deleteoneuser=(id)=>{
           const  {rundelete,deleteusererror}=deleteuser()
           rundelete(id)
+          loadusers(token)
 
         }
         return{users,deleteoneuser}
