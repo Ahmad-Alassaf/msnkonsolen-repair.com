@@ -13,7 +13,7 @@ export default {
     name:"verified",
     setup() {
                     onMounted(async () => {
-                        routeToken.value=route.params.token 
+                        routeToken.value=route.value.params.token 
                     })
         const routeToken=ref(null)
         const route=useRoute()
@@ -25,7 +25,7 @@ export default {
 
         })
         console.log('token from Store')
-        console.log(token.value)
+        console.log(token)
         console.log('token from route')
         console.log(routeToken.value)
         if(token==routeToken)
