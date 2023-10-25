@@ -47,9 +47,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/permissions', PermissionController::class);
 
     Route::resource('/users', UserController::class);
-    
-   
-
     Route::post('/devices',[DeviceController::class,'store']);   
     Route::put('/devices',[DeviceController::class,'update']);
     Route::delete('/devices/{device}',[DeviceController::class,'destroy']);
@@ -65,18 +62,12 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::resource('/contracts',ContractsController::class);
     Route::resource('/shoppincarts',ShoppingcartController::class);
 
- /*    Route::post('/payment',[PaymentController::class,'checkout']);
-    Route::post('/success',[PaymentController::class,'success'])->name('success');
-    Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel'); */
-
     Route::post('/getsession',[PaymentController::class,'getsession']);
     Route::post('/success',[PaymentController::class,'success']);
     Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel');
 
     Route::post('/sendemail',[SendEmailController::class,'send']);
 
-    //Save as pdf
-    Route::post('/saveaspdf',[PDFController::class,'save']);   
 
    
 });

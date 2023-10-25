@@ -50,6 +50,7 @@ import kasse from '../components/Kasse/kasse.vue'
 
 
 const routes = [
+    //Home
     {
         path: '/',
         name: "home",
@@ -57,6 +58,7 @@ const routes = [
         component: home,
             meta: {title: `MSN Reparatur` }
     },
+    //Verifey
     {
         path: '/verified',
         name: "verified",
