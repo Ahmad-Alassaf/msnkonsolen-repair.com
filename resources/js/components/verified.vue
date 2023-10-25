@@ -25,9 +25,9 @@ export default {
 
         })
         console.log('token from Store')
-        console.log(token)
+        console.log(token.value)
         console.log('token from route')
-        console.log(routeToken.value)
+        console.log(routeToken)
         if(token==routeToken)
         {
             console.log('Email verfied successfully')

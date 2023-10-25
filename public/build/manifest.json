@@ -7,13 +7,13 @@
     "file": "assets/laser-6bbba60b.jpg",
     "src": "public/storage/images/laser.jpg"
   },
-  "public/storage/images/netzteil.jpg": {
-    "file": "assets/netzteil-afde2eb4.jpg",
-    "src": "public/storage/images/netzteil.jpg"
-  },
   "public/storage/images/nintendo/1.jpg": {
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
+  },
+  "public/storage/images/netzteil.jpg": {
+    "file": "assets/netzteil-afde2eb4.jpg",
+    "src": "public/storage/images/netzteil.jpg"
   },
   "public/storage/images/nintendo/2.jpg": {
     "file": "assets/2-aa906f1c.jpg",
@@ -36,24 +36,24 @@
     "file": "assets/app-3b1e7227.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-e3a6165b.js": {
-    "file": "assets/html2canvas-e3a6165b.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-a69fd07a.js",
-    "src": "resources/js/components/Register.vue",
+  "_html2canvas-32c1f0ea.js": {
+    "file": "assets/html2canvas-32c1f0ea.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-0f8e4233.js",
+    "file": "assets/Login-90cc19cd.js",
     "src": "resources/js/components/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-504c3af5.js",
+    "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
@@ -65,7 +65,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-734513d6.js",
+    "file": "assets/index.es-f26943b6.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,11 +73,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-359c91b9.js",
+    "file": "assets/app-ed32ea9b.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-e3a6165b.js",
+      "_html2canvas-32c1f0ea.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",
