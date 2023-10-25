@@ -15,13 +15,13 @@
     "file": "assets/netzteil-afde2eb4.jpg",
     "src": "public/storage/images/netzteil.jpg"
   },
-  "public/storage/images/nintendo/4.jpg": {
-    "file": "assets/4-b5da7517.jpg",
-    "src": "public/storage/images/nintendo/4.jpg"
-  },
   "public/storage/images/nintendo/2.jpg": {
     "file": "assets/2-aa906f1c.jpg",
     "src": "public/storage/images/nintendo/2.jpg"
+  },
+  "public/storage/images/nintendo/4.jpg": {
+    "file": "assets/4-b5da7517.jpg",
+    "src": "public/storage/images/nintendo/4.jpg"
   },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
@@ -36,15 +36,15 @@
     "file": "assets/app-3b1e7227.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-5f54d563.js": {
-    "file": "assets/html2canvas-5f54d563.js",
+  "_html2canvas-91f9e216.js": {
+    "file": "assets/html2canvas-91f9e216.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-41650a94.js",
+    "file": "assets/Register-fc45584f.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -52,7 +52,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-de637396.js",
+    "file": "assets/Login-740b3a19.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -65,7 +65,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-5d534823.js",
+    "file": "assets/index.es-0d445789.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,11 +73,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-8beda406.js",
+    "file": "assets/app-88581736.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-5f54d563.js",
+      "_html2canvas-91f9e216.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",
