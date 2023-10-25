@@ -13,7 +13,7 @@ export default {
     name:"verified",
     setup() {
                     onMounted(async () => {
-                        routeToken.value=route.value.params.token 
+                        routeToken.value=route.params 
                     })
         const routeToken=ref(null)
         const route=useRoute()
