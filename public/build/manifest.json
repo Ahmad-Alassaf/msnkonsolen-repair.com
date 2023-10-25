@@ -7,21 +7,21 @@
     "file": "assets/laser-6bbba60b.jpg",
     "src": "public/storage/images/laser.jpg"
   },
-  "public/storage/images/nintendo/1.jpg": {
-    "file": "assets/1-9ebb9bbc.jpg",
-    "src": "public/storage/images/nintendo/1.jpg"
-  },
   "public/storage/images/netzteil.jpg": {
     "file": "assets/netzteil-afde2eb4.jpg",
     "src": "public/storage/images/netzteil.jpg"
   },
-  "public/storage/images/nintendo/2.jpg": {
-    "file": "assets/2-aa906f1c.jpg",
-    "src": "public/storage/images/nintendo/2.jpg"
+  "public/storage/images/nintendo/1.jpg": {
+    "file": "assets/1-9ebb9bbc.jpg",
+    "src": "public/storage/images/nintendo/1.jpg"
   },
   "public/storage/images/nintendo/4.jpg": {
     "file": "assets/4-b5da7517.jpg",
     "src": "public/storage/images/nintendo/4.jpg"
+  },
+  "public/storage/images/nintendo/2.jpg": {
+    "file": "assets/2-aa906f1c.jpg",
+    "src": "public/storage/images/nintendo/2.jpg"
   },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
@@ -36,24 +36,24 @@
     "file": "assets/app-3b1e7227.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-91f9e216.js": {
-    "file": "assets/html2canvas-91f9e216.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-fc45584f.js",
-    "src": "resources/js/components/Register.vue",
+  "_html2canvas-67063e01.js": {
+    "file": "assets/html2canvas-67063e01.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-740b3a19.js",
+    "file": "assets/Login-9b152a8f.js",
     "src": "resources/js/components/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-5ab39414.js",
+    "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
@@ -65,7 +65,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-0d445789.js",
+    "file": "assets/index.es-a61da751.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,11 +73,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-88581736.js",
+    "file": "assets/app-9be480ab.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-91f9e216.js",
+      "_html2canvas-67063e01.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",

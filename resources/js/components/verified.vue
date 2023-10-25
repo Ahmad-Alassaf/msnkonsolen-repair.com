@@ -7,7 +7,7 @@
 <script>
 import {useRoute,useRouter} from 'vue-router'
 import {useStore} from 'vuex'
-import { onMounted } from "vue";
+import { onMounted,computed } from "vue";
     import { ref } from 'vue';
 export default {
     name:"verified",
