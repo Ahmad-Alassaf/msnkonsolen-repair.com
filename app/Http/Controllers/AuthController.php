@@ -59,7 +59,10 @@ class AuthController extends Controller
          
         ]);
         $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
-        if($token)
+        return $this->success([
+            'user'=>new UserResource($user),
+            'token'=>$token]);
+       /*  if($token)
         {
             $subject="Email Verification";
             $content="Vielen Danke für Ihre Registrieren ";
@@ -70,13 +73,14 @@ class AuthController extends Controller
                         'X-Mailer: PHP/' . phpversion();
             if( mail($request->email,$subject,$content,$header))
             {
-                return $this->success([
-                    'user'=>new UserResource($user),
-                    'token'=>$token
-                ]);
+               
             }
+            return $this->success([
+                'user'=>new UserResource($user),
+                'token'=>$token
+            ]);
 
-        }
+        } */
        
  
        

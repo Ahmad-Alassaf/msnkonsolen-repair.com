@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -23,7 +23,7 @@ Route::get('/verification',function(){
         'message'=>'the email account already confirmed'
     ]);
 })->middleware('sanctum','verified');
-
+Auth::routes(['verfify'=>true]);
 
 //public Routes
 Route::post('/login',[AuthController::class,'login']);
