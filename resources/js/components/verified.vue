@@ -26,7 +26,7 @@ export default {
                                                         }
                                                     } 
                                     await axios.get('/sanctum/csrf-cookie');                                           
-                                    await  axios.post(`/email/verify/${5}/${55}`,{data:5},config)
+                                    await  axios.get(`/email/verify/${5}/${55}`,config)
                                                 .then((response)=>{console.log(response)})
                                                 .catch((err)=>{console.log(err)})
 
