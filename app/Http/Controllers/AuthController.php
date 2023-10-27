@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Events\neuUserRegistration;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
@@ -59,7 +61,8 @@ class AuthController extends Controller
          
         ]);
         $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
-        $user->sendEmailVerificationNotification();
+       // $user->sendEmailVerificationNotification();
+       event(new neuUserRegistration($request->email));
         return $this->success([
             'user'=>new UserResource($user),
             'token'=>$token]);

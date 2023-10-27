@@ -41,10 +41,10 @@ const  getcontracts=()=>{
            })
            .catch(err=>{
             contractserror.value=err
-            if(contractserror.value.response.status==401)
+           /*  if(contractserror.value.response.status==401)
             {
               store.dispatch("auth/logout")
-            }
+            } */
   
         })       
    }

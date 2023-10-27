@@ -64,7 +64,10 @@ const routes = [
         name: "verified",
        
         component: verified,
-            meta: {title: `verified `,middleware:'guest' }
+            meta: {
+                title: `verified `,
+                middleware:'guest' 
+            }
     },
     //Contact
     {

@@ -17,7 +17,6 @@ use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\ShoppingcartController;
 
 
-Auth::routes(['verfify'=>true]);
 
 //public Routes
 Route::post('/login',[AuthController::class,'login']);

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\neuUserRegistration;
 use App\Events\userpaid;
 use App\Listeners\Emailaboutpaying;
+use App\Listeners\RegistrationListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -17,12 +19,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [// Event
+       /*  Registered::class => [// Event
             SendEmailVerificationNotification::class,//Listener attached to event will send email verfication Link to the user
-        ],
+        ], */
         userpaid::class =>[
             Emailaboutpaying::class
 
+        ],
+        neuUserRegistration::class=>[
+            RegistrationListener::class
         ]
     ];
 

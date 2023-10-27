@@ -100,7 +100,11 @@ export default {
                 }
             }
         await axios.post('/api/register',data,config).then((response)=>{
-             dispatch('attempt',response.data.data)
+            console.log('register response')
+            console.log(response.data.data)
+           dispatch('attempt',response.data.data)
+            
+
         }).catch((er)=>{console.log(er)})
         }
         ,
