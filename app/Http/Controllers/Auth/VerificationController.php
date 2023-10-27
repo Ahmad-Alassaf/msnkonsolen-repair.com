@@ -43,9 +43,9 @@ class VerificationController extends Controller
     }
     public function verify(Request $request)
     {
-        return response([
-            'message'=>'verify  from verfication Controller called '
-
+        return response()->json([
+            'data' => $request->data,
+            'message' =>' verfy function from controller'
         ]);
     }
 }
