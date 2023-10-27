@@ -12,15 +12,15 @@ use Illuminate\Queue\SerializesModels;
 class NeuUserVerificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
-       public $code;
+       public $link;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($code)
+    public function __construct($link)
     {
-        $this->code=$code;
+        $this->link=$link;
     }
 
     /**

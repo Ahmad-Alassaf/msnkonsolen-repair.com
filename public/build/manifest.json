@@ -36,15 +36,15 @@
     "file": "assets/app-3b1e7227.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-976405cb.js": {
-    "file": "assets/html2canvas-976405cb.js",
+  "_html2canvas-d172484e.js": {
+    "file": "assets/html2canvas-d172484e.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-4998feac.js",
+    "file": "assets/Register-23848af4.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -52,7 +52,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-b37164aa.js",
+    "file": "assets/Login-aa08134a.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -65,7 +65,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-8106e00a.js",
+    "file": "assets/index.es-96135200.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,11 +73,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-261c0775.js",
+    "file": "assets/app-7b303c61.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-976405cb.js",
+      "_html2canvas-d172484e.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",

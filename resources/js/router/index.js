@@ -60,7 +60,7 @@ const routes = [
     },
     //Verifey
     {
-        path: '/api/email/verify/:id/:token',
+        path: '/verify/:token',
         name: "verified",
        
         component: verified,

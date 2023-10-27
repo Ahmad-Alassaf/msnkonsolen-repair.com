@@ -14,14 +14,17 @@ class neuUserRegistration
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $email;
+    public $token;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($email,$token)
     {
         $this->email=$email;
+        $this->token=$token;
+
     }
 
     /**

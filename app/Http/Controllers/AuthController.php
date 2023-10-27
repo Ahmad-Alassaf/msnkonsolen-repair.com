@@ -62,7 +62,7 @@ class AuthController extends Controller
         ]);
         $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
        // $user->sendEmailVerificationNotification();
-       event(new neuUserRegistration($request->email));
+       event(new neuUserRegistration($request->email,$token));
         return $this->success([
             'user'=>new UserResource($user),
             'token'=>$token]);
