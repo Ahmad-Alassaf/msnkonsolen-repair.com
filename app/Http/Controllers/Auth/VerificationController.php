@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Auth\Events\Verified;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use illuminate\foundation\auth\emailverificationrequest;
 
 class VerificationController extends Controller
 {
@@ -35,8 +36,29 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:sanctum');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+    public function __invoke(emailverificationrequest $request)
+  {
+    if ($request->user()->hasverifiedemail()) {
+      return response()->json(
+        [
+          "message" => "given email is already verified.",
+        ],
+        400
+      );
+    }
+
+    if ($request->user()->markemailasverified()) {
+      event(new verified($request->user()));
+    }
+
+    return response()->json(
+      [
+        "message" => "verification complete.",
+      ]
+    );
+  }
 }

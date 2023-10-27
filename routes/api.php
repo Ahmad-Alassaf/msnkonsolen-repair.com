@@ -27,7 +27,7 @@ Route::get('/services/{service}',[ServicesController::class,'show']);
 
 Route::get('/devices',[DeviceController::class,'index']);
 Route::get('/devices/{device}',[DeviceController::class,'show']);
-
+Route::post('/email/verify/{id}/{hash}', 'VerificationController@verify')->name('verification.verify');
 
 // Protected Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
