@@ -17,12 +17,6 @@ use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\ShoppingcartController;
 
 
-//
-Route::get('/verification',function(){
-    return response()->json([
-        'message'=>'the email account already confirmed'
-    ]);
-})->middleware('sanctum','verified');
 Auth::routes(['verfify'=>true]);
 
 //public Routes

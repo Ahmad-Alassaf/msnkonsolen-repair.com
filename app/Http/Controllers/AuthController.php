@@ -59,31 +59,11 @@ class AuthController extends Controller
          
         ]);
         $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
+        $user->sendEmailVerificationNotification();
         return $this->success([
             'user'=>new UserResource($user),
             'token'=>$token]);
-       /*  if($token)
-        {
-            $subject="Email Verification";
-            $content="Vielen Danke für Ihre Registrieren ";
-            $link= '<a href="https://msnkonsolen-repair.com/verified/'.$token.'>Verification</a>';
-            $content .=$link;
-            $header = 'From: info@msnkonsolen-repair.com' . "\r\n" .
-                        'Reply-To: info@msnkonsolen-repair.com' . "\r\n" .
-                        'X-Mailer: PHP/' . phpversion();
-            if( mail($request->email,$subject,$content,$header))
-            {
-               
-            }
-            return $this->success([
-                'user'=>new UserResource($user),
-                'token'=>$token
-            ]);
-
-        } */
-       
- 
-       
+      
     }
     public function logout(Request $request)
     {
