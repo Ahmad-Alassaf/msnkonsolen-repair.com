@@ -12,30 +12,27 @@ import { onMounted,computed } from "vue";
 export default {
     name:"verified",
     setup() {
-                    onMounted(async () => {
-                        routeToken.value=route.value.params.token 
-                    })
-        const routeToken=ref(null)
         const route=useRoute()
         const router=useRouter()
-        const store=useStore()
-        const token=computed(()=>{
-            return store.getters['auth/gettoken']
+                    onMounted(async () => {
+                        try {
+                                const params = new urlsearchparams(route.query)
+                                let res = await axios.get(
+                                'verify-email/' +
+                                    route.params.id +
+                                    '/' +
+                                    route.params.hash,
+                                { params }
+                                )
+                               router.push({ name: 'platform-dashboard' })
+                            } catch (error) {
+                                console.log(error.response)
+                                router.push({ name: 'platform-dashboard' })
+                            }
+                       
 
 
         })
-        console.log('token from Store')
-        console.log(token.value)
-        console.log('token from route')
-        console.log(routeToken)
-        if(token==routeToken)
-        {
-            console.log('Email verfied successfully')
-        }
-        else{
-            console.log('not Verified !!!!!')
-        }
-        
     }
     
 }
