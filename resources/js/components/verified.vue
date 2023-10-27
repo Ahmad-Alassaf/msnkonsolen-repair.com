@@ -12,24 +12,25 @@ import { onMounted,computed } from "vue";
 export default {
     name:"verified",
     setup() {
+        const store = useStore()
+        const token=computed(()=>{
+           return store.getters["auth/gettoken"]
+        })
         const route=useRoute()
         const router=useRouter()
                     onMounted(async () => {
-                        try {
-                                const params = new urlsearchparams(route.query)
-                                let res = await axios.get(
-                                'verify-email/' +
-                                    route.params.id +
-                                    '/' +
-                                    route.params.hash,
-                                { params }
-                                )
-                               router.push({ name: 'platform-dashboard' })
-                            } catch (error) {
-                                console.log(error.response)
-                                router.push({ name: 'platform-dashboard' })
-                            }
-                       
+                                let config={
+                                                        headers:{
+                                                            Accept: 'application/vnd.api+json',                                
+                                                            Authorization: `Bearer ${token}`
+                                                        }
+                                                    } 
+                                    await axios.get('/sanctum/csrf-cookie');                                           
+                                    await  axios.post(`/email/verify/${5}/${55}`,config)
+                                                .then((response)=>{console.log(response)})
+                                                .catch(()=>{console.log('Failed!!!!!')})
+
+                    
 
 
         })
