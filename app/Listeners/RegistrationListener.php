@@ -28,6 +28,6 @@ class RegistrationListener
      */
     public function handle(neuUserRegistration $event)
     {
-        Mail::to($event->email)->send(new NeuUserVerificationEmail($event->token));
+        Mail::to($event->email)->send(new NeuUserVerificationEmail($event->verificationcode));
     }
 }

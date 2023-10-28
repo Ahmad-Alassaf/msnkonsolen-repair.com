@@ -14,16 +14,16 @@ class neuUserRegistration
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     public $email;
-    public $token;
+    public $verificationcode;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($email,$token)
+    public function __construct($email,$verificationcode)
     {
         $this->email=$email;
-        $this->token=$token;
+        $this->verificationcode=$verificationcode;
 
     }
 

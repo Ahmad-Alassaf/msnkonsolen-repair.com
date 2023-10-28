@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
+use Nette\Utils\Random;
 use Throwable;
 
 class AuthController extends Controller
@@ -62,7 +63,8 @@ class AuthController extends Controller
         ]);
         $token=$user->createToken('Api Token Of User:'.$user->name)->plainTextToken;
        // $user->sendEmailVerificationNotification();
-       event(new neuUserRegistration($request->email,$token));
+       $verificationcode=rand(1000,99999);
+       event(new neuUserRegistration($request->email,$verificationcode));
         return $this->success([
             'user'=>new UserResource($user),
             'token'=>$token]);
