@@ -1,4 +1,4 @@
 <h1>
-    Your verification link  is :
+    Your verification code  is :
 </h1>
 {{$code}}
