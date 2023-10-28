@@ -44,7 +44,7 @@ class NeuUserVerificationEmail extends Mailable
     {
         return new Content(
             view: 'mail.neuuserverificationemail',
-            with: ['code' => $this->link],
+            with: ['link' => $this->link],
         );
     }
 
