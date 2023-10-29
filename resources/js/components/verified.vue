@@ -51,6 +51,8 @@ export default {
         })
         
         const verify=()=>{
+            console.log('user.value.attributes.verificationcode')
+            console.log(user.value.attributes.verificationcode)
             if(user.value.attributes.verificationcode==verificationcode.value)
             {
                 store.dispatch('auth/setverify',{email:user.value.attributes.email})

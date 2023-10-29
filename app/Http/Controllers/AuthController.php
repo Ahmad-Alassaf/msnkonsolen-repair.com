@@ -97,8 +97,11 @@ class AuthController extends Controller
     {
         $verificationcode=rand(1000,99999);
         event(new neuUserRegistration($request->email,$verificationcode));
+        $user=User::where('email',$request->email)->first();
+      
         return response([
-            'message'=>' Verification Code resended'
+            'message'=>' Verification Code resended',
+            'user'=>$user,
 
         ]);
         
