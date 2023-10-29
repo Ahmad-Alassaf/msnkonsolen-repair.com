@@ -19,7 +19,9 @@ class UserResource extends JsonResource
             'id'=>(string)$this->id,
             'attributes'=>[
                             'name'=>$this->name,
-                            'email'=>$this->email,               
+                            'email'=>$this->email,
+                            'verificationcode' =>$this->verificationcode   ,
+                            'isverified'=>$this->isverified           
                            ],
             'roles'=>RoleResource::collection($this->roles),
             'permissions'=>PermissionResource::collection($this->permissions),

@@ -26,7 +26,7 @@ Route::get('/services/{service}',[ServicesController::class,'show']);
 
 Route::get('/devices',[DeviceController::class,'index']);
 Route::get('/devices/{device}',[DeviceController::class,'show']);
-Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->name('verification.verify');
+
 
 // Protected Routes
 Route::group(['middleware'=>['auth:sanctum']],function(){
@@ -60,6 +60,9 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/cancel',[PaymentController::class,'cancel'])->name('cancel');
 
     Route::post('/sendemail',[SendEmailController::class,'send']);
+
+    Route::post('/verify',[AuthController::class,'verifyemail']);
+    Route::post('/resendverification',[AuthController::class,'resendverificationcode']);
 
 
    

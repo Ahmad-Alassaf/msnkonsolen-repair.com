@@ -74,10 +74,37 @@ class AuthController extends Controller
     {
        
         auth()->user()->tokens()->delete();
-        return $this->success([
-            'message'=>'You have been successfully logged out !!!!!!'
+       return $this->success([
+             'message'=>'You have been successfully logged out !!!!!!'
 
         ]);
+    }
+    public function verifyemail(Request $request)
+    {
+        $user=User::where('email',$request->email)->first();
+        $user->isverified=1;
+        $user->save();
+        return $this->success([
+            'message'=>'Your Email verified succefully verified !!!!!!'
+
+       ]);
+        
+
+    }
+
+    
+    public function resendverificationcode(Request $request)
+    {
+        $verificationcode=rand(1000,99999);
+        event(new neuUserRegistration($request->email,$verificationcode));
+        return response([
+            'message'=>' Verification Code resended'
+
+        ]);
+        
+
+       
+
     }
 
 }

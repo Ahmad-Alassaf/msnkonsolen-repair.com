@@ -60,12 +60,12 @@ const routes = [
     },
     //Verifey
     {
-        path: '/verify/:token',
-        name: "verified",
+        path: '/verify',
+        name: "verify",
        
         component: verified,
             meta: {
-                title: `verified `,
+                title: `verification  `,
                 middleware:'guest' 
             }
     },

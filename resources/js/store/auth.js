@@ -6,7 +6,7 @@ export default {
     namespaced: true,
     state:{
         authenticated:false,
-        verified:false,
+        verify:false,
         token:'',
         session_id:'',
         user:{},
@@ -24,6 +24,7 @@ export default {
     getters:{
         getauthenticated(state){return state.authenticated  },
         getuser(state){ return state.user  },
+        getverify(state){ return state.verify  },
         gettoken(state){ return state.token},
         getsessionid(state){ return state.session_id},
         GET_CONTRACTS_COUNT(state){return state.contracts},
@@ -45,6 +46,7 @@ export default {
         SET_AUTHENTICATED (state, value) {state.authenticated = value },
         SET_USER (state, value) { state.user = value },
         SET_TOKEN(state,value){state.token=value },
+        SET_VERIFY(state,value){state.verify=value },
         SET_SESSION_ID(state,value){state.session_id=value },
 
         SET_CONTRACTS_COUNT(state,value){state.contracts=value },
@@ -87,6 +89,28 @@ export default {
                    commit('SET_AUTHENTICATED',true)                  
                    commit('SET_USER',data.user)
                    commit('SET_TOKEN',data.token)
+ 
+        },
+        async setverify({commit},data)
+        {
+            await axios.get('/sanctum/csrf-cookie')  
+            await axios.post('/api/verify',{email:data.email}).then(response=>{
+                console.log(response)
+                commit('SET_VERIFY',true)
+            }).catch(err=>{console.log(err)}) 
+                 
+                  
+ 
+        },
+        async resendverify({commit},data)
+        {
+            await axios.get('/sanctum/csrf-cookie')  
+            await axios.post('/api/resendverification',{email:data.email}).then(response=>{
+                console.log(response)
+              
+            }).catch(err=>{console.log(err)}) 
+                 
+                  
  
         },
         async  register({dispatch},data)
