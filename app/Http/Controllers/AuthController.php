@@ -84,7 +84,7 @@ class AuthController extends Controller
         $user=User::where('email',$request->email)->first();
         $user->isverified=1;
         $user->save();
-        return $this->success([
+        return response([
             'message'=>'Your Email verified succefully verified !!!!!!',
             'user'=>new UserResource($user),
 
