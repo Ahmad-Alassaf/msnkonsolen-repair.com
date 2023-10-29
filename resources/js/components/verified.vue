@@ -7,7 +7,7 @@
     
             </section>
             <div class="container py-5">
-                <form class="form w-25 m-auto  shadow" @submit.prevent="verify" v-if="isverified ==0">
+                <form class="form w-25 m-auto  shadow" @submit.prevent="verify" v-if="user.attributes.isverified ==0">
                     <div class=" d-flex">
                         <input type="text" v-model="verificationcode" class="form-control m-1 py-2 border-0 shadow" placeholder="XXXXX">
                         <input type="submit" value="Verifiy" class="btn btn-primary py-0">
@@ -43,9 +43,7 @@ export default {
         const verificationcode=ref('')
         const store=useStore()
         const router=useRouter();
-        const isverified=computed(()=>{
-            return user.value.attributes.isverified
-        })
+  
         const user=computed(()=>{
             return store.getters['auth/getuser']
         })
@@ -68,7 +66,7 @@ export default {
             store.dispatch('auth/resendverify',{email:user.value.attributes.email})
 
         }
-        return {verify ,resend,verificationcode,isverified}
+        return {verify ,resend,verificationcode}
     }
     
 }
