@@ -66,7 +66,7 @@ export default {
             store.dispatch('auth/resendverify',{email:user.value.attributes.email})
 
         }
-        return {verify ,resend,verificationcode}
+        return {verify ,resend,verificationcode,user}
     }
     
 }
