@@ -106,7 +106,7 @@ export default {
         {
             await axios.get('/sanctum/csrf-cookie')  
             await axios.post('/api/resendverification',{email:data.email}).then(response=>{
-                console.log(response)
+                console.log(response.data.user)
                commit('SET_USER',response.data.user)
             }).catch(err=>{console.log(err)}) 
                  

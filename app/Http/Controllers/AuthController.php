@@ -101,7 +101,7 @@ class AuthController extends Controller
       
         return response([
             'message'=>' Verification Code resended',
-            'user'=>$user,
+            'user'=>new UserResource($user),
 
         ]);
         

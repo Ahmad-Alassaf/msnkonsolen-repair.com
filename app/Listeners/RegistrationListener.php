@@ -32,6 +32,7 @@ class RegistrationListener
         Mail::to($event->email)->send(new NeuUserVerificationEmail($event->verificationcode));
         $user=User::where('email',$event->email)->first();
         $user->verificationcode=$event->verificationcode;
+        $user->isverified=0;
         $user->save();
     }
 }
