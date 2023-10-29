@@ -2,9 +2,10 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use App\Events\neuUserRegistration;
-use App\Mail\NeuUserVerificationEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NeuUserVerificationEmail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -29,5 +30,8 @@ class RegistrationListener
     public function handle(neuUserRegistration $event)
     {
         Mail::to($event->email)->send(new NeuUserVerificationEmail($event->verificationcode));
+        $user=User::where('email',$event->email)->first();
+        $user->verificationcode=$event->verificationcode;
+        $user->save();
     }
 }
