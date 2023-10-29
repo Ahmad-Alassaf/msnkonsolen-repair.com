@@ -81,7 +81,7 @@
                                     </a>
                                    
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                        <router-link class="dropdown-item"  :to="{name:'profile'}"> {{user.name}}</router-link>
+                                        <router-link class="dropdown-item"  :to="{name:'profile'}">{{user.attributes.name}} </router-link>
                                         <router-link class="dropdown-item"  :to="{name:'mycontracts'}"> My Contracts</router-link>
                                         <a class="dropdown-item"  @click="signOut">Logout</a>
                                     </div>
