@@ -85,7 +85,8 @@ class AuthController extends Controller
         $user->isverified=1;
         $user->save();
         return $this->success([
-            'message'=>'Your Email verified succefully verified !!!!!!'
+            'message'=>'Your Email verified succefully verified !!!!!!',
+            'user'=>new UserResource($user),
 
        ]);
         

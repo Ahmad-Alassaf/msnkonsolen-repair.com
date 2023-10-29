@@ -97,6 +97,7 @@ export default {
             await axios.post('/api/verify',{email:data.email}).then(response=>{
                 console.log(response)
                 commit('SET_VERIFY',true)
+                commit('SET_USER',response.data.user)
             }).catch(err=>{console.log(err)}) 
                  
                   
