@@ -67,7 +67,7 @@ export default {
     const router=useRouter()
     const register=async()=>{
         processing.value=true
-        store.dispatch('auth/register',user.value).then(router.push('/'))
+        store.dispatch('auth/register',user.value).then(router.push('/verify'))
            
     
     }

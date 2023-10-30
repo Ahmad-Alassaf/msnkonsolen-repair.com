@@ -7,6 +7,10 @@
     
             </section>
             <div class="container py-5">
+                <div class="alert text-danger" v-if="err">
+                    Verification Code ist nicht richtig
+
+                </div>
                 <form class="form w-25 m-auto  shadow" @submit.prevent="verify" v-if="user.attributes.isverified ==0">
                     <div class=" d-flex">
                         <input type="text" v-model="verificationcode" class="form-control m-1 py-2 border-0 shadow" placeholder="XXXXX">
@@ -43,14 +47,13 @@ export default {
         const verificationcode=ref('')
         const store=useStore()
         const router=useRouter();
-  
+        const err=ref(false)
         const user=computed(()=>{
             return store.getters['auth/getuser']
         })
         
         const verify=()=>{
-            console.log('user.value.attributes.verificationcode')
-            console.log(user.value.attributes.verificationcode)
+          
             if(user.value.attributes.verificationcode==verificationcode.value)
             {
                 store.dispatch('auth/setverify',{email:user.value.attributes.email})
@@ -58,7 +61,7 @@ export default {
             }
             else
             {
-                alert('Nicht verified')
+               err.value=true
             }
 
         }
@@ -66,7 +69,7 @@ export default {
             store.dispatch('auth/resendverify',{email:user.value.attributes.email})
 
         }
-        return {verify ,resend,verificationcode,user}
+        return {verify ,resend,verificationcode,user,err}
     }
     
 }

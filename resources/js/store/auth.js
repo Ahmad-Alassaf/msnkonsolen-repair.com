@@ -27,19 +27,16 @@ export default {
         getverify(state){ return state.verify  },
         gettoken(state){ return state.token},
         getsessionid(state){ return state.session_id},
-        GET_CONTRACTS_COUNT(state){return state.contracts},
-       
+        GET_CONTRACTS_COUNT(state){return state.contracts},       
         get_contracts_list(state){return state.contractsList},
         get_contracts_prise(state){return state.Totalprice},
-
         get_users_list(state){return state.usersList},
         get_roles_list(state){return state.rolesList},
         get_permissions_list(state){return state.permissionsList},
         GET_DEVICES(state){return state.devices},
         GET_SERVICES(state){return state.services},
         GET_PLATFORMS(state){return state.platforms},
-        GET_USER_ADDRESS(state){return state.user.Address},
-       
+        GET_USER_ADDRESS(state){return state.user.Address},      
        
     },
     mutations:{
@@ -48,11 +45,9 @@ export default {
         SET_TOKEN(state,value){state.token=value },
         SET_VERIFY(state,value){state.verify=value },
         SET_SESSION_ID(state,value){state.session_id=value },
-
         SET_CONTRACTS_COUNT(state,value){state.contracts=value },
         SET_CONTRACT_LIST(state,value){state.contractsList=value},
         SET_CONTRACTS_PRICE(state,value){state.Totalprice=value},
-
         SET_USERS_LIST(state,value){state.usersList=value},
         SET_ROLES_LIST(state,value){state.rolesList=value},
         SET_PERMISSIONS_LIST(state,value){state.permissionsList=value},
@@ -60,7 +55,6 @@ export default {
         SET_SERVICES(state,data){ state.services=data },
         SET_PLATFORMS(state,data){ state.platforms=data },
         SET_USER_ADDRESS(state,data){state.user.Address=data}
-       
       
     },
     actions:{
@@ -68,67 +62,57 @@ export default {
 
         {
            
-                await axios.get('/sanctum/csrf-cookie')                           
+            await axios.get('/sanctum/csrf-cookie')                           
             return    await axios.post('/api/login',data).then(response=>{
-                   
-               
-                   commit('SET_AUTHENTICATED',true)
-                   commit('SET_USER',response.data.data.user)
-                   commit('SET_TOKEN',response.data.data.token)
-                   return response.data
-                }).catch(error=>{
-                   
-                  return error.response.data
+            
+                    commit('SET_AUTHENTICATED',true)
+                    commit('SET_USER',response.data.data.user)
+                    commit('SET_TOKEN',response.data.data.token)
+                    if(response.data.data.user.attributes.isverified==1)
+                    commit('SET_VERIFY',true)
+                  
 
-                })
-        
+     
+                           
+                return response.data
+                  
+                }).catch(error=>{                   
+                  return error.response.data
+                })        
         },
          attempt({commit},data)
-        {
-                 
+        {                 
                    commit('SET_AUTHENTICATED',true)                  
                    commit('SET_USER',data.user)
-                   commit('SET_TOKEN',data.token)
- 
+                   commit('SET_TOKEN',data.token) 
         },
         async setverify({commit},data)
         {
             await axios.get('/sanctum/csrf-cookie')  
-            await axios.post('/api/verify',{email:data.email}).then(response=>{
-                console.log(response)
+            await axios.post('/api/verify',{email:data.email}).then(response=>{             
                 commit('SET_VERIFY',true)
                 commit('SET_USER',response.data.user)
-            }).catch(err=>{console.log(err)}) 
-                 
-                  
- 
+            }).catch(err=>{console.log(err)})  
         },
         async resendverify({commit},data)
         {
             await axios.get('/sanctum/csrf-cookie')  
-            await axios.post('/api/resendverification',{email:data.email}).then(response=>{
-                console.log(response.data.user)
+            await axios.post('/api/resendverification',{email:data.email}).then(response=>{              
                commit('SET_USER',response.data.user)
-            }).catch(err=>{console.log(err)}) 
-                 
-                  
+            }).catch(err=>{console.log(err)})  
  
         },
         async  register({dispatch},data)
-        {
-          
+        {          
          await axios.get('/sanctum/csrf-cookie')
             let config={
                 headers:{
-                    Accept: 'application/vnd.api+json',                                
+                    Accept: 'application/vnd.api+json',                               
                 
                 }
             }
-        await axios.post('/api/register',data,config).then((response)=>{
-            console.log('register response')
-            console.log(response.data.data)
-           dispatch('attempt',response.data.data)
-            
+        await axios.post('/api/register',data,config).then((response)=>{           
+           dispatch('attempt',response.data.data)            
 
         }).catch((er)=>{console.log(er)})
         }

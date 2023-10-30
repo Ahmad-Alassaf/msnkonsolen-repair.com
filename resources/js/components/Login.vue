@@ -74,7 +74,7 @@ export default {
         
         processing.value = true
          await   store.dispatch('auth/login',auth.value).then(result=>{
-              
+               console.log(result)
                if(result.data=="")
                {
                 credintioalError.value=result.message
@@ -105,8 +105,11 @@ export default {
                 processing.value = false
 
                }
+               else if(result.data.user.attributes.isverified==0){
+                router.push({name:'verify'})
+               }
                else{
-                router.push("/")
+                router.push('/')
                }
             })
 

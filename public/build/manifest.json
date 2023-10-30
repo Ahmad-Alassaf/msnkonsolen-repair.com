@@ -33,27 +33,27 @@
     "isEntry": true
   },
   "resources/js/app.css": {
-    "file": "assets/app-954bfb15.css",
+    "file": "assets/app-0ad4182b.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-599f4582.js": {
-    "file": "assets/html2canvas-599f4582.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-b5af866f.js",
-    "src": "resources/js/components/Register.vue",
+  "_html2canvas-072180cf.js": {
+    "file": "assets/html2canvas-072180cf.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-b6e9a0e0.js",
+    "file": "assets/Login-8092b0c3.js",
     "src": "resources/js/components/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-d2fe202c.js",
+    "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
@@ -65,7 +65,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-d3d569a7.js",
+    "file": "assets/index.es-75476a4b.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,18 +73,18 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-73378089.js",
+    "file": "assets/app-3b496504.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-599f4582.js",
+      "_html2canvas-072180cf.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",
       "resources/js/components/Register.vue"
     ],
     "css": [
-      "assets/app-954bfb15.css"
+      "assets/app-0ad4182b.css"
     ],
     "assets": [
       "assets/joycons-ac918e53.jpg",

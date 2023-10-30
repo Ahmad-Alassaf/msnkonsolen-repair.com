@@ -118,14 +118,19 @@ export default {
     setup(){
         const sticky=ref(15)
         const permissions=ref([])
+        const contractslist=ref([])
         const store=useStore()
         const router=useRouter()
         const token =computed(()=>{
              return store.getters["aut/gettoken"]
 
         })
-        const {contracts,unpaidcontracts,contractserror,loadcontracts,contractsprise}=getcontracts()
-       loadcontracts(token)
+        const authenticated=computed(()=>{
+            return store.getters["auth/getauthenticated"]
+        })
+      
+            const {contracts,unpaidcontracts,contractserror,loadcontracts,contractsprise}=getcontracts()           
+      loadcontracts(token)     
         const signOut=()=>{
             const {runlogout}=Logout()
             runlogout(token).then(()=>{
@@ -136,9 +141,7 @@ export default {
            
         }
        
-        const authenticated=computed(()=>{
-            return store.getters["auth/getauthenticated"]
-        })
+       
         const user=computed(()=>{
             return store.getters["auth/getuser"]
         })
@@ -151,6 +154,7 @@ export default {
             })
         })
        
+      
         return{contracts,unpaidcontracts,signOut,authenticated,user}
 
 

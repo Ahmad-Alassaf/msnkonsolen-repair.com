@@ -15,7 +15,7 @@ const home = () => import('@/components/home.vue')
 /* Authenticated Component */
 import users from '../components/users/users.vue'
 import edituser from '../components/users/edituser.vue'
-import mycontracts from '../components/users/mycontracts.vue'
+
 
 import services from '@/components/services/services.vue'
 import adminpage from '../components/Adminpage.vue'
@@ -37,6 +37,7 @@ import contracts from '../components/contracts/contracts.vue'
 import editcontract from '../components/contracts/editcontract.vue'
 import showcontract from '../components/contracts/showcontract.vue'
 import createcontract from  '../components/contracts/createcontract.vue'
+import mycontracts from '../components/users/mycontracts.vue'
 
 import products from '../components/shoppingcart/products.vue'
 import editrole from '../components/roles/editrole.vue'
@@ -77,6 +78,15 @@ const routes = [
         component: contact,
             meta: {title: `Kontakt ` }
     },
+    {
+        name: "mycontracts",
+        path: "/mycontracts",
+        component: mycontracts,
+        meta: {
+            title: `Meine Auftrage`,
+          
+        }
+    },
     //Users
     {
         name: "users",
@@ -96,15 +106,7 @@ const routes = [
             props:true,
         }
     },
-    {
-        name: "mycontracts",
-        path: "/mycontracts",
-        component: mycontracts,
-        meta: {
-            title: `Meine Auftrage`,
-          
-        }
-    },
+   
     //Roles
     {
         name: "roles",
@@ -381,15 +383,12 @@ router.beforeEach((to, from, next) => {
        
     } 
     else if (to.meta.middleware == "auth"){
-        if (!store.state.auth.authenticated) {next({name:'login'})}
+        if (!store.state.auth.verify) {next({name:'verify'})}
+         if(!store.state.auth.authenticated){next({name:'login'})}
         else{ next()}
 
     }
-    else if (to.meta.middleware == "verified"){
-        if (!store.state.auth.verified) {next({name:'verified'})}
-        else{ next()}
-
-    }
+    
     else {next()}
 })
 
