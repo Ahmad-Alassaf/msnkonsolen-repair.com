@@ -4,17 +4,17 @@
         <jambotron />
 
     </section>
-    <div class="container py-5">
+    <div class="container py-5 ">
         <h1 class="text-center">Meine Aufträge</h1>
           
         <div class="container  text-center px-0">
-            <div class="row py-4  mb-3 text-start contract banner rounded mb-2 position-relative"
+            <div class="row py-4 px-2  mb-3 text-start contract banner rounded mb-2 position-relative"
             :class="{unpaid:contract.attributes.paidstatus=='unpaid',payed:contract.attributes.paidstatus=='payed'}"
             @click="showcontract(contract.id)"
              v-for="contract in contracts">
-                <div class="col-2 text-center">{{ contract.attributes.jobsnumber }} </div> 
-                <div class="col-4 ">{{ contract.attributes.device }} </div> 
-                <div class="col-6 " v-for="service in contract.relationships.services">
+                <div class="col-3 col-md-2 text-center ">{{ contract.attributes.jobsnumber }} </div> 
+                <div class=" col-9 col-md-4 text-center">{{ contract.attributes.device }} </div> 
+                <div class="col-12 col-md-6 text-center" v-for="service in contract.relationships.services">
                   {{ service.attributes.title}} --{{ service.attributes.prise }} €
                 </div> 
                
