@@ -48,6 +48,7 @@ import sendemail from '../components/sendemail.vue'
 import pagenotfound from '../components/pagenotfound.vue'
 
 import kasse from '../components/Kasse/kasse.vue'
+import lebenslauf from '../components/lebenslauf.vue'
 
 
 const routes = [
@@ -366,6 +367,13 @@ const routes = [
             middleware: "auth",
           
         }
+    },
+    {
+        name: "lebenslauf",
+        path: "/lebenslauf",
+        component: lebenslauf,
+        
+       
     }
 ]
 

@@ -14,6 +14,8 @@
             <nintendo  v-if="nintendo"/>
             <superangebute />
             <emailbanner />
+            <location />
+
 
          </section>
        
@@ -33,6 +35,7 @@ import micrsoft from './homecomponents/micrsoft.vue'
 import sony from './homecomponents/sony.vue'
 import nintendo from './homecomponents/nintendo.vue'
 import emailbanner from './homecomponents/benachrictenemail.vue'
+import location from './location.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:"home",
@@ -47,6 +50,7 @@ export default {
         sony,
         nintendo,
         emailbanner,
+        location,
         msnfooter    
     },
     data(){

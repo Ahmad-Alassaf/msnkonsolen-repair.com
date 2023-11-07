@@ -8,12 +8,14 @@
         <h1 class="text-center">Meine Aufträge</h1>
           
         <div class="container  text-center px-0">
-            <div class="row py-4 px-2  mb-3 text-start contract banner rounded mb-2 position-relative"
-            :class="{unpaid:contract.attributes.paidstatus=='unpaid',payed:contract.attributes.paidstatus=='payed'}"
+            <div class="row py-4 px-2  mb-3 text-start contract  rounded mb-2 position-relative"
+          
             @click="showcontract(contract.id)"
              v-for="contract in contracts">
-                <div class="col-3 col-md-2 text-center ">{{ contract.attributes.jobsnumber }} </div> 
-                <div class=" col-9 col-md-4 text-center">{{ contract.attributes.device }} </div> 
+                <div class="col-3 col-md-2 text-center banner "
+                :class="{unpaid:contract.attributes.paidstatus=='unpaid',payed:contract.attributes.paidstatus=='payed'}"
+                >{{ contract.attributes.jobsnumber }} </div> 
+                <div class=" col-9 col-md-4 ">{{ contract.attributes.device }} </div> 
                 <div class="col-12 col-md-6 text-center" v-for="service in contract.relationships.services">
                   {{ service.attributes.title}} --{{ service.attributes.prise }} €
                 </div> 
@@ -71,6 +73,7 @@ export default {
     content: "";
     position: absolute;
     top: 0;
+    left:0;
 
     background-color: red;
 
@@ -81,7 +84,7 @@ export default {
     content: "";
     position: absolute;
     top: 0;
-
+    left:0;
     background-color: green;
 
 }
