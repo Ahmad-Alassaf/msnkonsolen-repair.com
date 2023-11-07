@@ -1,7 +1,7 @@
 <template >
     
-        <div class=" jumbotron jumbotronheight bg-primary   text-white d-none d-md-block">
-            <div class="container  ">
+        <div class="  jumbotron jumbotronheight jumbotrunbgcolor   text-white  d-none d-md-block">
+               <div class="container py-5">
                 <h1>Vedio-Spiel Konsolen </h1>
                 <ul>
                         <li>
@@ -20,8 +20,9 @@
                             <small class="">Nintendo SWITCH, Nintendo SWITCH LITE</small>
                         </li>
             </ul>
+        </div>
                 
-            </div>
+           
            
           </div>
    
@@ -33,7 +34,11 @@ export default {
 </script>
 <style >
 .jumbotronheight{
+    min-height: 400px;
    
+}
+.jumbotrunbgcolor{
+    background-color: #8eb3e7;
 }
 
     

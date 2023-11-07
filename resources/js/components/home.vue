@@ -15,6 +15,16 @@
             <superangebute />
             <emailbanner />
             <location />
+           
+            <div class=" bg-dark py-5">
+                <hr style="border: none; border-top: 3px dashed  white" />
+                <sendemail />
+                <hr style="border: none; border-top: 3px dashed  white" />
+
+            </div>
+            
+
+            <msnfooter  /> 
 
 
          </section>
@@ -36,6 +46,7 @@ import sony from './homecomponents/sony.vue'
 import nintendo from './homecomponents/nintendo.vue'
 import emailbanner from './homecomponents/benachrictenemail.vue'
 import location from './location.vue'
+import sendemail from './sendemail.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
     name:"home",
@@ -51,6 +62,7 @@ export default {
         nintendo,
         emailbanner,
         location,
+        sendemail,
         msnfooter    
     },
     data(){
@@ -108,6 +120,9 @@ export default {
 }
 </script>
 <style >
+.bgcolor{
+    background-color: rgb(195, 207, 219);
+}
 
   
 </style>

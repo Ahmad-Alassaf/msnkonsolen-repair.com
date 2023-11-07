@@ -1,8 +1,8 @@
 <template >
   
-        <div class="container">
-            <h3 class="mb-1 bg-secondary p-0 px-5  text-white rounded-5"> Ihre Nachricht</h3>
-        <form @submit.prevent="sendemail()" class="form  px-5 py-2    ">
+        <div class="container py-5 w-50 m-auto">
+            <h3 class="mb-1  p-0 px-5  text-white rounded-5"> Ihre Nachricht</h3>
+             <form @submit.prevent="sendemail()" class="form  px-5 py-2    ">
            
                 <input type="text" v-model="mailData.from" placeholder="Ihre Name..." class="form-control rounded-0 mb-2 w-50" name="customer" id="">
                 <input type="text" v-model="mailData.from" placeholder="Ihre Email Adresse..." class="form-control  rounded-0 mb-2  w-50" name="to" id="">

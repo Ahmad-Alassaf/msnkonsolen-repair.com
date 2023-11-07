@@ -5,10 +5,7 @@
             <div class=" px-0">
                
                 <div class="row justify-content-center ">
-                    <div class="col-md-6 px-0 ">
-                        <location />
-
-                    </div>
+                   
                     <div class=" row  col-md-6  py-3 px-5  mb-1">
                         <div class="col-12  ">
                             <h3 class=" py-0 m-0">Name</h3>
@@ -38,7 +35,7 @@
                 
             </div>
             <div class="bg-secondary  py-5">
-                <div class=" px-0  ">
+                <div class="container  px-0  ">
                  
                     <sendemail />
                 </div>

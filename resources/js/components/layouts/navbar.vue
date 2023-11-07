@@ -1,6 +1,6 @@
 <template lang="">
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0 p-0  "  id="navbar">
+    <div ref="content">
+        <nav class="navbar navbar-expand-lg navbgcolor mb-0 p-0  navheight"  id="navbar">
             <div class="container-fluid">
                 <div class="row">
                     <router-link class="navbar-brand py-0" :to="{name:'home'}">MSN-Reparatur</router-link>
@@ -33,31 +33,31 @@
                                       Admin
                                     </a>
                                   
-                                    <ul class="dropdown-menu rounded-0 border-0  bg-dark mt-0 text-white text-center" aria-labelledby="dropdownMenuLink">
+                                    <ul class="dropdown-menu rounded-0 border-0  navbgcolor mt-0 text-white text-center" aria-labelledby="dropdownMenuLink">
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'contracts'}">Contracts</router-link>
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'contracts'}">Contracts</router-link>
     
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'adminservices'}">services</router-link>
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'adminservices'}">services</router-link>
     
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'devices'}">devices</router-link>
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'devices'}">devices</router-link>
     
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'platforms'}">platforms</router-link>
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'platforms'}">platforms</router-link>
     
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'users'}">users</router-link>    
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'users'}">users</router-link>    
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'roles'}">roles</router-link>    
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'roles'}">roles</router-link>    
                                         </li>
                                         <li class=" ">
-                                            <router-link class="nav-link bg-dark router-hover text-white" :to="{name:'permissions'}">permissions</router-link>    
+                                            <router-link class="nav-link navbgcolor router-hover text-white" :to="{name:'permissions'}">permissions</router-link>    
                                         </li>
                                        
                                     </ul>
@@ -116,7 +116,8 @@ import { useStore } from 'vuex'
 import {useRouter} from 'vue-router'
 export default {
     setup(){
-        const sticky=ref(15)
+        const sticky=ref(50)
+        const content = ref()
         const permissions=ref([])
         const contractslist=ref([])
         const store=useStore()
@@ -145,14 +146,26 @@ export default {
         const user=computed(()=>{
             return store.getters["auth/getuser"]
         })
+        const doscroll=(event)=>{
+          
+
+        }
         onMounted(()=>{
-            document.addEventListener('scroll',()=>{
-                let navbar=window.document.getElementById("navbar");
-                        if (window.pageYOffset >= sticky) {navbar.classList.add("sticky")} 
-                        else {navbar.classList.remove("sticky");}
+            console.log('mounted')
+          let nav= document.getElementById('navbar')
+          nav.value=document.addEventListener('scroll', (event)=>{
+
+           
+              console.log(event.target.clientHeight)
+          
+
+
 
             })
-        })
+
+            
+
+                })
        
       
         return{contracts,unpaidcontracts,signOut,authenticated,user}
@@ -166,6 +179,13 @@ export default {
 }
 </script>
 <style >
+.navheight{
+    min-height: 50px;
+
+}
+.navbgcolor{
+    background-color:  #063773;;
+}
 .sticky {
     position: fixed;
     top: 0;

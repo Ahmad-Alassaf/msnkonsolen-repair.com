@@ -3,7 +3,7 @@
   <div>
    
     <GoogleMap
-    :zoom="18"    
+    :zoom="10"    
     :center="center"
      api-key="AIzaSyCBcDY3KDhse6SeN6QvUf7RS3YY1cLXLS8"
      style="width: 100%; height: 300px"
