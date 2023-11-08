@@ -7,48 +7,48 @@
     "file": "assets/joycons-ac918e53.jpg",
     "src": "public/storage/images/nintendo/3.jpg"
   },
-  "public/storage/images/netzteil.jpg": {
-    "file": "assets/netzteil-afde2eb4.jpg",
-    "src": "public/storage/images/netzteil.jpg"
-  },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-6bbba60b.jpg",
     "src": "public/storage/images/laser.jpg"
+  },
+  "public/storage/images/netzteil.jpg": {
+    "file": "assets/netzteil-afde2eb4.jpg",
+    "src": "public/storage/images/netzteil.jpg"
   },
   "public/storage/images/nintendo/1.jpg": {
     "file": "assets/1-9ebb9bbc.jpg",
     "src": "public/storage/images/nintendo/1.jpg"
   },
-  "public/storage/images/nintendo/2.jpg": {
-    "file": "assets/2-aa906f1c.jpg",
-    "src": "public/storage/images/nintendo/2.jpg"
-  },
   "public/storage/images/nintendo/4.jpg": {
     "file": "assets/4-b5da7517.jpg",
     "src": "public/storage/images/nintendo/4.jpg"
   },
+  "public/storage/images/nintendo/2.jpg": {
+    "file": "assets/2-aa906f1c.jpg",
+    "src": "public/storage/images/nintendo/2.jpg"
+  },
   "public/storage/images/reinigung2.jpg": {
     "file": "assets/reinigung2-fa3025e1.jpg",
     "src": "public/storage/images/reinigung2.jpg"
-  },
-  "resources/js/app.css": {
-    "file": "assets/app-77d5de05.css",
-    "src": "resources/js/app.css"
   },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
-  "_html2canvas-bd2d8ba6.js": {
-    "file": "assets/html2canvas-bd2d8ba6.js",
+  "resources/js/app.css": {
+    "file": "assets/app-77d5de05.css",
+    "src": "resources/js/app.css"
+  },
+  "_html2canvas-0d622ba1.js": {
+    "file": "assets/html2canvas-0d622ba1.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-431d13e8.js",
+    "file": "assets/Register-40de41ce.js",
     "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -56,7 +56,7 @@
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-5a3f66cf.js",
+    "file": "assets/Login-6b4a86c2.js",
     "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -69,7 +69,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-38fa5711.js",
+    "file": "assets/index.es-3bcbc921.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -77,11 +77,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-75b97ef6.js",
+    "file": "assets/app-4e772303.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-bd2d8ba6.js",
+      "_html2canvas-0d622ba1.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",

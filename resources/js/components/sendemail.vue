@@ -1,6 +1,6 @@
 <template >
   
-        <div class="container py-5 w-50 m-auto">
+        <div class="container py-5 ">
             <h3 class="mb-1  p-0 px-5  text-white rounded-5"> Ihre Nachricht</h3>
              <form @submit.prevent="sendemail()" class="form  px-5 py-2    ">
            
