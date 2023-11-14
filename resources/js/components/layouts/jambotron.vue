@@ -2,7 +2,7 @@
     
         <div class="  jumbotron jumbotronheight jumbotrunbgcolor   text-white  d-none d-md-block">
                <div class="container py-5">
-                <h1>Vedio-Spiel Konsolen </h1>
+                <h1>VideoSpiel Konsolen </h1>
                 <ul>
                         <li>
                            <h3>Sony</h3>

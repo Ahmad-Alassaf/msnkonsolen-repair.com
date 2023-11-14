@@ -5,7 +5,7 @@
     <div class="container px-0 py-0 my-0">
         <h1 class="text-center  maincolor text-white w-100 my-0 py-1">
                         
-            Full-Stack Web-Entweckler
+            Full-Stack Web-Entwickler
           
      </h1>
 
@@ -198,7 +198,7 @@
                             </p>
                          </div>
                          <div>
-                            <h5 ><span class="pill px-2">Vediospiel Konsolenreparatur</span></h5>
+                            <h5 ><span class="pill px-2">Videospiel Konsolenreparatur</span></h5>
                             <a href="https://msnkonsolen-repair.com">MSN Konsolen Reparatur</a>   
                                 
                              <p>

@@ -3,7 +3,7 @@
         <nav class="navbar navbar-expand-lg navbgcolor mb-0 p-0  navheight"  id="navbar">
             <div class="container-fluid">
                 <div class="row">
-                    <router-link class="navbar-brand py-0" :to="{name:'home'}">MSN-Reparatur</router-link>
+                    <router-link class="navbar-brand py-0" :to="{name:'home'}"><strong class="text-white fst-italic">MSN-Reparatur</strong></router-link>
                
                 </div>
                 
@@ -19,9 +19,7 @@
                             <li class="nav-item">
                                 <router-link :to="{name:'services'}" class="nav-link navlink-hover text-white text-center">services </router-link>
                             </li>
-                            <li class="nav-item ">
-                                <router-link :to="{name:'contact'}" class="nav-link navlink-hover text-white text-center">Kontakt </router-link>
-                            </li>
+                           
                             
                             <li class="nav-item"  >
                                 <router-link :to="{name:'createcontract'}" class="nav-link navlink-hover text-white text-center">Auftrag Erstellen </router-link>
@@ -88,7 +86,7 @@
                                    
                                 </li>
                                 <li class="nav-item " v-else>
-                                    <router-link :to="{name:'login'}" class="nav-link">Login </router-link>
+                                    <router-link :to="{name:'login'}" class="nav-link text-white">Login </router-link>
                                    
                                 </li>
                                

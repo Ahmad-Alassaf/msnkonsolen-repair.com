@@ -1,10 +1,10 @@
 <template lang="">
-    <div class="bg-dark bg-hover text-white py-3">
+    <div class="mybackgroundcolor bg-hover text-white py-3">
         <hr style="border: none; border-top: 3px dashed  white" />
         <div class="container ">
             <div class="row  align-items-center ">
                 <div class="text-center  py-3 px-3 col "  >
-                    <span @click="setupMicrsoft()" class="fst-italic Microsoft  py-4 px-1" style="font-size:18px">Microsoft</span>
+                    <span @click="setupMicrsoft()" class="fst-italic Microsoft  py-4 px-1 " style="font-size:18px">Microsoft</span>
                     
                 </div>
                 <div class="text-center  py-3 px-3 col">
@@ -60,7 +60,7 @@ export default {
 </script>
 <style >
 .Microsoft{
-    border:2px solid #212529;
+   
 }
 .Microsoft:hover{
     cursor: pointer;
@@ -78,7 +78,7 @@ export default {
 
 }
 .sony{
-    border:2px solid #212529;
+   
 
 }
 
@@ -92,7 +92,7 @@ export default {
 
 }
 .Nintendo{
-    border:2px solid #212529;
+  
 
 }
 
@@ -112,6 +112,10 @@ export default {
     background-color: rgb(146, 8, 8);
     border:2px solid white;
   
+
+}
+.mybackgroundcolor{
+    background-color:   #063773;
 
 }
 

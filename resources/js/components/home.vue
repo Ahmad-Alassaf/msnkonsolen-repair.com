@@ -3,9 +3,7 @@
         <section class="headersection" id="headersection">
             <navbar />
             <jambotron />
-
-        </section>
-      
+        </section>     
          <section class="bodysection" id="bodysection">
             <advantesbar />
             <msnbanner @setupmicrsoft="showmicrosoft" @setupsony="showsony" @setupnintendo="shownintendo" />
@@ -14,19 +12,16 @@
             <nintendo  v-if="nintendo"/>
             <superangebute />
             <emailbanner />
-            <location />
-           
-            <div class=" bg-dark py-5">
-                <hr style="border: none; border-top: 3px dashed  white" />
-                <sendemail />
-                <hr style="border: none; border-top: 3px dashed  white" />
-
+            <div class="py-5">
+                <location />
+            </div>          
+            <div class="  py-5">              
+                <accordion />               
+            </div>           
+            <div class=" py-5">               
+                <sendemail /> 
             </div>
-            
-
             <msnfooter  /> 
-
-
          </section>
        
     </div>
@@ -34,7 +29,6 @@
   
 </template>
 <script>
-
 import navbar from "./layouts/navbar.vue";
 import jambotron from './layouts/jambotron.vue';
 import msnfooter from './layouts/msnfooter.vue';
@@ -46,6 +40,7 @@ import sony from './homecomponents/sony.vue'
 import nintendo from './homecomponents/nintendo.vue'
 import emailbanner from './homecomponents/benachrictenemail.vue'
 import location from './location.vue'
+import accordion from "./accordion.vue"
 import sendemail from './sendemail.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
@@ -63,7 +58,8 @@ export default {
         emailbanner,
         location,
         sendemail,
-        msnfooter    
+        msnfooter ,
+        accordion   
     },
     data(){
         return {
@@ -122,6 +118,10 @@ export default {
 <style >
 .bgcolor{
     background-color: rgb(195, 207, 219);
+}
+.mybackgroundcolor{
+    background-color:   #063773;
+
 }
 
   

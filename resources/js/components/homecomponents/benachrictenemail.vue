@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="bg-dark bg-hover text-white py-3">
+    <div class="mybackgroundcolor bg-hover text-white py-3">
         <hr style="border: none; border-top: 3px dashed  white" />
         <div class="container ">
             <form class="">
@@ -8,7 +8,7 @@
                         <input type="email" name="" id="" 
                         class=" border-0 py-2  col-10  col-md-9 col-lg-11 ">
                         <input type="submit" name="submit" value="submit" 
-                        class="btn btn-primary submitbutton border-0 rounded-0 col-3  col-md-2 col-lg-1 ">
+                        class="btn btn-dark submitbutton border-0 rounded-0 col-3  col-md-2 col-lg-1 ">
 
 
                   
@@ -30,6 +30,10 @@ export default {
 }
 </script>
 <style >
+.mybackgroundcolor{
+    background-color:   #063773;
+
+}
 @media only screen and (max-width: 767px) {
     .submitbutton{
        
