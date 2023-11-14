@@ -31,33 +31,33 @@
     "file": "assets/reinigung2-fa3025e1.jpg",
     "src": "public/storage/images/reinigung2.jpg"
   },
+  "resources/js/app.css": {
+    "file": "assets/app-5e545cb2.css",
+    "src": "resources/js/app.css"
+  },
   "resources/sass/app.scss": {
     "file": "assets/app-67dcdfd2.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
-  "resources/js/app.css": {
-    "file": "assets/app-5e545cb2.css",
-    "src": "resources/js/app.css"
-  },
-  "_html2canvas-8dc23944.js": {
-    "file": "assets/html2canvas-8dc23944.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "resources/js/components/Login.vue": {
-    "file": "assets/Login-0fe3b2f2.js",
-    "src": "resources/js/components/Login.vue",
+  "_html2canvas-b6813e76.js": {
+    "file": "assets/html2canvas-b6813e76.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Register.vue": {
-    "file": "assets/Register-cc90d5c2.js",
+    "file": "assets/Register-afc08a5e.js",
     "src": "resources/js/components/Register.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/Login.vue": {
+    "file": "assets/Login-3c459492.js",
+    "src": "resources/js/components/Login.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
@@ -69,7 +69,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-16b83672.js",
+    "file": "assets/index.es-6098e79f.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -77,11 +77,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-d7869fd5.js",
+    "file": "assets/app-8756ecba.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-8dc23944.js",
+      "_html2canvas-b6813e76.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",

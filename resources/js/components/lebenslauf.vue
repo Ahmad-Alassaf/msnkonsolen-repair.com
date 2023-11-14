@@ -95,7 +95,7 @@
                             <li> Reparatur von Game-Konsolen</li>
                             <li>Kundensupport</li>
                             <li>Gamestop-Stores Support</li>
-                            <li>Tecket-System bearbeiten</li>
+                            <li>Ticket-System bearbeiten</li>
                            
                         </ul> 
                       <span class="d-block text-muted">  02/2017 – 08/2017</span>
@@ -191,10 +191,10 @@
                             <h5 ><span class="pill px-2">Auftragsprojekt</span></h5>
                             <a href=" http://alis-dienstleistungen.de">Alis-dienstleistungen</a>   
                                 
-                             <p>im Auftrag erstellt, Infos für neu ankommende 
+                             <p>Im Auftrag erstellt, Infos für neu ankommende 
                                 arabische Flüchtlinge in Deutschland, alles nur in 
                                 arabischer Schrift.
-                                Erstellung Projekt abgebrochen wegen kein Feedback vom Kunde.
+                                Erstellung des Projekt abgebrochen wegen fehlendem Feedback vom Kunden.
                             </p>
                          </div>
                          <div>
