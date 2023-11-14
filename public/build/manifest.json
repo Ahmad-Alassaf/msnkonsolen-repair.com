@@ -1,11 +1,11 @@
 {
-  "public/storage/images/nintendo/3.jpg": {
-    "file": "assets/joycons-ac918e53.jpg",
-    "src": "public/storage/images/nintendo/3.jpg"
-  },
   "public/storage/Bild1.jpg": {
     "file": "assets/Bild1-be789099.jpg",
     "src": "public/storage/Bild1.jpg"
+  },
+  "public/storage/images/nintendo/3.jpg": {
+    "file": "assets/joycons-ac918e53.jpg",
+    "src": "public/storage/images/nintendo/3.jpg"
   },
   "public/storage/images/laser.jpg": {
     "file": "assets/laser-6bbba60b.jpg",
@@ -40,24 +40,24 @@
     "file": "assets/app-5e545cb2.css",
     "src": "resources/js/app.css"
   },
-  "_html2canvas-fad909c1.js": {
-    "file": "assets/html2canvas-fad909c1.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "resources/js/app.js"
-    ]
-  },
-  "resources/js/components/Register.vue": {
-    "file": "assets/Register-77170513.js",
-    "src": "resources/js/components/Register.vue",
+  "_html2canvas-8dc23944.js": {
+    "file": "assets/html2canvas-8dc23944.js",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/components/Login.vue": {
-    "file": "assets/Login-152dee1b.js",
+    "file": "assets/Login-0fe3b2f2.js",
     "src": "resources/js/components/Login.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/components/Register.vue": {
+    "file": "assets/Register-cc90d5c2.js",
+    "src": "resources/js/components/Register.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
@@ -69,7 +69,7 @@
     "isDynamicEntry": true
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-5b850b6d.js",
+    "file": "assets/index.es-16b83672.js",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
@@ -77,11 +77,11 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-2f35125e.js",
+    "file": "assets/app-d7869fd5.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
-      "_html2canvas-fad909c1.js",
+      "_html2canvas-8dc23944.js",
       "node_modules/dompurify/dist/purify.es.js",
       "node_modules/canvg/lib/index.es.js",
       "resources/js/components/Login.vue",

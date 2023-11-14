@@ -391,8 +391,9 @@ router.beforeEach((to, from, next) => {
        
     } 
     else if (to.meta.middleware == "auth"){
-        if (!store.state.auth.verify) {next({name:'verify'})}
-         if(!store.state.auth.authenticated){next({name:'login'})}
+       /*  if (!store.state.auth.verify) { */
+         if(!store.state.auth.authenticated)  { next({name:'login'}) }
+        else if(store.state.auth.authenticated && !store.state.auth.verify ){next({name:'verify'})}
         else{ next()}
 
     }
